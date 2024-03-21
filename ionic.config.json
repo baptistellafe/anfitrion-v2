@@ -1,0 +1,7 @@
+{
+  "name": "anfitrion",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
