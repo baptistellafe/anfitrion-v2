@@ -1,0 +1,25 @@
+.logo-wrapper {
+  &.dark-mode {
+    ion-text {
+      h1 { color: var(--white); }
+    }
+  }
+
+  &.light-mode {
+    ion-text {
+      h1 { color: var(--gray-text); }
+    }
+  }
+
+  &.normal {
+    ion-text {
+      h1 { font-size: 32px; }
+    }
+  }
+
+  &.header {
+    ion-text {
+      h1 { font-size: 24px; }
+    }
+  }
+}

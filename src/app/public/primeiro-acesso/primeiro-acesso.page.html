@@ -1,0 +1,180 @@
+<ion-content
+[fullscreen]="true">
+  <section
+  class="primeiro-acesso full-size overflow-hidden ">
+    <swiper-container
+    #primeiroAcessoSwiper
+    (swiperslidechange)="slideMudou()"
+    class="full-height"
+    slides-per-view="1"
+    speed="500"
+    allow-touch-move="false">
+      <swiper-slide>
+        <!-- PRIMEIRO SLIDE -->
+        <section class="primeiro-slide full-size">
+          <div class="primeiro-slide-container">
+            <ion-text
+            class="text-center color-gray-text full-width icone-titulo-texto"
+            mode="ios">
+              <ion-icon
+              name="finger-print-outline"
+              class="full-width fs-32"
+              [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 0}">
+              </ion-icon>
+              <h2 class="font-baloo"><b>Primeiro acesso</b></h2>
+              <p class="com-sarcasmo pt">precisamos nos conhecer<span>, é rapidinho.</span></p>
+            </ion-text>
+          </div>
+        </section>
+      </swiper-slide>
+
+      <swiper-slide>
+        <!-- SEGUNDO SLIDE -->
+        <section class="segundo-slide full-size">
+          <div class="segundo-slide-container">
+            <ion-text
+            class="text-center color-gray-text full-width icone-titulo-texto"
+            mode="ios">
+              <ion-icon
+              name="id-card-outline"
+              class="full-width fs-32"
+              [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 1}">
+              </ion-icon>
+              <h2 class="font-baloo"><b>Seu nome</b></h2>
+              <p>te chamaremos pelo primeiro nome daqui pra frente.</p>
+            </ion-text>
+
+            <ion-text
+            class="color-gray-text text-left full-width mg-top-32"
+            mode="ios">
+              <p class="fs-12">Insira abaixo</p>
+            </ion-text>
+
+            <ion-item
+            [lines]="'none'"
+            class="full-width"
+            mode="ios">
+              <ion-input
+              type="text"
+              inputmode="text"
+              [(ngModel)]="nomeDoVisitante"
+              (keyup)="transformarNome(nomeDoVisitante)"
+              mode="ios"
+              labelPlacement="stacked"
+              placeholder="Ex: Felipe">
+              </ion-input>
+
+              <ion-icon
+              [ngClass]="{'ocultar-opacidade': nomeDoVisitante.length > 3}"
+              name="warning-outline"
+              class="fs-18 color-negative">
+              </ion-icon>
+            </ion-item>
+
+            <ion-text
+            mode="ios"
+            [ngClass]="{'ocultar-opacidade': nomeDoVisitante.length > 3}"
+            class="text-left full-width">
+              <p class="color-negative fs-12">
+                <ng-container *ngIf="nomeDoVisitante.length !== 0">no mínimo <b>3</b> caracteres</ng-container>
+                <ng-container *ngIf="nomeDoVisitante.length === 0">obrigatório</ng-container>
+              </p>
+            </ion-text>
+          </div>
+        </section>
+      </swiper-slide>
+
+      <swiper-slide>
+        <!-- TERCEIRO SLIDE -->
+        <section class="terceiro-slide full-size">
+          <div class="terceiro-slide-container">
+            <ion-text
+            class="text-center color-gray-text full-width icone-titulo-texto"
+            mode="ios">
+              <ion-icon
+              name="language-outline"
+              class="full-width fs-32"
+              [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 2}">
+              </ion-icon>
+              <h2 class="font-baloo"><b>Seu idioma</b></h2>
+              <p>como quer ver o conteúdo</p>
+            </ion-text>
+
+            <anf-language-button></anf-language-button>
+          </div>
+        </section>
+      </swiper-slide>
+
+      <swiper-slide>
+        <!-- QUARTO SLIDE -->
+        <section class="quarto-slide full-size">
+          <div class="quarto-slide-container">
+            <ion-text
+            class="text-center color-gray-text full-width icone-titulo-texto"
+            mode="ios">
+              <ion-icon
+              name="location-outline"
+              class="full-width fs-32"
+              [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 3}">
+              </ion-icon>
+              <h2 class="font-baloo"><b>Uma cidade</b></h2>
+              <p>estamos somente na Baixada Santista</p>
+            </ion-text>
+
+            <anf-city-button></anf-city-button>
+          </div>
+        </section>
+      </swiper-slide>
+    </swiper-container>
+  </section>
+</ion-content>
+
+<ion-footer
+class="ion-no-border bg-white"
+mode="ios">
+  <ion-toolbar
+  class="ion-bg-white no-ion-padding">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col size="3">
+          <div class="stepper-wrapper full-height">
+            <ion-text
+            [ngClass]="indexAtual === 0 ? 'item-escondido-suavemente' : 'aparecer-suavemente'"
+            mode="ios"
+            class="color-gray-text fs-14">
+              <p><span class="fs-18"><b>{{ indexAtual }}</b></span> de 3</p>
+            </ion-text>
+          </div>
+        </ion-col>
+
+        <ion-col size="9" class="text-right">
+          <ion-button
+          *ngIf="indexAtual !== 0 && indexAtual !== 1"
+          (click)="retornarSwiper()"
+          title="Voltar"
+          [ngClass]="indexAtual === 0 || indexAtual === 1 ? 'item-escondido-suavemente' : 'aparecer-suavemente'"
+          shape="round"
+          fill="clear"
+          size="normal"
+          class="main-clear icone-a-esquerda"
+          mode="md">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Voltar
+          </ion-button>
+
+          <ion-button
+          (click)="avancarSwiper()"
+          title="Avançar"
+          shape="round"
+          fill="solid"
+          size="normal"
+          class="main icone-a-direita"
+          mode="md">
+            Avançar
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

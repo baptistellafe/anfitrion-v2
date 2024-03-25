@@ -3,14 +3,27 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'splash-screen',
     pathMatch: 'full'
   },
+  {
+    path: 'splash-screen',
+    loadChildren: () => import('./public/splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
+  },
+  {
+    path: 'inicio',
+    loadChildren: () => import('./private/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: 'primeiro-acesso',
+    loadChildren: () => import('./public/primeiro-acesso/primeiro-acesso.module').then( m => m.PrimeiroAcessoPageModule)
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    loadChildren: () => import('./public/nao-encontramos/nao-encontramos.module').then( m => m.NaoEncontramosPageModule)
+  }
 ];
 
 @NgModule({

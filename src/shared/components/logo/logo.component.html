@@ -1,0 +1,16 @@
+<div
+class="logo-wrapper"
+[ngClass]="{
+  'animate__animated animate__fadeIn animate__delay-1s animate__slow': animated,
+  'dark-mode' : darkMode,
+  'light-mode' : !darkMode,
+  'normal': type === 'normal',
+  'header': type === 'header'
+}">
+  <!-- ANFITRION-->
+  <ng-container *ngIf="brand === 'anfitrion'">
+    <ion-text mode="ios">
+      <h1 class="font-baloo logo-anfitrion">anfitri<span class="color-linear"><b>on</b></span></h1>
+    </ion-text>
+  </ng-container>
+</div>

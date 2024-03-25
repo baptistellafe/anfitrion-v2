@@ -1,0 +1,74 @@
+// TEXTs
+.font-baloo { font-family: var(--font-baloo) !important; }
+
+// ALIGNs
+.text-center { text-align: center;}
+.text-right { text-align: right;}
+.text-left { text-align: left;}
+
+// FONT SIZEs
+.fs-32 { font-size: 32px; }
+.fs-18 { font-size: 18px; }
+.fs-14 { font-size: 14px; }
+.fs-12 { font-size: 12px; }
+
+// WIDTHs & HEIGHTs
+.full-size { width: 100%; height: 100%; }
+.full-height { height: 100%; }
+.full-width { width: 100%; }
+
+// BACKGROUNDs
+.ion-bg-gray { --background: var(--gray-2); }
+.ion-bg-white { --background: var(--white); }
+
+.bg-white { background: var(--white); }
+
+// OTHERs
+.overflow-hidden { overflow: hidden; }
+
+// CENTERING
+.center-w-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-w-margin {
+  margin: 0 auto;
+}
+
+.center-w-absolute {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// COLORs
+.color-white { color: var(--white); }
+.color-gray-text { color: var(--gray-text); }
+.color-negative { color: var(--danger); }
+
+.color-linear {
+  background-image: linear-gradient(.351turn,#769834 43.71%,#547D0E 58.8%);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// PADDINGs
+.no-ion-padding {
+  --padding-top: 0;
+  --padding-end: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+}
+
+.p-all-0 {
+  padding: 0;
+}
+
+// MARGINs
+.mg-top-32 { margin-top: 32px; }

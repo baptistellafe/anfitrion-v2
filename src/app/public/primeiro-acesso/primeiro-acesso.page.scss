@@ -1,0 +1,70 @@
+@import './../../../assets/scss/utils/mixins.scss';
+
+section {
+  &.primeiro-acesso {
+    background: linear-gradient(to bottom, var(--gray-fa), #fff);
+  }
+
+  &.primeiro-slide {
+    @include flexbox(center, center, column);
+
+    .primeiro-slide-container {
+      @include flexbox(center, center, column);
+      max-width: 320px;
+    }
+  }
+
+  &.segundo-slide {
+    @include flexbox(center, center, column);
+
+    .segundo-slide-container {
+      @include flexbox(center, center, column);
+      max-width: 320px;
+
+      ion-item {
+        --padding-start: 0;
+        --padding-end: 0;
+        --inner-padding-end: 0;
+
+        ion-input {
+          --placeholder-font-weight: normal;
+          --placeholder-color: var(--gray-mid);
+          --color: var(--green);
+          font-family: var(--font-baloo);
+          font-size: 22px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  &.terceiro-slide {
+    @include flexbox(center, center, column);
+
+    .terceiro-slide-container {
+      @include flexbox(center, center, column);
+      max-width: 320px;
+
+      anf-language-button {
+        margin: 32px 0;
+      }
+    }
+  }
+
+  &.quarto-slide {
+    @include flexbox(center, center, column);
+
+    .quarto-slide-container {
+      @include flexbox(center, center, column);
+      max-width: 320px;
+
+      anf-language-button {
+        margin: 32px 0;
+      }
+    }
+  }
+}
+
+.stepper-wrapper {
+  @include flexbox(flex-end, flex-start, row);
+}

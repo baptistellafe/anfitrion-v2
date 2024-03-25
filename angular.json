@@ -8,11 +8,16 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "anf",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "stylePreprocessorOptions": {
+             "includePaths": [
+               "./src/assets/scss"
+             ]
+           },
             "outputPath": "www",
             "index": "src/index.html",
             "main": "src/main.ts",

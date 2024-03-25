@@ -1,0 +1,43 @@
+ion-button {
+  text-transform: none;
+  font-size: 14px;
+  font-weight: normal;
+
+  &.main {
+    --background: linear-gradient(.351turn,#769834 43.71%,#547D0E 58.8%);
+    --color: var(--white);
+    --padding-end: 16px;
+    --padding-start: 16px;
+    --border-width: 1px;
+    --border-style: solid;
+    --border-color: var(--green-dark);
+  }
+
+  &.main-clear {
+    --color: var(--green);
+  }
+
+  &.main-outline {
+    --border-width: 1px;
+    --border-style: solid;
+    --border-color: var(--green-dark);
+    --color: var(--green-dark);
+  }
+
+  &.icone-a-direita,
+  &.icone-a-esquerda {
+    ion-icon { font-size: 16px; }
+  }
+
+  &.icone-a-direita {
+    ion-icon {
+      margin: 0 0 0 6px;
+    }
+  }
+
+  &.icone-a-esquerda {
+    ion-icon {
+      margin: 0 6px 0 0;
+    }
+  }
+}
