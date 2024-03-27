@@ -3,26 +3,39 @@
   id="seletor-de-cidade"
   title="Selecionar cidade"
   shape="round"
-  fill="solid"
+  [fill]="cidadeEscolhida ? 'solid' : 'outline'"
   size="normal"
-  class="main icone-a-direita mg-top-32 overflow-hidden"
+  [ngClass]="cidadeEscolhida ? 'main' : 'gray-outline sem-cidade'"
+  class="icone-a-direita mg-top-32 overflow-hidden"
   mode="md">
-    {{ selectedCity?.text }}
+    <ng-container *ngIf="cidadeEscolhida">{{ cidadeEscolhida.text }}</ng-container>
+    <ng-container *ngIf="!cidadeEscolhida">Selecionar</ng-container>
+
     <ion-icon name="chevron-down-outline"></ion-icon>
 
     <ion-select
+    [interfaceOptions]="cityButtonAlertOptions"
+    [interface]="'alert'"
+    [okText]="'Definir'"
+    [cancelText]="'Cancelar'"
+    [compareWith]="compararCidades"
+    [(ngModel)]="cidadeEscolhida"
     (ionChange)="definirCidade($event)"
-    label="Uma cidade"
     mode="ios">
       <ion-select-option
+      [disabled]="!city.isActiveOnAnfitrion"
+      mode="ios"
       *ngFor="let city of cities"
-      [value]="city.value">
+      [value]="city">
         {{ city.text }}
       </ion-select-option>
     </ion-select>
   </ion-button>
 
-  <ion-text mode="ios" class="full-width text-center">
+  <ion-text
+  *ngIf="cidadeEscolhida"
+  mode="ios"
+  class="full-width text-center">
     <p class="fs-12 color-gray-text">Altere quando quiser</p>
   </ion-text>
 </div>

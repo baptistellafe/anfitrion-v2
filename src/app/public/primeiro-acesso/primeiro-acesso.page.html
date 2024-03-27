@@ -41,7 +41,7 @@
               [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 1}">
               </ion-icon>
               <h2 class="font-baloo"><b>Seu nome</b></h2>
-              <p>te chamaremos pelo primeiro nome daqui pra frente.</p>
+              <p>te chamarei pelo nome daqui pra frente.</p>
             </ion-text>
 
             <ion-text
@@ -52,9 +52,13 @@
 
             <ion-item
             [lines]="'none'"
-            class="full-width"
+            class="full-width ion-bg-transparent"
             mode="ios">
               <ion-input
+              [autocorrect]="false"
+              [clearInput]="true"
+              class="ion-bg-transparent"
+              #inputPrimeiroNome
               type="text"
               inputmode="text"
               [(ngModel)]="nomeDoVisitante"
@@ -65,7 +69,7 @@
               </ion-input>
 
               <ion-icon
-              [ngClass]="{'ocultar-opacidade': nomeDoVisitante.length > 3}"
+              [ngClass]="{'ocultar-opacidade': nomeDoVisitante.length >= 3}"
               name="warning-outline"
               class="fs-18 color-negative">
               </ion-icon>
@@ -73,7 +77,7 @@
 
             <ion-text
             mode="ios"
-            [ngClass]="{'ocultar-opacidade': nomeDoVisitante.length > 3}"
+            [ngClass]="{'ocultar-opacidade': nomeDoVisitante.length >= 3}"
             class="text-left full-width">
               <p class="color-negative fs-12">
                 <ng-container *ngIf="nomeDoVisitante.length !== 0">no mínimo <b>3</b> caracteres</ng-container>
@@ -97,7 +101,7 @@
               [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 2}">
               </ion-icon>
               <h2 class="font-baloo"><b>Seu idioma</b></h2>
-              <p>como quer ver o conteúdo</p>
+              <p>como quer ver o conteúdo.</p>
             </ion-text>
 
             <anf-language-button></anf-language-button>
@@ -118,10 +122,58 @@
               [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 3}">
               </ion-icon>
               <h2 class="font-baloo"><b>Uma cidade</b></h2>
-              <p>estamos somente na Baixada Santista</p>
+              <p>estamos somente na Baixada Santista.</p>
             </ion-text>
 
             <anf-city-button></anf-city-button>
+          </div>
+        </section>
+      </swiper-slide>
+
+      <swiper-slide>
+        <!-- QUINTO SLIDE -->
+        <section class="quinto-slide full-size">
+          <div class="quinto-slide-container">
+            <ion-text
+            class="text-center color-gray-text full-width icone-titulo-texto"
+            mode="ios">
+              <ion-icon
+              name="log-in-outline"
+              class="full-width fs-38"
+              [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 4}">
+              </ion-icon>
+              <h2 class="font-baloo"><b>Tudo pronto</b></h2>
+              <p>serei o seu anfitrião em Santos.</p>
+            </ion-text>
+
+            <ion-button
+            (click)="boasVindas()"
+            [disabled]="nomeDoVisitante.length <= 2"
+            title="Ver sugestões"
+            shape="round"
+            [fill]="'solid'"
+            size="normal"
+            [ngClass]="'main'"
+            class="icone-a-direita mg-top-32"
+            mode="md">
+              Ver sugestões
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </ion-button>
+
+            <ion-text
+            mode="ios"
+            *ngIf="nomeDoVisitante.length <= 2"
+            class="text-center full-width mg-top-32">
+              <p class="color-negative fs-12 center-w-flex">
+                <ion-icon
+                [ngClass]="{'ocultar-opacidade': nomeDoVisitante.length > 3}"
+                name="warning-outline"
+                class="fs-18 color-negative mg-right-5">
+                </ion-icon>
+
+                volte e defina <span class="mg-left-5"><b>um nome</b></span>
+              </p>
+            </ion-text>
           </div>
         </section>
       </swiper-slide>
@@ -139,7 +191,7 @@ mode="ios">
         <ion-col size="3">
           <div class="stepper-wrapper full-height">
             <ion-text
-            [ngClass]="indexAtual === 0 ? 'item-escondido-suavemente' : 'aparecer-suavemente'"
+            [ngClass]="indexAtual === 0 || indexAtual === 4 ? 'item-escondido-suavemente' : 'aparecer-suavemente'"
             mode="ios"
             class="color-gray-text fs-14">
               <p><span class="fs-18"><b>{{ indexAtual }}</b></span> de 3</p>
@@ -147,7 +199,9 @@ mode="ios">
           </div>
         </ion-col>
 
-        <ion-col size="9" class="text-right">
+        <ion-col
+        size="9"
+        class="text-right">
           <ion-button
           *ngIf="indexAtual !== 0 && indexAtual !== 1"
           (click)="retornarSwiper()"
@@ -163,6 +217,8 @@ mode="ios">
           </ion-button>
 
           <ion-button
+          [disabled]="(indexAtual === 1 && nomeDoVisitante.length <= 2)"
+          *ngIf="indexAtual !== 4"
           (click)="avancarSwiper()"
           title="Avançar"
           shape="round"

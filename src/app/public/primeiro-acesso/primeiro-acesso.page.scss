@@ -31,7 +31,7 @@ section {
           --placeholder-color: var(--gray-mid);
           --color: var(--green);
           font-family: var(--font-baloo);
-          font-size: 22px;
+          font-size: 32px;
           font-weight: bold;
         }
       }
@@ -55,6 +55,19 @@ section {
     @include flexbox(center, center, column);
 
     .quarto-slide-container {
+      @include flexbox(center, center, column);
+      max-width: 320px;
+
+      anf-language-button {
+        margin: 32px 0;
+      }
+    }
+  }
+
+  &.quinto-slide {
+    @include flexbox(center, center, column);
+
+    .quinto-slide-container {
       @include flexbox(center, center, column);
       max-width: 320px;
 

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertOptions } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { CIDADE_ESCOLHIDA_KEY, IDIOMA_KEY } from 'src/app/consts/keys';
 import { Cidade } from 'src/app/interfaces/Cidade';
 import { AppConfigService } from 'src/app/services/app-config.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { definirCidade, definirIdioma } from 'src/app/store/app/app.state';
 
 @Component({
   selector: 'anf-city-button',
@@ -10,30 +15,57 @@ import { AppConfigService } from 'src/app/services/app-config.service';
 export class CityButtonComponent  implements OnInit {
 
   public cities: Cidade[];
-  public selectedCity: Cidade | undefined;
-  public selectedCityValue: string | undefined;
+  public cidadeEscolhida: Cidade;
+  public selectedCityValue: string;
+
+  public cityButtonAlertOptions: AlertOptions = {
+    subHeader: 'Uma cidade',
+    message: 'Escolha uma da lista',
+    backdropDismiss: false
+  }
 
   constructor(
-    private appConfig : AppConfigService
+    private appConfig : AppConfigService,
+    private store : Store,
+    private storageService : StorageService
   ) { }
 
   async ngOnInit() {
     this.cities = this.appConfig.obterCidades();
-    this.definirCidade();
+    await this.identificarCidadeEscolhida();
   }
 
   public definirCidade(e?: any): void {
-    this.selectedCityValue = 'santos';
+    let cidadeEscolhida: Cidade;
 
-    if (e) {
-      this.selectedCityValue = e.detail.value;
+    if (this.cidadeEscolhida) {
+      this.cidadeEscolhida = this.cidadeEscolhida
+    } else if (e) {
+      this.cidadeEscolhida = e.detail.value;
+    } else {
+      this.selectedCityValue = 'santos';
+      this.cidadeEscolhida = this.cities[0];
     }
 
-    console.log(this.selectedCityValue);
+    cidadeEscolhida = this.cidadeEscolhida;
 
-    this.selectedCity = this.cities.find((city: Cidade) => city.value === this.selectedCityValue );
+    this.storageService.armazenarChave(CIDADE_ESCOLHIDA_KEY, cidadeEscolhida);
+    this.store.dispatch(definirCidade({ cidadeEscolhida }));
 
-    console.log(this.selectedCity);
+  }
+
+  public compararCidades(city1: Cidade, city2: Cidade): boolean {
+    return city1 && city2 ? city1.value === city2.value : city1 === city2;
+  }
+
+  public async identificarCidadeEscolhida() {
+    let cidadeEscolhida = await this.storageService.obterChave(CIDADE_ESCOLHIDA_KEY);
+
+    if (cidadeEscolhida) {
+      this.store.dispatch(definirCidade({ cidadeEscolhida }))
+    } else {
+      this.storageService.armazenarChave(CIDADE_ESCOLHIDA_KEY, false);
+    }
   }
 
 }

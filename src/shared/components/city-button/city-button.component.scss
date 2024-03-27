@@ -7,8 +7,12 @@
     --padding-start: 16px;
     --padding-end: 16px;
     position: relative;
-    padding-bottom: 3px;
+    padding: 3px;
     margin-bottom: 18px;
+
+    &.sem-cidade {
+      filter: drop-shadow(1px 1px 4px var(--gray-mid));
+    }
 
     ion-select {
       opacity: 0;

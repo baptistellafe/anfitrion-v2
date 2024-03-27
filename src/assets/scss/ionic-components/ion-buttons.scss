@@ -17,11 +17,22 @@ ion-button {
     --color: var(--green);
   }
 
+  &.gray-clear {
+    --color: var(--gray-text);
+  }
+
   &.main-outline {
     --border-width: 1px;
     --border-style: solid;
     --border-color: var(--green-dark);
     --color: var(--green-dark);
+  }
+
+  &.gray-outline {
+    --border-width: 1px;
+    --border-style: solid;
+    --border-color: var(--gray-light);
+    --color: var(--gray-mid);
   }
 
   &.icone-a-direita,

@@ -7,6 +7,7 @@
 .text-left { text-align: left;}
 
 // FONT SIZEs
+.fs-38 { font-size: 38px; }
 .fs-32 { font-size: 32px; }
 .fs-18 { font-size: 18px; }
 .fs-14 { font-size: 14px; }
@@ -20,6 +21,7 @@
 // BACKGROUNDs
 .ion-bg-gray { --background: var(--gray-2); }
 .ion-bg-white { --background: var(--white); }
+.ion-bg-transparent { --background: var(--transparent); }
 
 .bg-white { background: var(--white); }
 
@@ -72,3 +74,6 @@
 
 // MARGINs
 .mg-top-32 { margin-top: 32px; }
+
+.mg-left-5 { margin-left: 5px; }
+.mg-right-5 { margin-right: 5px; }

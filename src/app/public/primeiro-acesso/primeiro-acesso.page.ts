@@ -1,6 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { IonInput, NavController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { JA_ACESSOU_ANFITRION_KEY, PRIMEIRO_NOME_KEY } from 'src/app/consts/keys';
+import { StorageService } from 'src/app/services/storage.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { definirPrimeiroAcesso, definirPrimeiroNome } from 'src/app/store/app/app.state';
 import Swiper from 'swiper';
 
 @Component({
@@ -10,14 +15,18 @@ import Swiper from 'swiper';
 })
 export class PrimeiroAcessoPage implements OnInit {
 
+  @ViewChild('inputPrimeiroNome') inputPrimeiroNome: IonInput;
+  public nomeDoVisitante: string = '';
+
   @ViewChild('primeiroAcessoSwiper') primeiroAcessoSwiper?: ElementRef<{ swiper: Swiper }>
   public indexAtual: number | undefined = 0;
 
-  public nomeDoVisitante: string = '';
-
   constructor(
     private title : Title,
-    private utilsService : UtilsService
+    private utilsService : UtilsService,
+    private navCtrl : NavController,
+    private store : Store,
+    private storageService : StorageService
   ) { }
 
   ngOnInit() {
@@ -36,11 +45,51 @@ export class PrimeiroAcessoPage implements OnInit {
   }
 
   public slideMudou(): void {
-    this.indexAtual = this.utilsService.obterIndexAtualDoSwiper(this.primeiroAcessoSwiper);
+    this.obterIndexAtualDoSwiper();
   }
 
   public transformarNome(nome: string): void {
     this.nomeDoVisitante = this.utilsService.transformarNome(nome);
+  }
+
+  public focarNoInputPrimeiroNome(): void {
+    setTimeout(() => {
+      this.inputPrimeiroNome.setFocus()
+    }, 500);
+  }
+
+  public obterIndexAtualDoSwiper(): void {
+    this.indexAtual = this.utilsService.obterIndexAtualDoSwiper(this.primeiroAcessoSwiper);
+
+    this.definirComportamentoDeAcordoComSlide();
+  }
+
+  /**
+   *
+   */
+  public definirComportamentoDeAcordoComSlide(): void {
+    switch (this.indexAtual) {
+      case 1:
+        if (this.nomeDoVisitante) return;
+        this.focarNoInputPrimeiroNome();
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  public boasVindas(): void {
+
+    let jaAcessouAnfitrion: boolean = true;
+    this.storageService.armazenarChave(JA_ACESSOU_ANFITRION_KEY, jaAcessouAnfitrion);
+    this.store.dispatch(definirPrimeiroAcesso({ jaAcessouAnfitrion }));
+
+    let primeiroNome: string = this.nomeDoVisitante;
+    this.storageService.armazenarChave(PRIMEIRO_NOME_KEY, primeiroNome);
+    this.store.dispatch(definirPrimeiroNome({ primeiroNome }))
+
+    this.navCtrl.navigateForward('/boas-vindas');
   }
 
 }

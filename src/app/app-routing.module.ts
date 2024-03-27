@@ -20,10 +20,14 @@ const routes: Routes = [
     loadChildren: () => import('./public/primeiro-acesso/primeiro-acesso.module').then( m => m.PrimeiroAcessoPageModule)
   },
   {
+    path: 'boas-vindas',
+    loadChildren: () => import('./public/boas-vindas/boas-vindas.module').then( m => m.BoasVindasPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     loadChildren: () => import('./public/nao-encontramos/nao-encontramos.module').then( m => m.NaoEncontramosPageModule)
-  }
+  },
 ];
 
 @NgModule({
