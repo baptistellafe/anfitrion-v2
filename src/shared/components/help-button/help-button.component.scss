@@ -1,0 +1,22 @@
+ion-fab {
+  position: relative;
+
+  ion-fab-button {
+    --background: var(--transparent);
+    --background-activated: var(--transparent);
+    --background-focused: var(--transparent);
+    --background-hover: var(--transparent);
+    --color: var(--white);
+    --color-activated: var(--white);
+    --color-focused: var(--white);
+    --color-hover: var(--white);
+    --border-width: 1px;
+    --border-color: var(--white);
+    --border-style: solid;
+    --box-shadow: none;
+    height: 38px;
+    width: 38px;
+
+    ion-icon { font-size: 24px; }
+  }
+}

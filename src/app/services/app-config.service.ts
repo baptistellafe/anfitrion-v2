@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Cidade } from '../interfaces/Cidade';
+import { Idioma } from '../interfaces/Idioma';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppConfigService {
 
-  public cities: Cidade[] = [
+  private cities: Cidade[] = [
     {
       text: 'Santos',
       name: 'Santos',
@@ -45,9 +46,40 @@ export class AppConfigService {
     },
   ]
 
+  private idiomas: Idioma[] = [
+    {
+      text: {
+        pt: 'Português',
+        en: 'Portuguese',
+        es: 'Portuguesito'
+      },
+      value: 'pt'
+    },
+    {
+      text: {
+        pt: 'Inglês',
+        en: 'English',
+        es: 'Englixito'
+      },
+      value: 'en'
+    },
+    {
+      text: {
+        pt: 'Espanhol',
+        en: 'Spanish',
+        es: 'Spaniol'
+      },
+      value: 'es'
+    }
+  ]
+
   constructor() { }
 
   public obterCidades(): Cidade[] {
     return this.cities
+  }
+
+  public obterIdiomas(): Idioma[] {
+    return this.idiomas
   }
 }

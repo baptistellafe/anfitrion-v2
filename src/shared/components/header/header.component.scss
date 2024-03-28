@@ -1,0 +1,30 @@
+@import './../../../assets/scss/utils/mixins.scss';
+
+.header-wrapper {
+  .header-container {
+    width: 100%;
+    height: auto;
+    @include flexbox(flex-start, flex-start, row);
+    padding: 16px;
+
+    .buttons {
+      flex: 1;
+      @include flexbox(center, flex-end, row);
+
+      *:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+
+    .menu-n-logo {
+      @include flexbox(flex-start, flex-start, row);
+
+      ion-menu-button {
+        font-size: 32px;
+        margin-left: -8px;
+        margin-right: 6px;
+        margin-top: -2px;
+      }
+    }
+  }
+}

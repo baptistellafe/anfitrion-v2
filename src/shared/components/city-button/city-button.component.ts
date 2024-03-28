@@ -63,8 +63,6 @@ export class CityButtonComponent  implements OnInit {
 
     if (cidadeEscolhida) {
       this.store.dispatch(definirCidade({ cidadeEscolhida }))
-    } else {
-      this.storageService.armazenarChave(CIDADE_ESCOLHIDA_KEY, false);
     }
   }
 

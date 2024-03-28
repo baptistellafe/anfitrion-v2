@@ -36,37 +36,55 @@ export class PrimeiroAcessoPage implements OnInit {
     this.title.setTitle('Primeiro acesso ao anfitrion')
   }
 
+  /**
+    @description Avançar para o próximo slide.
+  */
   public avancarSwiper(): void {
     this.utilsService.avancarSwiper(this.primeiroAcessoSwiper)
   }
 
+  /**
+    @description Obtém o index ativo do swiper.
+  */
   public retornarSwiper(): void {
     this.utilsService.retornarSwiper(this.primeiroAcessoSwiper)
   }
 
+  /**
+    @description Disparado quando houver mudança no swiper.
+  */
   public slideMudou(): void {
     this.obterIndexAtualDoSwiper();
   }
 
+  /**
+    @description Transforma a string, removendo espaços em branco, acentuação, números, etc...
+  */
   public transformarNome(nome: string): void {
     this.nomeDoVisitante = this.utilsService.transformarNome(nome);
   }
 
+  /**
+    @description Foca em um IonInput (necessário o settimeout).
+  */
   public focarNoInputPrimeiroNome(): void {
     setTimeout(() => {
       this.inputPrimeiroNome.setFocus()
     }, 500);
   }
 
+  /**
+    @description Obté o index ativo do swiper.
+  */
   public obterIndexAtualDoSwiper(): void {
     this.indexAtual = this.utilsService.obterIndexAtualDoSwiper(this.primeiroAcessoSwiper);
-
     this.definirComportamentoDeAcordoComSlide();
   }
 
   /**
-   *
-   */
+    @description Define o comportamento da tela de acordo com o slide ativo.
+    Hoje, no primeiro slide, nós focamos no input automaticamente ao entrar no slide.
+  */
   public definirComportamentoDeAcordoComSlide(): void {
     switch (this.indexAtual) {
       case 1:
@@ -79,6 +97,10 @@ export class PrimeiroAcessoPage implements OnInit {
     }
   }
 
+  /**
+    @description Ao ir para tela de boas vindas, guardamos alguns valores e
+    informamos ao aplicativo o que foi definido: Primeiro acesso, nome...
+  */
   public boasVindas(): void {
 
     let jaAcessouAnfitrion: boolean = true;

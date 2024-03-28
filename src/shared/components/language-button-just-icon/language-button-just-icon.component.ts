@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild, viewChild } from '@angular/core';
-import { IonSelect } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 import { Idioma } from 'src/app/interfaces/Idioma';
 import { AppConfigService } from 'src/app/services/app-config.service';
 
 @Component({
-  selector: 'anf-language-button',
-  templateUrl: './language-button.component.html',
-  styleUrls: ['./language-button.component.scss'],
+  selector: 'anf-language-button-just-icon',
+  templateUrl: './language-button-just-icon.component.html',
+  styleUrls: ['./language-button-just-icon.component.scss'],
 })
-export class LanguageButtonComponent  implements OnInit {
+export class LanguageButtonJustIconComponent  implements OnInit {
 
   public idiomaSelecionado: Idioma;
 

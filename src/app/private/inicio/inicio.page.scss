@@ -1,0 +1,11 @@
+ion-content {
+  section {
+    &.hero {
+      height: 100%;
+
+      .inicio-header {
+        height: 60%;
+      }
+    }
+  }
+}

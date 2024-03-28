@@ -6,13 +6,19 @@ import { register } from 'swiper/element/bundle';
 import { LanguageButtonComponent } from './language-button/language-button.component';
 import { CityButtonComponent } from './city-button/city-button.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { HelpButtonComponent } from './help-button/help-button.component';
+import { LanguageButtonJustIconComponent } from './language-button-just-icon/language-button-just-icon.component';
 register();
 
 @NgModule({
   declarations: [
     LogoComponent,
     LanguageButtonComponent,
-    CityButtonComponent
+    CityButtonComponent,
+    HeaderComponent,
+    HelpButtonComponent,
+    LanguageButtonJustIconComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +28,10 @@ register();
   exports: [
     LogoComponent,
     LanguageButtonComponent,
-    CityButtonComponent
+    CityButtonComponent,
+    HeaderComponent,
+    HelpButtonComponent,
+    LanguageButtonJustIconComponent
   ]
 })
 export class ComponentsModule { }

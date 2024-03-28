@@ -9,6 +9,10 @@
 // FONT SIZEs
 .fs-38 { font-size: 38px; }
 .fs-32 { font-size: 32px; }
+.fs-28 { font-size: 28px; }
+.fs-24 { font-size: 24px; }
+.fs-22 { font-size: 22px; }
+.fs-20 { font-size: 20px; }
 .fs-18 { font-size: 18px; }
 .fs-14 { font-size: 14px; }
 .fs-12 { font-size: 12px; }
@@ -23,6 +27,8 @@
 .ion-bg-white { --background: var(--white); }
 .ion-bg-transparent { --background: var(--transparent); }
 
+.bg-gray { background: var(--gray-2); }
+.bg-transparent { background: var(--transparent); }
 .bg-white { background: var(--white); }
 
 // OTHERs

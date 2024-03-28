@@ -39,6 +39,9 @@ export class SplashScreenPage implements OnInit {
     }, 5000);
   }
 
+  /**
+    @description Identificar se é o primeiro acesso do usuário e direcionar para a tela correta.
+  */
   public async identificarPrimeiroAcesso() {
     let jaAcessouAnfitrion = await this.storageService.obterChave(JA_ACESSOU_ANFITRION_KEY);
 

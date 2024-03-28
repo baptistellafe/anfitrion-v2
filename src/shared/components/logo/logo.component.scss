@@ -1,4 +1,8 @@
 .logo-wrapper {
+  h1 {
+    margin: 0;
+  }
+
   &.dark-mode {
     ion-text {
       h1 { color: var(--white); }

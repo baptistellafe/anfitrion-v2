@@ -1,0 +1,32 @@
+@import './../../../assets/scss/utils/mixins.scss';
+
+.duvidas-frequentes-wrapper {
+  @include flexbox(flex-start, flex-start, column);
+  background: var(--gray-2);
+
+  ion-header {
+    ion-toolbar {
+      --min-height: 0;
+
+      header.duvidas-frequentes-header {
+        @include flexbox(center, flex-end, row);
+        padding: 16px;
+
+        h2 { margin: 0; }
+        ion-button { margin-right: -5px; }
+      }
+
+      ion-button {
+        font-size: 26px;
+        min-height: 0;
+        min-width: 0;
+      }
+    }
+  }
+
+  ion-content {
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+    --background: linear-gradient(to bottom, var(--gray-ed), var(--white));
+  }
+}

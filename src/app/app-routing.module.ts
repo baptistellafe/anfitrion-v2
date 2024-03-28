@@ -28,6 +28,10 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () => import('./public/nao-encontramos/nao-encontramos.module').then( m => m.NaoEncontramosPageModule)
   },
+  {
+    path: 'duvidas-frequentes',
+    loadChildren: () => import('./public/duvidas-frequentes/duvidas-frequentes.module').then( m => m.DuvidasFrequentesPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,14 @@
+ion-text {
+  line-height: 28px;
+
+  p {
+    opacity: 0;
+    &.nome { margin-left: -10px; }
+    &.cidade { margin-right: -10px; }
+  }
+}
+
+.animacao_1 { animation-delay: 500ms; }
+.animacao_2 { animation-delay: 800ms; }
+.animacao_3 { animation-delay: 1200ms; }
+
