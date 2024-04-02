@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DuvidasFrequentesPage } from 'src/app/public/duvidas-frequentes/duvidas-frequentes.page';
 
@@ -8,6 +8,8 @@ import { DuvidasFrequentesPage } from 'src/app/public/duvidas-frequentes/duvidas
   styleUrls: ['./help-button.component.scss'],
 })
 export class HelpButtonComponent  implements OnInit {
+
+  @Input() darkMode: boolean;
 
   constructor(
     private modalCtrl : ModalController

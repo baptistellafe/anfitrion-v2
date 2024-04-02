@@ -1,0 +1,15 @@
+<div class="category-card-wrapper" [ngClass]="{ 'selecionado': foiSelecionado}">
+  <ion-fab mode="ios">
+    <ion-fab-button mode="ios">
+      <ion-icon [name]="icone + '-outline'"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-text
+  class="text-center"
+  mode="ios">
+    <p class="fs-14 mg-top-8">
+      {{ texto?.pt }}
+    </p>
+  </ion-text>
+</div>

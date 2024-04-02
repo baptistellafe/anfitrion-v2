@@ -1,0 +1,13 @@
+<ion-text mode="ios">
+  <p class="fs-14 color-gray-text text-center">
+    &copy; anfitri<b>on</b>
+
+    <ng-container *ngIf="anoAtual === anoDeCriacao">
+      {{ anoAtual }}
+    </ng-container>
+
+    <ng-container *ngIf="anoAtual !== anoDeCriacao">
+      {{ anoDeCriacao }} - {{ anoAtual }}
+    </ng-container>
+  </p>
+</ion-text>

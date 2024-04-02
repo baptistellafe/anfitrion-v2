@@ -74,7 +74,7 @@ export class PrimeiroAcessoPage implements OnInit {
   }
 
   /**
-    @description Obté o index ativo do swiper.
+    @description Obtém o index ativo do swiper.
   */
   public obterIndexAtualDoSwiper(): void {
     this.indexAtual = this.utilsService.obterIndexAtualDoSwiper(this.primeiroAcessoSwiper);

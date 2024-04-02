@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, viewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { NavController } from '@ionic/angular';
+import { IonContent, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { JA_ACESSOU_ANFITRION_KEY } from 'src/app/consts/keys';
 import { StorageService } from 'src/app/services/storage.service';
@@ -35,8 +35,8 @@ export class SplashScreenPage implements OnInit {
    */
   public irParaTela(tela: string): void {
     setTimeout(() => {
-      this.navCtrl.navigateForward(`/${tela}`);
-    }, 5000);
+      this.navCtrl.navigateForward(`${tela}`);
+    }, 4000);
   }
 
   /**
@@ -47,9 +47,9 @@ export class SplashScreenPage implements OnInit {
 
     if (jaAcessouAnfitrion) {
       this.store.dispatch(definirPrimeiroAcesso({ jaAcessouAnfitrion }))
-      this.irParaTela('inicio');
+      this.irParaTela('/qual-a-boa');
     } else {
-      this.irParaTela('primeiro-acesso');
+      this.irParaTela('/primeiro-acesso');
     }
   }
 

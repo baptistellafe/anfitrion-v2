@@ -1,0 +1,51 @@
+<div class="footer-wrapper full-width">
+
+  <div class="footer-middle full-width">
+    <ion-grid
+    [fixed]="true">
+      <ion-row>
+        <ion-col
+        size="12">
+          <div class="anf-publicidade-wrapper">
+            <div class="anf-publicidade-content overflow-hidden" scrollTo>
+
+            </div>
+
+            <ion-text mode="ios">
+              <p class="fs-12 color-gray-text mg-top-8">Publicidade</p>
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="footer-bottom">
+    <ion-grid
+    [fixed]="true">
+      <ion-row>
+        <ion-col
+        size="12">
+          <div class="footer-bottom-wrapper full-width">
+            <ng-content select=".botao-scroll-to-top"></ng-content>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col
+        size="12">
+        <!-- ESPAÇO RESERVADO PARA O BOTÃO SCROLL TO TOP -->
+          <anf-made-w-love
+          [centralizarNoMobile]="true"
+          [posicionamento]="'esquerda'">
+          </anf-made-w-love>
+        </ion-col>
+
+        <ion-col size="12" class="mg-bottom-16">
+          <anf-copyright></anf-copyright>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>

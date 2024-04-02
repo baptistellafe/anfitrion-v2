@@ -82,4 +82,15 @@ export class AppConfigService {
   public obterIdiomas(): Idioma[] {
     return this.idiomas
   }
+
+  public async identificarSeAtendeCidadeSolicitada(nomeDaCidadeEmFormatoDeValor: string): Promise<Cidade | undefined> {
+    let cidade: Cidade | undefined = this.cities.find((cidade: Cidade) => {
+      return cidade.value === nomeDaCidadeEmFormatoDeValor
+    })
+
+    console.log(cidade);
+
+    return cidade
+
+  }
 }

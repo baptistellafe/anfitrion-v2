@@ -31,4 +31,8 @@ export class UtilsService {
   public obterIndexAtualDoSwiper(swiper?: ElementRef<{ swiper: Swiper }>): number | undefined {
     return swiper?.nativeElement.swiper.activeIndex;
   }
+
+  public pularSlidePara(index: number, swiper?: ElementRef<{ swiper: Swiper }>): void | undefined {
+    return swiper?.nativeElement.swiper.slideTo(index)
+  }
 }

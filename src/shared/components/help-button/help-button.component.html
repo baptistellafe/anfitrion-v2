@@ -1,4 +1,7 @@
-<ion-fab mode="ios" (click)="abrirDuvidasFrequentes()">
+<ion-fab
+[ngClass]="darkMode ? 'dark-mode' : 'light-mode'"
+mode="ios"
+(click)="abrirDuvidasFrequentes()">
   <ion-fab-button>
     <ion-icon name="help-outline"></ion-icon>
   </ion-fab-button>

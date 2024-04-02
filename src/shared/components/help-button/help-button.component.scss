@@ -1,17 +1,32 @@
 ion-fab {
   position: relative;
 
+  &.dark-mode {
+    ion-fab-button {
+      --color: var(--white);
+      --color-activated: var(--white);
+      --color-focused: var(--white);
+      --color-hover: var(--white);
+      --border-color: var(--white);
+    }
+  }
+
+  &.light-mode {
+    ion-fab-button {
+      --color: var(--gray-text);
+      --color-activated: var(--gray-text);
+      --color-focused: var(--gray-text);
+      --color-hover: var(--gray-text);
+      --border-color: var(--gray-text);
+    }
+  }
+
   ion-fab-button {
     --background: var(--transparent);
     --background-activated: var(--transparent);
     --background-focused: var(--transparent);
     --background-hover: var(--transparent);
-    --color: var(--white);
-    --color-activated: var(--white);
-    --color-focused: var(--white);
-    --color-hover: var(--white);
     --border-width: 1px;
-    --border-color: var(--white);
     --border-style: solid;
     --box-shadow: none;
     height: 38px;

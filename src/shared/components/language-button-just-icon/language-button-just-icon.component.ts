@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Idioma } from 'src/app/interfaces/Idioma';
 import { AppConfigService } from 'src/app/services/app-config.service';
 
@@ -8,6 +8,8 @@ import { AppConfigService } from 'src/app/services/app-config.service';
   styleUrls: ['./language-button-just-icon.component.scss'],
 })
 export class LanguageButtonJustIconComponent  implements OnInit {
+
+  @Input() darkMode: boolean;
 
   public idiomaSelecionado: Idioma;
 

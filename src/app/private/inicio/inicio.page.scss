@@ -1,10 +1,59 @@
+@import './../../../assets/scss/utils/mixins.scss';
+
 ion-content {
   section {
     &.hero {
       height: 100%;
 
       .inicio-header {
-        height: 60%;
+        position: relative;
+        height: 100%;
+        transition: max-height 500ms ease;
+        will-change: max-height;
+        min-height: 388.5px;
+
+        &.hero-expandido { max-height: 100%; }
+        &.hero-encolhido { max-height: 70%; }
+
+
+
+        .hero-swiper-wrapper {
+          position: absolute;
+          left: 0;
+          bottom: -78px;
+          width: 100%;
+
+          swiper-container {
+            swiper-slide {
+              margin: 12px;
+
+              border-radius: 8px;
+            }
+          }
+        }
+      }
+
+      .swiper-info {
+        min-height: 172.5px;
+        padding: 16px 16px 32px 16px;
+        height: 30%;
+        @include flexbox(center, flex-end, column);
+
+        anf-scroll-down::ng-deep {
+          display: block;
+          position: relative;
+          height: 40px;
+          width: 100%;
+          pointer-events: none;
+          margin-top: 8px;
+          opacity: .4;
+        }
+      }
+    }
+
+    &.inicio-content {
+      @media only screen and (max-width: 554px) {
+        padding: 16px 32px 32px 32px;
       }
     }
   }

@@ -53,6 +53,7 @@ ion-grid {
   }
 }
 
+h1, h2,
 ion-button,
 p {
   margin: 0;
@@ -78,4 +79,14 @@ p {
   opacity: 0;
   transition: 200ms ease opacity;
   will-change: opacity;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.texto-longo {
+  h1 { margin-bottom: 25px; }
+  p { line-height: 16px; &:not(:last-child) { margin-bottom: 12px; } }
 }

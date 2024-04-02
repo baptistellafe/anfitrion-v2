@@ -1,8 +1,146 @@
 <ion-content
-[fullscreen]="true">
-  <section class="hero full-width">
-    <div class="inicio-header full-width bg-gray">
-      <anf-header></anf-header>
+#conteudoInicio
+(ionScroll)="esconderComponenteScroll($event)"
+[scrollEvents]="true"
+[forceOverscroll]="false">
+  <section class="hero full-width"
+  [ngClass]="{'overflow-hidden': !heroEncolhido}">
+    <div
+    class="inicio-header full-width bg-gray"
+    [ngClass]="heroEncolhido ? 'hero-encolhido' : 'hero-expandido'">
+      <anf-header [darkMode]="true"></anf-header>
+
+      <!-- SWIPER (Aparece somente com hero encolhido ) -->
+      <div class="hero-swiper-wrapper" *ngIf="heroEncolhido">
+        <swiper-container
+        (swiperslidechange)="slideMudou()"
+        #sugestoesSwiper
+        centered-slides="true"
+        class="full-height"
+        slides-per-view="1.5"
+        speed="500"
+        space-between="0"
+        [breakpoints]="{
+          '465': {
+            slidesPerView: 2,
+            spaceBetween: 4,
+            centeredslides: true
+          },
+          '768': {
+            slidesPerView: 2.7,
+            spaceBetween: 4,
+            centeredslides: true
+          },
+          '1024': {
+            slidesPerView: 3.4,
+            spaceBetween: 4,
+            centeredslides: true
+          },
+          '1200': {
+            slidesPerView: 4,
+            spaceBetween: 4,
+            centeredslides: true
+          }
+        }">
+          <swiper-slide *ngFor="let sugestao of sugestoes">
+            <anf-sugest-card
+            [sugestao]="sugestao">
+            </anf-sugest-card>
+          </swiper-slide>
+        </swiper-container>
+      </div>
     </div>
+
+    <!-- CONTADOR DE SUGESTÕES (Aparece somente com hero encolhido)-->
+    <div
+    class="swiper-info"
+    *ngIf="heroEncolhido">
+      <ion-text
+      class="line-height-22"
+      mode="ios"
+      class="color-gray-text fs-14 text-center">
+        <p><span class="fs-18"><b>{{ indexAtual  }}</b></span> de {{ totalDeSugestoes }}</p>
+        <p class="fs-12">sugestões</p>
+      </ion-text>
+
+      <anf-scroll-down *ngIf="mostrarComponenteScrollDown"/>
+    </div>
+  </section>
+
+  <section class="inicio-content">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <!-- SOBRE -->
+        <ion-col size="12" size-md="6">
+          <ion-text
+          class="color-gray-text texto-longo"
+          mode="ios">
+            <h1 class="fs-20 font-baloo">Sobre <b>Santos</b></h1>
+
+            <p class="fs-14">
+              A principal cidade da região da Baixada Santista, o maior time de todos os tempos, a Bolsa do Café, a Orla da Praia,
+              a cidade do rei do futebol, o Porto, são tantas as caracteristícas...blablabla.
+            </p>
+
+            <p class="fs-14">
+              Seja bem vindo, eu serei seu anfitrião por aqui.
+            </p>
+          </ion-text>
+
+          <ion-button
+          (click)="irParaPontosTuristicos()"
+          shape="round"
+          fill="solid"
+          title="Conhecer pontos turísticos"
+          class="main fs-13 mg-top-16 mg-bottom-32"
+          mode="md">
+            Conhecer <span class="mg-left-5"><b>pontos turísticos</b></span>
+          </ion-button>
+        </ion-col>
+
+        <!-- O ANFITRION -->
+        <ion-col size="12" size-md="6">
+          <ion-text
+          class="color-gray-text texto-longo"
+          mode="ios">
+            <h1 class="fs-20 font-baloo">O que é o <b>anfitrion</b>?</h1>
+
+            <p class="fs-14">
+              Nosso objetivo é ajudar moradores e turistas, fornecendo informações relevantes sobre restaurantes, bares, eventos, etc.
+              Informações estas que muitas vezes precisamos visitar vários perfis em redes sociais, um de cada vez.
+            </p>
+
+            <p class="fs-14">
+              Aqui n região da Baixada Santista nós tentamos poupar o seu bem mais precioso, o tempo, trazendo o que é importante, de forma clara e objetiva.
+            </p>
+          </ion-text>
+
+          <ion-button
+          (click)="irParaSobreNos()"
+          shape="square"
+          fill="clear"
+          title="Saiba mais sobre nós"
+          class="fs-13 mg-top-16 mg-bottom-32 tipo-link main-clear com-underline"
+          mode="md">
+            <span class="mg-right-5"><b>Saiba mais</b></span> sobre nós
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+  <!-- RODAPÉ -->
+  <section class="inicio-rodape">
+    <anf-footer>
+      <ion-button
+      fill="clear"
+      shape="round"
+      mode="md"
+      title="Voltar para o topo"
+      (click)="irParaTopoDaTela()"
+      class="botao-scroll-to-top main-clear fs-13 tipo-link">
+        Voltar <span class="mg-left-5 mg-right-5"><b>para o topo</b></span> <ion-icon name="arrow-up-outline"></ion-icon>
+      </ion-button>
+    </anf-footer>
   </section>
 </ion-content>

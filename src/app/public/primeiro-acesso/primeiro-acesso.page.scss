@@ -2,7 +2,7 @@
 
 section {
   &.primeiro-acesso {
-    background: linear-gradient(to bottom, var(--gray-fa), #fff);
+    background: linear-gradient(to bottom, var(--gray-fa) 40%, var(--white));
   }
 
   &.primeiro-slide {

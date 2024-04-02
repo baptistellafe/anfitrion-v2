@@ -1,0 +1,66 @@
+@import './../../../assets/scss/utils/mixins.scss';
+
+$base: 0.3rem;
+
+.scroll-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+ }
+
+ .seta {
+   position: absolute;
+   width: $base * 3.5;
+   height: $base * 0.8;
+   opacity: 0;
+   transform: scale(0.3);
+   animation: mover-seta 3s ease-out infinite;
+ }
+
+ .seta:first-child {
+   animation: mover-seta 3s ease-out 1s infinite;
+ }
+
+ .seta:nth-child(2) {
+   animation: mover-seta 3s ease-out 2s infinite;
+ }
+
+ .seta:before,
+ .seta:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background: var(--gray-text);
+ }
+
+ .seta:before {
+  left: 0;
+  transform: skewY(30deg);
+ }
+
+ .seta:after {
+  right: 0;
+  width: 50%;
+  transform: skewY(-30deg);
+ }
+
+ @keyframes mover-seta {
+  25% {
+   opacity: 1;
+   }
+  33.3% {
+   opacity: 1;
+   transform: translateY($base * 3.8);
+  }
+  66.6% {
+   opacity: 1;
+   transform: translateY($base * 5.2);
+  }
+  100% {
+   opacity: 0;
+   transform: translateY($base * 8) scale(0.5);
+  }
+ }

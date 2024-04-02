@@ -1,0 +1,48 @@
+
+
+<ion-content
+[forceOverscroll]="false"
+[fullscreen]="true">
+
+  <anf-header
+  [darkMode]="false"
+  [mostrarLogo]="false">
+  </anf-header>
+
+  <section
+  class="qual-a-boa-wrapper">
+    <div
+    class="qual-a-boa-container">
+      <ion-text
+      class="color-gray-text icone-titulo-texto font-baloo line-height-22"
+      mode="ios">
+        <ion-icon
+        name="bulb-outline"
+        class="full-width fs-32 animate__animated animate__fadeInUp">
+        </ion-icon>
+
+        <p class="text-left fs-20 color-linear"><b>Felipe</b>,</p>
+        <h2 class="text-center fs-24 m-0"><b>qual a boa pra hoje</b></h2>
+        <p class="text-right fs-18">em Santos?</p>
+      </ion-text>
+    </div>
+
+    <div class="qual-a-boa-swiper full-width">
+      <swiper-container
+      #qualaboaSwiper
+      slides-per-view="auto"
+      centered-slides="true"
+      speed="500"
+      space-between="32">
+        <swiper-slide *ngFor="let categoria of categorias; let i = index">
+          <anf-category-card
+          (click)="selecionarCategoria(categoria, i)"
+          [foiSelecionado]="categoriaSelecionada?.value === categoria?.value"
+          [texto]="categoria.texto"
+          [icone]="categoria.icone">
+          </anf-category-card>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </section>
+</ion-content>

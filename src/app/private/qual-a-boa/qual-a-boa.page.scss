@@ -1,0 +1,22 @@
+@import './../../../assets/scss/utils/mixins.scss';
+
+ion-content {
+  section {
+    &.qual-a-boa-wrapper {
+      width: 100%;
+      height: calc(100% - 70px);
+      background: linear-gradient(to bottom, var(--white), var(--gray-fa) 40%);
+      @include flexbox(center, center, column);
+
+      .qual-a-boa-swiper {
+        padding: 32px 0;
+
+        swiper-container {
+          swiper-slide {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}

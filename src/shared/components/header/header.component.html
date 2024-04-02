@@ -4,16 +4,21 @@
       <ion-col size="12" class="p-all-0">
         <div class="header-container">
           <div class="menu-n-logo">
-            <ion-menu-button mode="ios" class="white-clear"></ion-menu-button>
+            <ion-menu-button
+            mode="ios"
+            [ngClass]="darkMode ? 'ion-color-white' : 'ion-color-gray-text'">
+            </ion-menu-button>
+
             <anf-logo
+            *ngIf="mostrarLogo"
+            [darkMode]="darkMode"
             [brand]="'anfitrion'"
-            [darkMode]="true"
             [type]="'header'"/>
           </div>
 
           <div class="buttons">
-            <anf-language-button-just-icon></anf-language-button-just-icon>
-            <anf-help-button></anf-help-button>
+            <anf-language-button-just-icon [darkMode]="darkMode"></anf-language-button-just-icon>
+            <anf-help-button [darkMode]="darkMode"></anf-help-button>
           </div>
         </div>
       </ion-col>

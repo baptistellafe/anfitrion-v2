@@ -1,0 +1,27 @@
+<div class="sugest-card-wrapper">
+  <div class="sugest-card-container">
+    <ion-item
+    [title]="sugestao.texto?.pt"
+    [button]="true"
+    lines="none"
+    mode="ios">
+      <ion-text mode="ios">
+        <!-- LAYOUT NORMAL -->
+        <ng-container *ngIf="!sugestao.layoutInvertido">
+          <p class="fs-14 label">{{ sugestao.label?.pt }}</p>
+          <p class="fs-18 color-linear descricao"><b>{{ sugestao.texto?.pt }}</b></p>
+        </ng-container>
+
+        <!-- LAYOUT INVERTIDO -->
+        <ng-container *ngIf="sugestao.layoutInvertido">
+          <p class="fs-18 color-linear descricao"><b>{{ sugestao.texto?.pt }}</b></p>
+          <p class="fs-14 label">{{ sugestao.label?.pt }}</p>
+        </ng-container>
+      </ion-text>
+    </ion-item>
+  </div>
+
+  <ion-text mode="ios">
+    <p class="fs-12 color-gray-text legenda">para <b>{{ sugestao.categoria?.pt }}</b></p>
+  </ion-text>
+</div>

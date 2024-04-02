@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, viewChild } from '@angular/core';
 import { IonSelect } from '@ionic/angular';
 import { Idioma } from 'src/app/interfaces/Idioma';
 import { AppConfigService } from 'src/app/services/app-config.service';
@@ -9,6 +9,8 @@ import { AppConfigService } from 'src/app/services/app-config.service';
   styleUrls: ['./language-button.component.scss'],
 })
 export class LanguageButtonComponent  implements OnInit {
+
+  @Input() darkMode: boolean = false;
 
   public idiomaSelecionado: Idioma;
 

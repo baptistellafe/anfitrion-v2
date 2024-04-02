@@ -1,0 +1,21 @@
+@import './../../../assets/scss/utils/mixins.scss';
+
+ion-text {
+  p {
+    &.centro {
+      @include flexbox(center, center, row);
+    }
+
+    &.esquerda {
+      @include flexbox(center, flex-start, row);
+    }
+
+    ion-icon { animation: heartbeat 1.5s infinite; }
+
+    &.centralizar-no-mobile {
+      @media only screen and (max-width: 767px) {
+        @include flexbox(center, center, row);
+      }
+    }
+  }
+}
