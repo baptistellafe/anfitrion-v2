@@ -5,7 +5,7 @@ ion-content {
     &.hero {
       height: 100%;
 
-      .inicio-header {
+      .sugestoes-header {
         position: relative;
         height: 100%;
         transition: max-height 500ms ease;
@@ -51,7 +51,7 @@ ion-content {
       }
     }
 
-    &.inicio-content {
+    &.sugestoes-content {
       @media only screen and (max-width: 554px) {
         padding: 16px 32px 32px 32px;
       }

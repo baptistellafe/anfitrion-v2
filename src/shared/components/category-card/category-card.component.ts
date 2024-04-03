@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CategoryCardComponent  implements OnInit {
 
+  @Input() especial: boolean;
   @Input() foiSelecionado: boolean;
   @Input() texto: any;
   @Input() icone: string;

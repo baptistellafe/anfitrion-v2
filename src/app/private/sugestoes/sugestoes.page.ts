@@ -5,12 +5,13 @@ import { UtilsService } from 'src/app/services/utils.service';
 import Swiper from 'swiper';
 
 @Component({
-  selector: 'anf-inicio',
-  templateUrl: './inicio.page.html',
-  styleUrls: ['./inicio.page.scss'],
+  selector: 'anf-sugestoes',
+  templateUrl: './sugestoes.page.html',
+  styleUrls: ['./sugestoes.page.scss'],
 })
-export class InicioPage implements OnInit {
-  @ViewChild('conteudoInicio') conteudoInicio: IonContent;
+export class SugestoesPage implements OnInit {
+
+  @ViewChild('conteudoSugestoes') conteudoSugestoes: IonContent;
   @ViewChild('sugestoesSwiper') sugestoesSwiper?: ElementRef<{ swiper: Swiper }>
   public indexAtual: any = 1;
 
@@ -183,7 +184,7 @@ export class InicioPage implements OnInit {
     @description Responsável por levar o usuário ao topo da tela.
   */
   public irParaTopoDaTela(): void {
-    this.conteudoInicio.scrollToTop(800);
+    this.conteudoSugestoes.scrollToTop(800);
     this.mostrarComponenteScrollDown = true;
   }
 
@@ -193,4 +194,5 @@ export class InicioPage implements OnInit {
   public irParaSobreNos(): void {
     this.navCtrl.navigateForward(['sobre-nos'])
   }
+
 }

@@ -44,7 +44,7 @@ export class BoasVindasPage implements OnInit {
    */
   public irParaInicio(): void {
     setTimeout(() => {
-      this.navCtrl.navigateRoot('/inicio');
+      this.navCtrl.navigateRoot('/qual-a-boa');
     }, 3000);
   }
 

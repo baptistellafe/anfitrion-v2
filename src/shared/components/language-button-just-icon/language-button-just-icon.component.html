@@ -1,8 +1,8 @@
 <div class="language-button-just-icon-wrapper">
   <ion-fab
+  [id]="'seletor-de-idioma-just-icon-' + origem"
   [ngClass]="darkMode ? 'dark-mode' : 'light-mode'"
-  mode="ios"
-  id="seletor-de-idioma-just-icon">
+  mode="ios">
     <ion-fab-button>
       <ion-icon name="language-outline"></ion-icon>
     </ion-fab-button>
@@ -11,7 +11,7 @@
   <ion-popover
   [dismissOnSelect]="true"
   mode="ios"
-  trigger="seletor-de-idioma-just-icon"
+  [trigger]="'seletor-de-idioma-just-icon-' + origem"
   side="bottom"
   alignment="center">
     <ng-template>

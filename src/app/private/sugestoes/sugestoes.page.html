@@ -1,14 +1,14 @@
 <ion-content
-#conteudoInicio
+#conteudoSugestoes
 (ionScroll)="esconderComponenteScroll($event)"
 [scrollEvents]="true"
 [forceOverscroll]="false">
   <section class="hero full-width"
   [ngClass]="{'overflow-hidden': !heroEncolhido}">
     <div
-    class="inicio-header full-width bg-gray"
+    class="sugestoes-header full-width bg-gray"
     [ngClass]="heroEncolhido ? 'hero-encolhido' : 'hero-expandido'">
-      <anf-header [darkMode]="true"></anf-header>
+      <anf-header [darkMode]="true" [origem]="'tela-sugestoes'"></anf-header>
 
       <!-- SWIPER (Aparece somente com hero encolhido ) -->
       <div class="hero-swiper-wrapper" *ngIf="heroEncolhido">
@@ -67,7 +67,7 @@
     </div>
   </section>
 
-  <section class="inicio-content">
+  <section class="sugestoes-content">
     <ion-grid [fixed]="true">
       <ion-row>
         <!-- SOBRE -->
@@ -130,7 +130,7 @@
   </section>
 
   <!-- RODAPÉ -->
-  <section class="inicio-rodape">
+  <section class="sugestoes-rodape">
     <anf-footer>
       <ion-button
       fill="clear"

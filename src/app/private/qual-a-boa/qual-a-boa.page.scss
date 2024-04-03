@@ -8,8 +8,21 @@ ion-content {
       width: 100%;
       height: calc(100% - 70px);
       margin-top: -32px;
-
       @include flexbox(center, center, column);
+
+      .qual-a-boa-container {
+        ion-text {
+          p {
+            &.nome {
+              margin-left: -10px;
+            }
+
+            &.cidade {
+              margin-right: -13px;
+            }
+          }
+        }
+      }
 
       .qual-a-boa-swiper {
         padding: 32px 0;

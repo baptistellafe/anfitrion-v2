@@ -12,10 +12,6 @@ const routes: Routes = [
     loadChildren: () => import('./public/splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
   },
   {
-    path: 'inicio',
-    loadChildren: () => import('./private/inicio/inicio.module').then( m => m.InicioPageModule)
-  },
-  {
     path: 'primeiro-acesso',
     loadChildren: () => import('./public/primeiro-acesso/primeiro-acesso.module').then( m => m.PrimeiroAcessoPageModule)
   },
@@ -55,6 +51,10 @@ const routes: Routes = [
         loadChildren: () => import('./private/categoria/categoria.module').then( m => m.CategoriaPageModule)
       }
     ]
+  },
+  {
+    path: 'sugestoes',
+    loadChildren: () => import('./private/sugestoes/sugestoes.module').then( m => m.SugestoesPageModule)
   },
   {
     path: '**',

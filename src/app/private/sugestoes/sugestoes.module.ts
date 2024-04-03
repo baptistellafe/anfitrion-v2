@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InicioPageRoutingModule } from './inicio-routing.module';
+import { SugestoesPageRoutingModule } from './sugestoes-routing.module';
 
-import { InicioPage } from './inicio.page';
+import { SugestoesPage } from './sugestoes.page';
 import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
   imports: [
     SharedModule,
-    InicioPageRoutingModule
+    SugestoesPageRoutingModule
   ],
-  declarations: [InicioPage],
+  declarations: [SugestoesPage],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ]
 })
-export class InicioPageModule {}
+export class SugestoesPageModule {}

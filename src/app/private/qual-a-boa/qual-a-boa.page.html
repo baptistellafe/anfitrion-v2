@@ -1,10 +1,13 @@
 
 
 <ion-content
+#conteudoQualAboa
 [forceOverscroll]="false"
 [fullscreen]="true">
 
+  <!-- CABEÇALHO -->
   <anf-header
+  [origem]="'tela-qual-a-boa'"
   [darkMode]="false"
   [mostrarLogo]="false">
   </anf-header>
@@ -21,9 +24,9 @@
         class="full-width fs-32 animate__animated animate__fadeInUp">
         </ion-icon>
 
-        <p class="text-left fs-20 color-linear"><b>Felipe</b>,</p>
+        <p class="text-left fs-20 color-linear nome"><b>Felipe</b>,</p>
         <h2 class="text-center fs-24 m-0"><b>qual a boa pra hoje</b></h2>
-        <p class="text-right fs-18">em Santos?</p>
+        <p class="text-right fs-18 cidade">em Santos?</p>
       </ion-text>
     </div>
 
@@ -41,7 +44,8 @@
           (click)="selecionarCategoria(categoria, i)"
           [foiSelecionado]="categoriaSelecionada?.value === categoria?.value"
           [texto]="categoria.texto"
-          [icone]="categoria.icone">
+          [icone]="categoria.icone"
+          [especial]="categoria.especial">
           </anf-category-card>
         </swiper-slide>
       </swiper-container>
@@ -52,7 +56,7 @@
       #qualaboaDescricaoSwiper
       slides-per-view="1"
       centered-slides="true"
-      speed="600"
+      speed="0"
       space-between="0">
         <swiper-slide *ngFor="let categoria of categorias">
           <div class="swiper-description">
@@ -93,5 +97,16 @@
     </div>
   </section>
 
-  <anf-footer></anf-footer>
+  <!-- RODAPÉ -->
+  <anf-footer>
+    <ion-button
+    fill="clear"
+    shape="round"
+    mode="md"
+    title="Voltar para o topo"
+    (click)="irParaTopoDaTela()"
+    class="botao-scroll-to-top main-clear fs-13 tipo-link">
+      Voltar <span class="mg-left-5 mg-right-5"><b>para o topo</b></span> <ion-icon name="arrow-up-outline"></ion-icon>
+    </ion-button>
+  </anf-footer>
 </ion-content>

@@ -9,6 +9,7 @@ import { AppConfigService } from 'src/app/services/app-config.service';
 })
 export class LanguageButtonJustIconComponent  implements OnInit {
 
+  @Input() origem: string;
   @Input() darkMode: boolean;
 
   public idiomaSelecionado: Idioma;

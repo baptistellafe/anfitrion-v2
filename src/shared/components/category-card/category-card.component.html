@@ -1,14 +1,19 @@
-<div class="category-card-wrapper" [ngClass]="{ 'selecionado': foiSelecionado}">
+<div
+class="category-card-wrapper"
+[ngClass]="{ 'selecionado': foiSelecionado, 'especial' : especial }">
+
   <ion-fab mode="ios">
     <ion-fab-button mode="ios">
-      <ion-icon [name]="icone + '-outline'"></ion-icon>
+      <ion-icon [name]="foiSelecionado ? icone : (icone + '-outline')"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-text
   class="text-center"
   mode="ios">
-    <p class="fs-14 mg-top-8 color-gray-text" [ngClass]="{'animate__animated animate__fadeOut': foiSelecionado}">
+    <p
+    class="fs-14 mg-top-8 color-gray-text"
+    [ngClass]="{'animate__animated animate__fadeOut': foiSelecionado}">
       {{ texto?.pt }}
     </p>
   </ion-text>

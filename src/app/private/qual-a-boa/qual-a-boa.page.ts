@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { NavController } from '@ionic/angular';
+import { IonContent, NavController } from '@ionic/angular';
 import * as moment from 'moment';
 import { UtilsService } from 'src/app/services/utils.service';
 import Swiper from 'swiper';
@@ -11,6 +11,7 @@ import Swiper from 'swiper';
   styleUrls: ['./qual-a-boa.page.scss'],
 })
 export class QualABoaPage implements OnInit {
+  @ViewChild('conteudoQualAboa') conteudoQualAboa: IonContent;
 
   public categoriaSelecionada: any;
 
@@ -32,7 +33,7 @@ export class QualABoaPage implements OnInit {
     this.title.setTitle(`Qual a boa pra hoje em Santos | anfitrion`);
     console.log(this.horaAtual);
     this.obterCategorias();
-    this.selecionarCategoria(this.categorias[0], this.indexAtual)
+    this.selecionarCategoria(this.categorias[0], this.indexAtual);
   }
 
   public trocarCidade(): void {
@@ -49,7 +50,8 @@ export class QualABoaPage implements OnInit {
         value: 'bares',
         descricao: {
           pt: 'bares, botecos e pubs.'
-        }
+        },
+        especial: false
       },
       {
         icone: 'restaurant',
@@ -59,7 +61,8 @@ export class QualABoaPage implements OnInit {
         value: 'restaurantes',
         descricao: {
           pt: 'comida japonesa, mexicana, etc...'
-        }
+        },
+        especial: false
       },
       {
         icone: 'musical-notes',
@@ -69,7 +72,8 @@ export class QualABoaPage implements OnInit {
         value: 'casasnoturnas',
         descricao: {
           pt: 'música ao vivo, etc...'
-        }
+        },
+        especial: false
       },
       {
         icone: 'wine',
@@ -79,7 +83,8 @@ export class QualABoaPage implements OnInit {
         value: 'adegas',
         descricao: {
           pt: 'combo de bebida, gelo, etc...'
-        }
+        },
+        especial: false
       },
       {
         icone: 'flame',
@@ -89,7 +94,19 @@ export class QualABoaPage implements OnInit {
         value: 'tabacarias',
         descricao: {
           pt: 'vape, narguile, seda, etc...'
-        }
+        },
+        especial: false
+      },
+      {
+        icone: 'qr-code',
+        texto: {
+          pt: 'Sugestões'
+        },
+        value: 'sugestoes',
+        descricao: {
+          pt: 'poupar tempo'
+        },
+        especial: true
       }
     ]
   }
@@ -117,6 +134,17 @@ export class QualABoaPage implements OnInit {
   }
 
   public irPara(categoria: any): void {
-    this.navCtrl.navigateForward(['qual-a-boa', categoria.value])
+    if (categoria.value === 'sugestoes') {
+      this.navCtrl.navigateForward(['sugestoes']);
+    } else {
+      this.navCtrl.navigateForward(['qual-a-boa', categoria.value]);
+    }
+  }
+
+   /**
+    @description Responsável por levar o usuário ao topo da tela.
+  */
+  public irParaTopoDaTela(): void {
+    this.conteudoQualAboa.scrollToTop(800);
   }
 }
