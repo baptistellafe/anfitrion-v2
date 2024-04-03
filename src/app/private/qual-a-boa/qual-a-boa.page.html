@@ -28,8 +28,10 @@
     </div>
 
     <div class="qual-a-boa-swiper full-width">
+      <!-- CATEGORIA -->
       <swiper-container
       #qualaboaSwiper
+      allow-touch-move="false"
       slides-per-view="auto"
       centered-slides="true"
       speed="500"
@@ -43,6 +45,53 @@
           </anf-category-card>
         </swiper-slide>
       </swiper-container>
+
+      <!-- DESCRIÇÃO -->
+      <swiper-container
+      allow-touch-move="false"
+      #qualaboaDescricaoSwiper
+      slides-per-view="1"
+      centered-slides="true"
+      speed="600"
+      space-between="0">
+        <swiper-slide *ngFor="let categoria of categorias">
+          <div class="swiper-description">
+            <ion-text
+            mode="ios"
+            class="text-center line-height-20">
+              <h2
+              class="color-linear fs-20 font-baloo"
+              [ngClass]="{'animate__animated animate__fadeInDown animate__slow' : categoria?.value === categoriaSelecionada?.value}">
+                <b>{{ categoria?.texto?.pt }}</b>
+              </h2>
+
+              <p class="fs-14 color-gray-mid mg-top-16">
+                Para quem procura
+              </p>
+
+              <p class="fs-16 color-gray-dark">
+                {{ categoria?.descricao?.pt }}
+              </p>
+            </ion-text>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <div class="qual-a-boa-botao-wrapper">
+      <ion-button
+      (click)="irPara(categoriaSelecionada)"
+      title="Ver"
+      shape="round"
+      [fill]="'solid'"
+      size="normal"
+      class="main icone-a-direita animate__animated animate__fadeIn"
+      mode="md">
+        Ver <span class="mg-left-5 text-lowercase"><b>{{ categoriaSelecionada?.texto?.pt }}</b></span>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
     </div>
   </section>
+
+  <anf-footer></anf-footer>
 </ion-content>

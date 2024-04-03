@@ -45,7 +45,16 @@ const routes: Routes = [
   },
   {
     path: 'qual-a-boa',
-    loadChildren: () => import('./private/qual-a-boa/qual-a-boa.module').then( m => m.QualABoaPageModule)
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./private/qual-a-boa/qual-a-boa.module').then( m => m.QualABoaPageModule)
+      },
+      {
+        path: ':categoria',
+        loadChildren: () => import('./private/categoria/categoria.module').then( m => m.CategoriaPageModule)
+      }
+    ]
   },
   {
     path: '**',

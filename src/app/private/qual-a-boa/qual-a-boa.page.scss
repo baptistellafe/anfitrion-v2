@@ -1,11 +1,14 @@
 @import './../../../assets/scss/utils/mixins.scss';
 
 ion-content {
+  background: linear-gradient(to bottom, var(--gray-fa) 40%, var(--white));
+
   section {
     &.qual-a-boa-wrapper {
       width: 100%;
       height: calc(100% - 70px);
-      background: linear-gradient(to bottom, var(--white), var(--gray-fa) 40%);
+      margin-top: -32px;
+
       @include flexbox(center, center, column);
 
       .qual-a-boa-swiper {
@@ -19,4 +22,11 @@ ion-content {
       }
     }
   }
+}
+
+.swiper-description {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 16px 16px 8px 16px;
 }

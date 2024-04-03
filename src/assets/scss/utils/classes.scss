@@ -3,6 +3,7 @@
 
 .line-height-32 { line-height: 32px; }
 .line-height-22 { line-height: 22px; }
+.line-height-20 { line-height: 20px; }
 .line-height-18 { line-height: 18px; }
 
 // ALIGNs
@@ -41,6 +42,7 @@
 // OTHERs
 .overflow-hidden { overflow: hidden; }
 .position-relative { position: relative; }
+.text-lowercase { text-transform:  lowercase; }
 
 // CENTERING
 .center-w-flex {
@@ -61,6 +63,7 @@
 }
 
 // COLORs
+.color-gray-mid { color: var(--gray-mid); }
 .color-white { color: var(--white); }
 .color-gray-text { color: var(--gray-text); }
 .color-negative { color: var(--danger); }
@@ -73,6 +76,7 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.color-gray-dark { color: var(--gray-dark); }
 
 .ion-color-white { --color: var(--white); }
 .ion-color-gray-text { --color: var(--gray-text); }

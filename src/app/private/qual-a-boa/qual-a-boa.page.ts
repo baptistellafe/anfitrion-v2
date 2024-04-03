@@ -17,6 +17,8 @@ export class QualABoaPage implements OnInit {
   @ViewChild('qualaboaSwiper') qualaboaSwiper?: ElementRef<{ swiper: Swiper }>
   public indexAtual: any = 0;
 
+  @ViewChild('qualaboaDescricaoSwiper') qualaboaDescricaoSwiper?: ElementRef<{ swiper: Swiper }>
+
   public horaAtual : number = moment().hour();
   public categorias: any[];
 
@@ -44,35 +46,50 @@ export class QualABoaPage implements OnInit {
         texto: {
           pt: 'Bares'
         },
-        value: 'bares'
+        value: 'bares',
+        descricao: {
+          pt: 'bares, botecos e pubs.'
+        }
       },
       {
         icone: 'restaurant',
         texto: {
           pt: 'Restaurantes'
         },
-        value: 'restaurantes'
+        value: 'restaurantes',
+        descricao: {
+          pt: 'comida japonesa, mexicana, etc...'
+        }
       },
       {
         icone: 'musical-notes',
         texto: {
           pt: 'Casas noturnas'
         },
-        value: 'casas-noturnas'
+        value: 'casasnoturnas',
+        descricao: {
+          pt: 'música ao vivo, etc...'
+        }
       },
       {
         icone: 'wine',
         texto: {
           pt: 'Adegas'
         },
-        value: 'adegas'
+        value: 'adegas',
+        descricao: {
+          pt: 'combo de bebida, gelo, etc...'
+        }
       },
       {
         icone: 'flame',
         texto: {
           pt: 'Tabacarias'
         },
-        value: 'tabacarias'
+        value: 'tabacarias',
+        descricao: {
+          pt: 'vape, narguile, seda, etc...'
+        }
       }
     ]
   }
@@ -95,6 +112,11 @@ export class QualABoaPage implements OnInit {
   @description Pula para o slide selecionado.
   */
   public pularSlidePara(index: number): void {
-    this.utilsService.pularSlidePara(index, this.qualaboaSwiper)
+    this.utilsService.pularSlidePara(index, this.qualaboaSwiper);
+    this.utilsService.pularSlidePara(index, this.qualaboaDescricaoSwiper)
+  }
+
+  public irPara(categoria: any): void {
+    this.navCtrl.navigateForward(['qual-a-boa', categoria.value])
   }
 }
