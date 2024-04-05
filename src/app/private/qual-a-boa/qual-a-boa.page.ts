@@ -65,6 +65,28 @@ export class QualABoaPage implements OnInit {
         especial: false
       },
       {
+        icone: 'fast-food',
+        texto: {
+          pt: 'Hamburguerias'
+        },
+        value: 'hamburguerias',
+        descricao: {
+          pt: 'hamburguer, fast-food...'
+        },
+        especial: false
+      },
+      {
+        icone: 'pizza',
+        texto: {
+          pt: 'Pizzarias e esfiharias'
+        },
+        value: 'pizzarias-e-esfihas',
+        descricao: {
+          pt: 'pizzas, esfihas, brotos, etc...'
+        },
+        especial: false
+      },
+      {
         icone: 'musical-notes',
         texto: {
           pt: 'Casas noturnas'

@@ -8,7 +8,7 @@
     ion-fab {
       ion-fab-button {
         --box-shadow: inset 1px 2px 2px var(--green), inset 0 2px 3px var(--white);
-        --background: var(--green);
+        --background: linear-gradient(to right, var(--green) 30%, var(--green-dark) );
         --background-hover: var(--green);
         --color: var(--white);
         --color-hover: var(--white);
@@ -31,6 +31,15 @@
     }
   }
 
+  ion-text {
+    p {
+      &.pizzarias-e-esfihas {
+        max-width: 70px;
+      }
+    }
+  }
+
+  // PARA O LAYOUT DE SUGESTÕES
   &.especial {
     ion-fab {
       ion-fab-button {

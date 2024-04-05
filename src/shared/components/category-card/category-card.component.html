@@ -13,8 +13,10 @@ class="category-card-wrapper"
   mode="ios">
     <p
     class="fs-14 mg-top-8 color-gray-text"
-    [ngClass]="{'animate__animated animate__fadeOut': foiSelecionado}">
+    [ngClass]="[value, foiSelecionado ? 'animate__animated animate__fadeOut' : '']">
       {{ texto?.pt }}
     </p>
   </ion-text>
 </div>
+
+

@@ -11,6 +11,7 @@ export class CategoryCardComponent  implements OnInit {
   @Input() foiSelecionado: boolean;
   @Input() texto: any;
   @Input() icone: string;
+  @Input() value: string | string[];
 
   constructor() { }
 

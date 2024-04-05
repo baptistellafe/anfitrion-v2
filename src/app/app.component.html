@@ -2,13 +2,37 @@
   <ion-split-pane
   [when]="false"
   contentId="principal">
-    <ion-menu contentId="principal">
-      <ion-header>
-        <ion-toolbar color="tertiary">
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding"> Menu Content is 350px wide and has a blue dashed border </ion-content>
+    <ion-menu contentId="principal" [type]="'overlay'">
+      <ion-content
+      [forceOverscroll]="false">
+        <ion-list
+        class="bg-transparent"
+        mode="ios">
+          <ion-item mode="ios" lines="none">
+            <ion-text mode="ios">
+              <h2 class="color-gray-text font-baloo"><b>Menu</b></h2>
+            </ion-text>
+          </ion-item>
+          <ion-menu-toggle>
+            <ion-item
+            *ngFor="let item of menu"
+            (click)="definirItem(item)"
+            [title]="item.titulo['pt']"
+            [detailIcon]="true"
+            mode="ios"
+            [routerLink]="[item.rota]"
+            lines="none"
+            routerLinkActive="rota-ativa">
+              <ion-icon [name]="item.icone + '-outline'"></ion-icon>
+
+              <ion-text mode="ios">
+                <p class="fs-20 titulo font-baloo">{{ item.titulo['pt'] }}</p>
+                <p class="fs-14 descricao">{{ item.descricao['pt'] }}</p>
+              </ion-text>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
     </ion-menu>
 
     <ion-router-outlet id="principal"></ion-router-outlet>
