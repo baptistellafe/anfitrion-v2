@@ -4,12 +4,13 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/store/app/app.state';
 import * as AppStore from './../../store/app/app.state';
+
 @Component({
-  selector: 'anf-sobre-nos',
-  templateUrl: './sobre-nos.page.html',
-  styleUrls: ['./sobre-nos.page.scss'],
+  selector: 'anf-editar-dados',
+  templateUrl: './editar-dados.page.html',
+  styleUrls: ['./editar-dados.page.scss'],
 })
-export class SobreNosPage implements OnInit {
+export class EditarDadosPage implements OnInit {
 
   public informacoes$: Observable<IAppState>;
   public informacoes: IAppState;
@@ -24,7 +25,7 @@ export class SobreNosPage implements OnInit {
   }
 
   ionViewDidEnter(): void {
-    this.title.setTitle(`Sobre o anfitrion`);
+    this.title.setTitle(`Altere suas informações`);
   }
 
   /**

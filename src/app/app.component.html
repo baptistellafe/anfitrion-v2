@@ -2,20 +2,55 @@
   <ion-split-pane
   [when]="false"
   contentId="principal">
-    <ion-menu contentId="principal" [type]="'overlay'">
+    <ion-menu
+    contentId="principal"
+    [type]="'overlay'">
       <ion-content
       [forceOverscroll]="false">
+        <div class="perfil-wrapper">
+          <ion-item
+          lines="none"
+          class="perfil ion-bg-transparent">
+            <ion-icon [name]="'finger-print-outline'" [ngClass]="{'color-green': informacoes.primeiroNome}"></ion-icon>
+
+            <ion-text
+            class="color-gray-text line-height-23"
+            mode="ios">
+              <p class="fs-14 color-gray-text">
+                <ng-container></ng-container>
+                <ng-container *ngIf="informacoes$">{{ informacoes.saudacao }},</ng-container>
+              </p>
+              <p class="nome font-baloo fs-20" *ngIf="informacoes$"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : 'visitante' }}</b></p>
+
+              <ion-menu-toggle>
+                <a
+                (click)="irPara(['editar-dados'])"
+                title="editar"
+                href="javascript:void(0)"
+                class="link-com-icone pequeno mg-top-5">
+                  editar <ion-icon name="create-outline"></ion-icon>
+                </a>
+              </ion-menu-toggle>
+            </ion-text>
+          </ion-item>
+        </div>
+
+        <ion-item
+        mode="ios"
+        lines="none"
+        class="ion-bg-transparent titulo">
+          <ion-text mode="ios">
+            <h2 class="color-gray-dark font-baloo m-0 fs-18"><b>Menu</b></h2>
+          </ion-text>
+        </ion-item>
+
         <ion-list
         class="bg-transparent"
         mode="ios">
-          <ion-item mode="ios" lines="none">
-            <ion-text mode="ios">
-              <h2 class="color-gray-text font-baloo"><b>Menu</b></h2>
-            </ion-text>
-          </ion-item>
           <ion-menu-toggle>
             <ion-item
-            *ngFor="let item of menu"
+            class="line-height-23"
+            *ngFor="let item of opcoesDoMenu"
             (click)="definirItem(item)"
             [title]="item.titulo['pt']"
             [detailIcon]="true"
@@ -33,6 +68,14 @@
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
+
+      <ion-footer mode="ios" class="ion-no-border bg-white">
+        <ion-toolbar mode="ios" class="ion-bg-white">
+          <div class="app-menu-footer">
+            <anf-made-w-love [posicionamento]="'centro'"></anf-made-w-love>
+          </div>
+        </ion-toolbar>
+      </ion-footer>
     </ion-menu>
 
     <ion-router-outlet id="principal"></ion-router-outlet>

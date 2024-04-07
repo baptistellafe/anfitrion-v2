@@ -3,9 +3,9 @@ class="ion-bg-gray"
 [fullscreen]="true">
   <section class="full-size center-w-flex overflow-hidden">
     <ion-text mode="ios" class="font-baloo">
-      <p class="fs-22 text-left color-white nome animate_anf animate__animated"><b>Felipe<span class="fs-18">,</span></b></p>
+      <p class="fs-22 text-left color-white nome animate_anf animate__animated"><b>{{ informacoes.primeiroNome }}<span class="fs-18">,</span></b></p>
       <p class="fs-18 text-center color-white mensagem animate_anf animate__animated">conheça o melhor</p>
-      <p class="fs-22 text-right color-linear cidade animate_anf animate__animated"><b>de Santos</b>.</p>
+      <p class="fs-22 text-right color-linear cidade animate_anf animate__animated"><b>{{ informacoes.cidadeEscolhida.origin[informacoes.idioma.value] }}</b>.</p>
     </ion-text>
   </section>
 </ion-content>

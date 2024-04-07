@@ -2,11 +2,13 @@ import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/co
 import { Title } from '@angular/platform-browser';
 import { IonInput, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { JA_ACESSOU_ANFITRION_KEY, PRIMEIRO_NOME_KEY } from 'src/app/consts/keys';
 import { StorageService } from 'src/app/services/storage.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { definirPrimeiroAcesso, definirPrimeiroNome } from 'src/app/store/app/app.state';
+import { IAppState, definirPrimeiroAcesso, definirPrimeiroNome } from 'src/app/store/app/app.state';
 import Swiper from 'swiper';
+import * as AppStore from './../../store/app/app.state';
 
 @Component({
   selector: 'anf-primeiro-acesso',
@@ -21,6 +23,9 @@ export class PrimeiroAcessoPage implements OnInit {
   @ViewChild('primeiroAcessoSwiper') primeiroAcessoSwiper?: ElementRef<{ swiper: Swiper }>
   public indexAtual: number | undefined = 0;
 
+  public informacoes$: Observable<IAppState>;
+  public informacoes: IAppState;
+
   constructor(
     private title : Title,
     private utilsService : UtilsService,
@@ -30,6 +35,7 @@ export class PrimeiroAcessoPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.obterTodasAsInformacoes();
   }
 
   ionViewWillEnter(): void {
@@ -112,6 +118,16 @@ export class PrimeiroAcessoPage implements OnInit {
     this.store.dispatch(definirPrimeiroNome({ primeiroNome }))
 
     this.navCtrl.navigateForward('/boas-vindas');
+  }
+
+   /**
+   * @description Obtém as informações guardadas no NGRX.
+   */
+   public obterTodasAsInformacoes(): void {
+    this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
+    this.informacoes$.subscribe((res: IAppState) => {
+      this.informacoes = res;
+    })
   }
 
 }

@@ -1,3 +1,5 @@
+@import './../assets/scss/utils/mixins.scss';
+
 :host {
   display: block;
   width: 100%;
@@ -6,10 +8,41 @@
 
 ion-menu {
   ion-content {
-    --background: var(--gray-ed);
+    --background: linear-gradient(to bottom, var(--white), var(--gray-ed) 65%, var(--white) 90%);
+
+    // PERFIL
+    .perfil-wrapper {
+      width: 100%;
+      padding: 32px 20px 20px 20px;
+
+      ion-item {
+         > ion-icon {
+          font-size: 36px;
+          margin: 0 16px 0 0;
+          color: var(--gray-text);
+        }
+      }
+
+      ion-text {
+        p {
+          &.nome {
+            max-width: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+    ion-item {
+      &.titulo {
+        --padding-start: 24px;
+      }
+    }
 
     ion-list {
-      padding: 16px 0;
+      padding: 0;
 
       ion-item {
         --background: transparent;
@@ -20,8 +53,6 @@ ion-menu {
         min-height: 0;
         --padding-top: 10px;
         --padding-bottom: 10px;
-        border-radius: 0 100px 100px 0;
-        --border-radius: 0 100px 100px 0 ;
 
 
         ion-icon {
@@ -29,15 +60,13 @@ ion-menu {
         }
 
         ion-text {
-          line-height: 23px;
-
           p {
             &.titulo {
               color: var(--gray-text);
             }
 
             &.descricao {
-              display: none;
+              color: var(--gray-mid);
             }
           }
         }
@@ -49,6 +78,8 @@ ion-menu {
           --border-style: solid;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
           display: inline-block;
+          border-radius: 0 100px 100px 0;
+          --border-radius: 0 100px 100px 0 ;
 
           ion-icon {
             color: var(--green)
@@ -71,4 +102,9 @@ ion-menu {
       }
     }
   }
+}
+
+.app-menu-footer {
+  padding: 20px;
+  @include flexbox(center, center, row);
 }

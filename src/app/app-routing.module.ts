@@ -57,6 +57,18 @@ const routes: Routes = [
     loadChildren: () => import('./private/sugestoes/sugestoes.module').then( m => m.SugestoesPageModule)
   },
   {
+    path: 'editar-dados',
+    loadChildren: () => import('./private/editar-dados/editar-dados.module').then( m => m.EditarDadosPageModule)
+  },
+  {
+    path: 'preferencias',
+    loadChildren: () => import('./private/preferencias/preferencias.module').then( m => m.PreferenciasPageModule)
+  },
+  {
+    path: 'trocar-idioma',
+    loadChildren: () => import('./public/trocar-idioma/trocar-idioma.module').then( m => m.TrocarIdiomaPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     loadChildren: () => import('./public/nao-encontramos/nao-encontramos.module').then( m => m.NaoEncontramosPageModule)

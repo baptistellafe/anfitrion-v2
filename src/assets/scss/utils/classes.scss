@@ -2,6 +2,7 @@
 .font-baloo { font-family: var(--font-baloo) !important; }
 
 .line-height-32 { line-height: 32px; }
+.line-height-23 { line-height: 23px; }
 .line-height-22 { line-height: 22px; }
 .line-height-20 { line-height: 20px; }
 .line-height-18 { line-height: 18px; }
@@ -19,6 +20,7 @@
 .fs-22 { font-size: 22px; }
 .fs-20 { font-size: 20px; }
 .fs-18 { font-size: 18px; }
+.fs-16 { font-size: 16px; }
 .fs-14 { font-size: 14px; }
 .fs-13 { font-size: 13px; }
 .fs-12 { font-size: 12px; }
@@ -97,6 +99,7 @@
 .mg-top-32 { margin-top: 32px; }
 .mg-top-16 { margin-top: 16px; }
 .mg-top-8 { margin-top: 8px; }
+.mg-top-5 { margin-top: 5px; }
 
 .mg-left-5 { margin-left: 5px; }
 .mg-right-5 { margin-right: 5px; }
@@ -114,4 +117,25 @@
   60% { transform: scale( 1 ); }
   80% { transform: scale( .75 ); }
   100% { transform: scale( .75 ); }
+}
+
+// LINKs
+.link-com-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  transition: opacity 200ms ease;
+  will-change: opacity;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  &.pequeno {
+    ion-icon {
+      font-size: 18px;
+      margin: 0 0 0 5px;
+    }
+  }
 }

@@ -5,5 +5,7 @@ export interface Cidade {
   famousName?: string,
   isActiveOnAnfitrion: boolean,
   isComingSoon: boolean,
-  naturalFrom?: string
+  naturalFrom?: string,
+  origin: any,
+  location: any
 }

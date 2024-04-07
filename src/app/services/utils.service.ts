@@ -1,12 +1,22 @@
 import { ElementRef, Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as moment from 'moment';
 import Swiper from 'swiper';
+import { definirSaudacao } from '../store/app/app.state';
+import 'moment/locale/es';
+import 'moment/locale/en-au';
+import 'moment/locale/pt-br';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
 
-  constructor() { }
+  constructor(
+    public store : Store
+  ) {
+    this.definirLocaleDoMomentJS('pt');
+  }
 
   /**
    * @description Transforma a string (nome), removendo espaços em branco, números e deixa minusculo.
@@ -34,5 +44,33 @@ export class UtilsService {
 
   public pularSlidePara(index: number, swiper?: ElementRef<{ swiper: Swiper }>): void | undefined {
     return swiper?.nativeElement.swiper.slideTo(index)
+  }
+
+  /**
+   * @description Define a saudação que usaremos de acordo com a hora atual.
+   */
+  public definirSaudacaoDeAcordoComHorario(): void {
+    let horaAtual: number = parseInt(moment().format('HH').split(':')[0]);
+    let saudacao: string = '';
+
+    if (horaAtual >= 0 && horaAtual <= 5) {
+      saudacao = 'A noite é uma criança'
+    } else if(horaAtual >= 6 && horaAtual <= 11) {
+      saudacao = 'Bom dia'
+    } else if(horaAtual >= 12 && horaAtual <= 18) {
+      saudacao = 'Boa tarde'
+    } else {
+      saudacao = 'Boa noite'
+    }
+
+    this.store.dispatch(definirSaudacao({ saudacao: saudacao }));
+  }
+
+  /**
+   * @description Define o formato da informação que o momentJS irá apresentar. (pt, en, es).
+   * @param idioma obrigatório do tipo string.
+   */
+  public definirLocaleDoMomentJS(idioma: string): void {
+    moment.locale(idioma);
   }
 }

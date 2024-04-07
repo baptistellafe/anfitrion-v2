@@ -143,7 +143,7 @@
               [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 4}">
               </ion-icon>
               <h2 class="font-baloo"><b>Tudo pronto</b></h2>
-              <p>serei o seu anfitrião em Santos.</p>
+              <p>serei o seu anfitrião {{ informacoes.cidadeEscolhida.location[informacoes.idioma.value] }}.</p>
             </ion-text>
 
             <ion-button
@@ -156,7 +156,7 @@
             [ngClass]="'main'"
             class="icone-a-direita mg-top-32"
             mode="md">
-              Conhecer <span class="mg-left-5"><b>Santos</b></span>
+              Conhecer <span class="mg-left-5"><b>{{ informacoes.cidadeEscolhida.text }}</b></span>
               <ion-icon name="arrow-forward-outline"></ion-icon>
             </ion-button>
 

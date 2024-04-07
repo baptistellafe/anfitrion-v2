@@ -1,8 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { IonContent, NavController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { UtilsService } from 'src/app/services/utils.service';
+import { IAppState } from 'src/app/store/app/app.state';
 import Swiper from 'swiper';
+import * as AppStore from './../../store/app/app.state';
+
 
 @Component({
   selector: 'anf-sugestoes',
@@ -22,23 +27,29 @@ export class SugestoesPage implements OnInit {
 
   public mostrarComponenteScrollDown: boolean = true;
 
+  public informacoes$: Observable<IAppState>;
+  public informacoes: IAppState;
+
   constructor(
     private title : Title,
     private utilsService : UtilsService,
-    private navCtrl : NavController
+    private navCtrl : NavController,
+    private store : Store
   ) { }
 
   async ngOnInit() {
+    this.obterTodasAsInformacoes();
+
     this.obterSugestoes();
-      this.definirLengthDeSugestoes();
+    this.definirLengthDeSugestoes();
 
     await this.toggleHero().then((res) => {
       this.heroEncolhido = res;
     })
   }
 
-  ionViewWillEnter(): void {
-    this.title.setTitle(`Qual a boa pra hoje em Santos | anfitrion`);
+  ionViewDidEnter(): void {
+    this.title.setTitle(`Permita-me te sugerir algumas coisas ${this.informacoes.cidadeEscolhida.location[this.informacoes.idioma.value]}`);
   }
 
   public obterSugestoes(): void {
@@ -174,10 +185,10 @@ export class SugestoesPage implements OnInit {
   }
 
   /**
-    @description Ir para tela: Pontos turísticos.
+    @description Ir para tela: Pontos turísticos BARRA cidade.
   */
   public irParaPontosTuristicos(): void {
-    this.navCtrl.navigateForward(['pontos-turisticos', 'santos'])
+    this.navCtrl.navigateForward(['pontos-turisticos', this.informacoes.cidadeEscolhida.value])
   }
 
   /**
@@ -193,6 +204,16 @@ export class SugestoesPage implements OnInit {
   */
   public irParaSobreNos(): void {
     this.navCtrl.navigateForward(['sobre-nos'])
+  }
+
+  /**
+   * @description Obtém as informações guardadas no NGRX.
+   */
+  public obterTodasAsInformacoes(): void {
+    this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
+    this.informacoes$.subscribe((res: IAppState) => {
+      this.informacoes = res;
+    })
   }
 
 }

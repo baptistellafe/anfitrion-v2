@@ -1,4 +1,5 @@
-import { createAction, createReducer, on, props } from "@ngrx/store";
+
+import { createAction, createReducer, createSelector, on, props, createFeatureSelector } from "@ngrx/store";
 import { Cidade } from "src/app/interfaces/Cidade";
 import { Idioma } from "src/app/interfaces/Idioma";
 
@@ -6,7 +7,9 @@ export interface IAppState {
   primeiroNome: string,
   idioma: Idioma,
   cidadeEscolhida: Cidade,
-  jaAcessouAnfitrion: boolean
+  jaAcessouAnfitrion: boolean,
+  saudacao: string,
+  whatsAppAnfitrion: string
 }
 
 export const appInitialState: IAppState = {
@@ -26,9 +29,21 @@ export const appInitialState: IAppState = {
     famousName: '',
     isActiveOnAnfitrion: false,
     isComingSoon: false,
-    naturalFrom: ''
+    naturalFrom: '',
+    origin: {
+      pt: '',
+      en: '',
+      es: ''
+    },
+    location: {
+      pt: '',
+      en: '',
+      es: ''
+    }
   },
-  jaAcessouAnfitrion: false
+  jaAcessouAnfitrion: false,
+  saudacao: '',
+  whatsAppAnfitrion: '5513997330408'
 }
 
 export const definirPrimeiroAcesso = createAction(
@@ -51,6 +66,11 @@ export const definirCidade = createAction(
   props<{ cidadeEscolhida: Cidade }>()
 )
 
+export const definirSaudacao = createAction(
+  '[APP] Definir saudação',
+  props<{ saudacao: string }>()
+)
+
 export const appReducer = createReducer(
   appInitialState,
   on(
@@ -68,6 +88,17 @@ export const appReducer = createReducer(
   on(
     definirPrimeiroNome,
     (state, { primeiroNome }) => ({ ...state, primeiroNome: primeiroNome })
+  ),
+  on(
+    definirSaudacao,
+    (state, { saudacao }) => ({ ...state, saudacao: saudacao })
   )
 )
 
+// SELETORES
+export const appState = createFeatureSelector<IAppState>('app');
+
+export const obterTodasInformacoes = createSelector(
+  appState,
+  (state: IAppState) => state
+);

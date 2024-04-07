@@ -1,9 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { IonContent, NavController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
 import { UtilsService } from 'src/app/services/utils.service';
+import { IAppState } from 'src/app/store/app/app.state';
 import Swiper from 'swiper';
+import * as AppStore from './../../store/app/app.state';
+
 
 @Component({
   selector: 'anf-qual-a-boa',
@@ -23,17 +28,26 @@ export class QualABoaPage implements OnInit {
   public horaAtual : number = moment().hour();
   public categorias: any[];
 
+  public informacoes$: Observable<IAppState>;
+  public informacoes: IAppState;
+
   constructor(
     private navCtrl : NavController,
     private title : Title,
-    private utilsService : UtilsService
+    private utilsService : UtilsService,
+    private store : Store
     ) { }
 
   ngOnInit() {
-    this.title.setTitle(`Qual a boa pra hoje em Santos | anfitrion`);
+
+    this.obterTodasAsInformacoes();
     console.log(this.horaAtual);
     this.obterCategorias();
     this.selecionarCategoria(this.categorias[0], this.indexAtual);
+  }
+
+  ionViewDidEnter(): void {
+    this.title.setTitle(`Qual a boa pra hoje ${this.informacoes.cidadeEscolhida.location[this.informacoes.idioma.value]}`);
   }
 
   public trocarCidade(): void {
@@ -168,5 +182,15 @@ export class QualABoaPage implements OnInit {
   */
   public irParaTopoDaTela(): void {
     this.conteudoQualAboa.scrollToTop(800);
+  }
+
+  /**
+   * @description Obtém as informações guardadas no NGRX.
+   */
+  public obterTodasAsInformacoes(): void {
+    this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
+    this.informacoes$.subscribe((res: IAppState) => {
+      this.informacoes = res;
+    })
   }
 }

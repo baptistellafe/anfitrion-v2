@@ -7,6 +7,49 @@ import { Idioma } from '../interfaces/Idioma';
 })
 export class AppConfigService {
 
+  private opcoesDoMenu: any[] = [
+    {
+      titulo: {
+        pt: 'Qual a boa'
+      },
+      descricao: {
+        pt: 'Conheça a cidade'
+      },
+      rota: 'qual-a-boa',
+      icone: 'bulb'
+    },
+    {
+      titulo: {
+        pt: 'Sugestões'
+      },
+      descricao: {
+        pt: 'Poupe seu tempo'
+      },
+      rota: 'sugestoes',
+      icone: 'qr-code'
+    },
+    {
+      titulo: {
+        pt: 'Sobre'
+      },
+      descricao: {
+        pt: 'Conheça o anfitrion'
+      },
+      rota: 'sobre-nos',
+      icone: 'terminal'
+    },
+    {
+      titulo: {
+        pt: 'Preferências'
+      },
+      descricao: {
+        pt: 'Configuração do app'
+      },
+      rota: 'preferencias',
+      icone: 'settings'
+    }
+  ]
+
   private cities: Cidade[] = [
     {
       text: 'Santos',
@@ -15,7 +58,17 @@ export class AppConfigService {
       famousName: 'santos',
       isActiveOnAnfitrion: true,
       isComingSoon: false,
-      naturalFrom: 'santista'
+      naturalFrom: 'santista',
+      origin: {
+        pt: 'de Santos',
+        en: 'from Santos',
+        es: 'del Santos'
+      },
+      location: {
+        pt: 'em Santos',
+        en: 'in Santos',
+        es: 'en Santos'
+      }
     },
     {
       text: 'São Vicente',
@@ -24,7 +77,17 @@ export class AppConfigService {
       famousName: 'sv',
       isActiveOnAnfitrion: false,
       isComingSoon: false,
-      naturalFrom: 'calunga'
+      naturalFrom: 'calunga',
+      origin: {
+        pt: 'de São Vicente',
+        en: 'from São Vicente',
+        es: 'del Santos'
+      },
+      location: {
+        pt: 'em São Vicente',
+        en: 'at São Vicente',
+        es: 'en São Vicente'
+      }
     },
     {
       text: 'Guarujá',
@@ -33,7 +96,17 @@ export class AppConfigService {
       famousName: 'guaru',
       isActiveOnAnfitrion: false,
       isComingSoon: false,
-      naturalFrom: 'guarujaense'
+      naturalFrom: 'guarujaense',
+      origin: {
+        pt: 'do Guarujá',
+        en: 'from Guarujá',
+        es: 'del Guarujá'
+      },
+      location: {
+        pt: 'no Guarujá',
+        en: 'on Guarujá',
+        es: 'en Guarujá'
+      }
     },
     {
       text: 'Praia Grande',
@@ -42,7 +115,17 @@ export class AppConfigService {
       famousName: 'pg',
       isActiveOnAnfitrion: false,
       isComingSoon: false,
-      naturalFrom: 'praia grandense'
+      naturalFrom: 'praia grandense',
+      origin: {
+        pt: 'de Praia Grande',
+        en: 'from Praia Grande',
+        es: 'del Praia Grande'
+      },
+      location: {
+        pt: 'na Praia Grande',
+        en: 'in Praia Grande',
+        es: 'en Praia Grande'
+      }
     },
   ]
 
@@ -92,5 +175,9 @@ export class AppConfigService {
 
     return cidade
 
+  }
+
+  public obterOpcoesDoMenu(): Idioma[] {
+    return this.opcoesDoMenu
   }
 }
