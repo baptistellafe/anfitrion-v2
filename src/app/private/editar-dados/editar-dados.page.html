@@ -14,7 +14,7 @@ mode="ios">
           <header class="editar-dados-header">
             <ion-button
             shape="round"
-            (click)="retornar()"
+            (click)="retornarPara()"
             title="Voltar"
             fill="solid"
             class="main fs-16 m-0"
@@ -52,6 +52,7 @@ mode="ios">
             class="full-width ion-bg-transparent"
             mode="ios">
             <ion-input
+            #inputEditarPrimeiroNome
             [readonly]="!editandoNome"
             (keyup)="transformarNome()"
             [autocorrect]="false"
@@ -115,7 +116,7 @@ mode="ios">
           shape="round"
           class="fs-14 icone-a-direita main-white alterar"
           mode="md">
-            Alterar <ion-icon name="refresh-outline"></ion-icon>
+            Editar <ion-icon name="create-outline"></ion-icon>
           </ion-button>
         </div>
       </div>

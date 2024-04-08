@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/store/app/app.state';
 import * as AppStore from './../../store/app/app.state';
 import { Router } from '@angular/router';
-import { AlertController, NavController, ToastController } from '@ionic/angular';
+import { AlertController, IonInput, NavController, ToastController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilsService } from 'src/app/services/utils.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -17,6 +17,7 @@ import { PRIMEIRO_NOME_KEY } from 'src/app/consts/keys';
   styleUrls: ['./editar-dados.page.scss'],
 })
 export class EditarDadosPage implements OnInit {
+  @ViewChild('inputEditarPrimeiroNome') inputEditarPrimeiroNome: IonInput;
 
   public informacoesForm: FormGroup;
   public editandoNome: boolean = false;
@@ -41,15 +42,20 @@ export class EditarDadosPage implements OnInit {
   ngOnInit() {
     this.inicializarFormInformacoes();
     this.obterTodasAsInformacoes();
+    this.definirSeVeioDeUmaRotaAnterior();
   }
 
   ionViewWillEnter(): void {
-    this.definirSeVeioDeUmaRotaAnterior();
+
   }
 
   ionViewDidEnter(): void {
     this.title.setTitle(`Altere suas informações`);
     this.mostrarInformativoDosDados();
+  }
+
+  ionViewWillLeave(): void {
+    this.veioDeUmaRotaAnterior = false;
   }
 
   /**
@@ -67,7 +73,7 @@ export class EditarDadosPage implements OnInit {
   /**
    * @description Retornar para tela de onde veio.
    */
-  public retornar(): void {
+  public retornarPara(): void {
     if (this.veioDeUmaRotaAnterior) {
       this.navCtrl.back();
     } else {
@@ -111,6 +117,7 @@ export class EditarDadosPage implements OnInit {
   public editarNome(): void {
     this.informacoesForm.reset();
     this.editandoNome = true;
+    this.focarNoInputEditarPrimeiroNome();
   }
 
   public definirNomeDefinitivo(): void {
@@ -148,7 +155,29 @@ export class EditarDadosPage implements OnInit {
     const alert = await this.alertCtrl.create({
       mode: 'ios',
       subHeader: 'Atenção',
-      message: `O nome que você definiu ou irá definir, é como nós te chamaremos dentro do app. Essa informação não é gravada em nenhum servidor, nada, apenas na memória do navegador.`,
+      message: `O nome que você definir é como nós te chamaremos dentro do app. Essa informação não é gravada em nenhum servidor, apenas na memória do navegador.`,
+      buttons: ['Entendi']
+    })
+
+    await alert.present();
+
+    return alert;
+  }
+
+  /**
+    @description Foca em um IonInput (necessário o settimeout).
+  */
+  public focarNoInputEditarPrimeiroNome(): void {
+    setTimeout(() => {
+      this.inputEditarPrimeiroNome.setFocus()
+    }, 500);
+  }
+
+  public async mostrarUtilidadeDoNome(): Promise<HTMLIonAlertElement> {
+    const alert = await this.alertCtrl.create({
+      mode: 'ios',
+      subHeader: 'Importância do nome',
+      message: `No momento não utilizamos seu nome para nada`,
       buttons: ['Entendi']
     })
 

@@ -7,6 +7,7 @@
 
 /* IMPORTAÇÃO DE ESTILOS DE BIBLIOTECAS */
 @import 'animate.css';
+@import 'swiper/css/navigation';
 
 /* IMPORTAÇÃO DE ESTILOS INTERNOS */
 @import "./assets/typography/baloo-2/baloo-2.scss";
@@ -15,6 +16,9 @@
 @import './assets/scss/ionic-components/ion-alert';
 @import './assets/scss/ionic-components/ion-modal';
 @import './assets/scss/ionic-components/ion-toast';
+
+@import './assets/scss/vendors/swiper';
+
 
 .icone-titulo-texto {
   ion-icon,

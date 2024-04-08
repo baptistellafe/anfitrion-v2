@@ -21,6 +21,14 @@
     }
   }
 
+  &.big {
+    ion-text {
+      h1 {
+        font-size: 42px;
+      }
+    }
+  }
+
   &.header {
     ion-text {
       h1 { font-size: 24px; }

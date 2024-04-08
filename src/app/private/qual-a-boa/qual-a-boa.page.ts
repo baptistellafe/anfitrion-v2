@@ -29,7 +29,7 @@ export class QualABoaPage implements OnInit {
   public categorias: any[];
 
   public informacoes$: Observable<IAppState>;
-  public informacoes: IAppState;
+  public informacoes: IAppState = AppStore.appInitialState;
 
   public rotaAtual: string | string[] = this.router.url;
 
@@ -42,11 +42,9 @@ export class QualABoaPage implements OnInit {
     ) { }
 
   ngOnInit() {
-
     this.obterTodasAsInformacoes();
-    console.log(this.horaAtual);
     this.obterCategorias();
-    this.selecionarCategoria(this.categorias[0], this.indexAtual);
+    this.definirSlideInicial();
   }
 
   ionViewDidEnter(): void {
@@ -150,11 +148,10 @@ export class QualABoaPage implements OnInit {
     ]
   }
 
-  public selecionarCategoria(categoria: any, index: number): void {
-    this.categoriaSelecionada = categoria;
+  public selecionarCategoria(index: number): void {
     this.indexAtual = index;
-    this.obterIndexAtualDoSwiper();
-    this.pularSlidePara(index);
+    this.categoriaSelecionada = this.categorias[this.indexAtual]
+    this.pularSlidePara(this.indexAtual);
   }
 
   /**
@@ -170,6 +167,22 @@ export class QualABoaPage implements OnInit {
   public pularSlidePara(index: number): void {
     this.utilsService.pularSlidePara(index, this.qualaboaSwiper);
     this.utilsService.pularSlidePara(index, this.qualaboaDescricaoSwiper)
+  }
+
+  /**
+  @description Avança o swiper.
+  */
+  public avancarSwiper(): void {
+    this.utilsService.avancarSwiper(this.qualaboaSwiper);
+    this.utilsService.avancarSwiper(this.qualaboaDescricaoSwiper);
+  }
+
+  /**
+  @description Retrocede o swiper.
+  */
+  public retrocederSwiper(): void {
+    this.utilsService.retornarSwiper(this.qualaboaSwiper);
+    this.utilsService.retornarSwiper(this.qualaboaDescricaoSwiper);
   }
 
   public irPara(categoria: any): void {
@@ -199,5 +212,15 @@ export class QualABoaPage implements OnInit {
 
   public definirRotaAnterior(): void {
     this.utilsService.definirRotaAnterior(this.rotaAtual)
+  }
+
+  public definirCategoriaNaMudancaDoSlide(): void {
+    this.obterIndexAtualDoSwiper();
+    this.categoriaSelecionada = this.categorias[this.indexAtual];
+  }
+
+  public definirSlideInicial(): void {
+    this.categoriaSelecionada = this.categorias[this.indexAtual];
+    this.pularSlidePara(this.indexAtual)
   }
 }

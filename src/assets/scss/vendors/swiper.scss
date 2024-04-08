@@ -1,0 +1,8 @@
+swiper-container {
+  &.qual-a-boa {
+    &::part(button-next),
+    &::part(button-prev) {
+      display: none;
+    }
+  }
+}

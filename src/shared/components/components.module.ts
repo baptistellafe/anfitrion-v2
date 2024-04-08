@@ -2,7 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LogoComponent } from './logo/logo.component';
 import { IonicModule } from '@ionic/angular';
-import { register } from 'swiper/element/bundle';
 import { LanguageButtonComponent } from './language-button/language-button.component';
 import { CityButtonComponent } from './city-button/city-button.component';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +14,6 @@ import { FooterComponent } from './footer/footer.component';
 import { MadeWLoveComponent } from './made-w-love/made-w-love.component';
 import { CopyrightComponent } from './copyright/copyright.component';
 import { CategoryCardComponent } from './category-card/category-card.component';
-register();
 
 @NgModule({
   declarations: [

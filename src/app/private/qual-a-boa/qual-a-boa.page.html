@@ -34,14 +34,17 @@
       <!-- CATEGORIA -->
       <swiper-container
       #qualaboaSwiper
+      class="qual-a-boa"
+      free-mode="false"
       allow-touch-move="false"
       slides-per-view="auto"
       centered-slides="true"
       speed="500"
-      space-between="32">
-        <swiper-slide *ngFor="let categoria of categorias; let i = index">
+      space-between="32"
+      (swiperslidechange)="definirCategoriaNaMudancaDoSlide()">
+        <swiper-slide *ngFor="let categoria of categorias; let index = index">
           <anf-category-card
-          (click)="selecionarCategoria(categoria, i)"
+          (click)="selecionarCategoria(index)"
           [foiSelecionado]="categoriaSelecionada?.value === categoria?.value"
           [texto]="categoria.texto"
           [icone]="categoria.icone"
@@ -51,8 +54,27 @@
         </swiper-slide>
       </swiper-container>
 
+      <div class="swiper-buttons">
+        <ion-button
+        (click)="retrocederSwiper()"
+        title="Voltar"
+        class="voltar no-ion-padding"
+        fill="clear">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button
+        (click)="avancarSwiper()"
+        title="Avançar"
+        class="avancar no-ion-padding"
+        fill="clear">
+          <ion-icon name="chevron-forward-outline" class="teste"></ion-icon>
+        </ion-button>
+      </div>
+
       <!-- DESCRIÇÃO -->
       <swiper-container
+      free-mode="true"
       allow-touch-move="false"
       #qualaboaDescricaoSwiper
       slides-per-view="1"

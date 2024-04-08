@@ -8,8 +8,8 @@ import * as moment from 'moment';
 })
 export class CopyrightComponent  implements OnInit {
 
-  public anoAtual : number = moment().year()
-  public anoDeCriacao = 2024
+  public anoAtual : number = moment().year();
+  public anoDeCriacao = 2024;
 
   constructor() { }
 

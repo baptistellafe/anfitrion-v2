@@ -1,13 +1,37 @@
-<ion-header
-class="ion-no-border"
-mode="ios">
-  <ion-toolbar mode="ios">
-    <ion-back-button class="ion-color-green"></ion-back-button>
-    <ion-title>sobre</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content
+class="ion-bg-gray"
 [forceOverscroll]="false">
+  <section class="sobre-nos-hero">
+    <div class="anfitrion-bg">
+      <img src="./../../../assets/images/backgrounds/anfitrion-bg.jpeg" alt="" class="animate__animated animate__fadeIn animate__slower">
+    </div>
 
+    <anf-header
+    [mostrarLogo]="false"
+    [darkMode]="true"
+    [origem]="'tela-sobre-nos'"
+    class="full-width">
+    </anf-header>
+
+    <div class="sobre-nos-swiper-wrapper">
+      <swiper-container
+      #sobreNosSwiper
+      (swiperslidechange)="slideSobreNosMudou()"
+      class="full-height"
+      enable-touch-move="false"
+      slides-per-view="1"
+      speed="400">
+        <swiper-slide>
+          <div class="sobre-nos-content slide-3">
+            <anf-logo [darkMode]="true" [brand]="'anfitrion'" [animated]="indexAtual === 0" [type]="'big'"></anf-logo>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </section>
+
+  <section class="sobre-nos-detalhes">
+
+  </section>
 </ion-content>

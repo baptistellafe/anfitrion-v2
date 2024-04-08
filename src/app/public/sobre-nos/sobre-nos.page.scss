@@ -1,0 +1,51 @@
+@import './../../../assets/scss/utils/mixins.scss';
+
+ion-content {
+  section {
+    &.sobre-nos-hero {
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+
+      anf-header { position: absolute; left: 50%; transform: translateX(-50%); z-index: 314; }
+
+      .anfitrion-bg {
+        @include flexbox(center, center, row);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+
+        img {
+          transform: scale(2);
+          filter: grayscale(1);
+        }
+      }
+
+      .sobre-nos-swiper-wrapper {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &.sobre-nos-detalhes {
+      min-height: 100%;
+      background: green;
+    }
+
+    .sobre-nos-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.slide-3 {
+        align-items: flex-end;
+        padding: 0 0 32px 0;
+      }
+    }
+  }
+}
