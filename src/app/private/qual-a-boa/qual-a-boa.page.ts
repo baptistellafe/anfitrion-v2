@@ -8,7 +8,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { IAppState } from 'src/app/store/app/app.state';
 import Swiper from 'swiper';
 import * as AppStore from './../../store/app/app.state';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'anf-qual-a-boa',
@@ -31,11 +31,14 @@ export class QualABoaPage implements OnInit {
   public informacoes$: Observable<IAppState>;
   public informacoes: IAppState;
 
+  public rotaAtual: string | string[] = this.router.url;
+
   constructor(
     private navCtrl : NavController,
     private title : Title,
     private utilsService : UtilsService,
-    private store : Store
+    private store : Store,
+    private router : Router
     ) { }
 
   ngOnInit() {
@@ -192,5 +195,9 @@ export class QualABoaPage implements OnInit {
     this.informacoes$.subscribe((res: IAppState) => {
       this.informacoes = res;
     })
+  }
+
+  public definirRotaAnterior(): void {
+    this.utilsService.definirRotaAnterior(this.rotaAtual)
   }
 }

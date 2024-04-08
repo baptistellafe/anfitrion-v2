@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { StorageService } from './services/storage.service';
 import { CIDADE_ESCOLHIDA_KEY, IDIOMA_KEY, JA_ACESSOU_ANFITRION_KEY, PRIMEIRO_NOME_KEY } from './consts/keys';
 import { AppConfigService } from './services/app-config.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'anf-root',
@@ -19,7 +20,9 @@ export class AppComponent implements OnInit {
   public itemSelecionado: any;
 
   public informacoes$: Observable<IAppState>;
-  public informacoes: IAppState;
+  public informacoes: IAppState = AppStore.appInitialState;
+
+  public rotaAtual: string | string[] = this.router.url;
 
   constructor(
     public menuCtrl : MenuController,
@@ -27,7 +30,8 @@ export class AppComponent implements OnInit {
     private utilsService : UtilsService,
     private store : Store,
     private storageService : StorageService,
-    private appCfg : AppConfigService
+    private appCfg : AppConfigService,
+    private router : Router
   ) {}
 
   async ngOnInit() {
@@ -74,11 +78,6 @@ export class AppComponent implements OnInit {
     let idioma = await this.storageService.obterChave(IDIOMA_KEY);
     let cidadeEscolhida = await this.storageService.obterChave(CIDADE_ESCOLHIDA_KEY);
 
-    if (primeiroNome) {
-      let props = { primeiroNome: primeiroNome };
-      this.store.dispatch(AppStore.definirPrimeiroNome(props));
-    }
-
     if (jaAcessouAnfitrion) {
       let props = { jaAcessouAnfitrion: jaAcessouAnfitrion }
       this.store.dispatch(AppStore.definirPrimeiroAcesso(props));
@@ -87,6 +86,11 @@ export class AppComponent implements OnInit {
     if (idioma) {
       let props = { idioma: idioma }
       this.store.dispatch(AppStore.definirIdioma(props));
+    }
+
+    if (primeiroNome) {
+      let props = { primeiroNome: primeiroNome };
+      this.store.dispatch(AppStore.definirPrimeiroNome(props));
     }
 
     if (cidadeEscolhida) {
@@ -110,5 +114,14 @@ export class AppComponent implements OnInit {
    */
   public obterOpcoesDoMenu() {
     this.opcoesDoMenu = this.appCfg.obterOpcoesDoMenu();
+  }
+
+  public definirRotaAnterior(): void {
+    this.utilsService.definirRotaAnterior(this.rotaAtual)
+  }
+
+  public irParaEditarDados(): void {
+    this.irPara(['editar-dados']);
+    this.definirRotaAnterior();
   }
 }

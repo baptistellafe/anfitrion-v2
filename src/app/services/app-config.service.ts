@@ -75,7 +75,7 @@ export class AppConfigService {
       name: 'São Vicente',
       value: 'saovicente',
       famousName: 'sv',
-      isActiveOnAnfitrion: false,
+      isActiveOnAnfitrion: true,
       isComingSoon: false,
       naturalFrom: 'calunga',
       origin: {

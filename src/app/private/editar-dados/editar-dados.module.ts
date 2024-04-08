@@ -7,12 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { EditarDadosPageRoutingModule } from './editar-dados-routing.module';
 
 import { EditarDadosPage } from './editar-dados.page';
+import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
+    SharedModule,
     EditarDadosPageRoutingModule
   ],
   declarations: [EditarDadosPage]

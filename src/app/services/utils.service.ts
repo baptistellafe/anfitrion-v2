@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import * as moment from 'moment';
 import Swiper from 'swiper';
 import { definirSaudacao } from '../store/app/app.state';
+import * as AppStore from './../../app/store/app/app.state';
 import 'moment/locale/es';
 import 'moment/locale/en-au';
 import 'moment/locale/pt-br';
@@ -72,5 +73,10 @@ export class UtilsService {
    */
   public definirLocaleDoMomentJS(idioma: string): void {
     moment.locale(idioma);
+  }
+
+  public definirRotaAnterior(rota: string | string[]): void {
+    let props = { rotaAnterior: rota }
+    this.store.dispatch(AppStore.definirRotaAnterior(props))
   }
 }

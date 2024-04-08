@@ -12,6 +12,16 @@ ion-button {
     text-decoration: underline;
   }
 
+  &.main-white {
+    --background: var(--white);
+    --color: var(--gray-6);
+    --padding-end: 16px;
+    --padding-start: 16px;
+    --border-width: 1px;
+    --border-style: solid;
+    --border-color: var(--gray-light);
+  }
+
   &.main {
     --background: linear-gradient(.351turn,#769834 43.71%,#547D0E 58.8%);
     --color: var(--white);

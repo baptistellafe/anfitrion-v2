@@ -1,0 +1,64 @@
+@import './../../../assets/scss/utils/mixins.scss';
+
+ion-header {
+  ion-toolbar {
+    --min-height: 0;
+
+    header.editar-dados-header {
+      @include flexbox(center, flex-start, row);
+      padding: 16px;
+    }
+  }
+}
+
+ion-content {
+  section {
+    &.editar-dados {
+      width: 100%;
+      min-height: 100%;
+      background: linear-gradient(to bottom, var(--white), var(--gray-ed), var(--white));
+      @include flexbox(center, center, column);
+
+      .editar-dados-top-container {
+        max-width: 400px;
+      }
+
+      .editar-dados-content-container {
+        .editar-dados-input-container {
+          padding: 20px 0 32px 0;
+          max-width: 320px;
+
+          ion-item {
+            --padding-start: 0;
+            --padding-end: 0;
+            --inner-padding-end: 0;
+
+            ion-input {
+              --placeholder-font-weight: normal;
+              --placeholder-color: var(--gray-mid);
+              --color: var(--green);
+              font-family: var(--font-baloo);
+              font-size: 32px;
+              font-weight: bold;
+            }
+          }
+
+          .form-buttons {
+            @include flexbox(center, flex-end, row);
+            margin: 16px 0;
+            width: 100%;
+            flex-wrap: wrap-reverse;
+
+            ion-button {
+              max-width: 320px;
+              margin: 0;
+              margin-bottom: 12px;
+
+              &.definir { margin-left: 12px; }
+            }
+          }
+        }
+      }
+    }
+  }
+}

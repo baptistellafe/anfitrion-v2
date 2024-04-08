@@ -11,7 +11,7 @@
           <ion-item
           lines="none"
           class="perfil ion-bg-transparent">
-            <ion-icon [name]="'finger-print-outline'" [ngClass]="{'color-green': informacoes.primeiroNome}"></ion-icon>
+            <ion-icon [name]="'finger-print-outline'" [ngClass]="{'color-green': informacoes.primeiroNome }"></ion-icon>
 
             <ion-text
             class="color-gray-text line-height-23"
@@ -24,7 +24,7 @@
 
               <ion-menu-toggle>
                 <a
-                (click)="irPara(['editar-dados'])"
+                (click)="irParaEditarDados()"
                 title="editar"
                 href="javascript:void(0)"
                 class="link-com-icone pequeno mg-top-5">

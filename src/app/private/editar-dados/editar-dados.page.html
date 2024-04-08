@@ -1,12 +1,124 @@
 <ion-header
+class="ion-no-border bg-white"
 mode="ios">
-  <ion-toolbar>
-    <ion-back-button class="ion-color-green"></ion-back-button>
-    <ion-title>editar-dados</ion-title>
+  <ion-toolbar
+  mode="ios"
+  class="ion-bg-white no-ion-padding">
+    <ion-grid
+    class="p-all-0"
+    [fixed]="true">
+      <ion-row>
+        <ion-col
+        size="12"
+        class="p-all-0">
+          <header class="editar-dados-header">
+            <ion-button
+            shape="round"
+            (click)="retornar()"
+            title="Voltar"
+            fill="solid"
+            class="main fs-16 m-0"
+            mode="md">
+              <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </header>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content
 [forceOverscroll]="false">
-  {{ informacoes.primeiroNome }}
+  <section class="editar-dados">
+    <div class="editar-dados-top-container">
+      <ion-text
+      class="text-center color-gray-text full-width icone-titulo-texto"
+      mode="ios">
+        <ion-icon
+        name="finger-print-outline"
+        class="full-width fs-32 animate__animated animate__fadeInUp">
+        </ion-icon>
+        <h2 class="font-baloo"><b>Informações</b></h2>
+        <p class="com-sarcasmo pt">sessão responsável por definir seus dados.</p>
+      </ion-text>
+    </div>
+
+    <div class="editar-dados-content-container">
+      <div class="editar-dados-input-container">
+        <form [formGroup]="informacoesForm">
+          <ion-item
+            [lines]="'none'"
+            class="full-width ion-bg-transparent"
+            mode="ios">
+            <ion-input
+            [readonly]="!editandoNome"
+            (keyup)="transformarNome()"
+            [autocorrect]="false"
+            [clearInput]="false"
+            class="ion-bg-transparent"
+            type="text"
+            inputmode="text"
+            formControlName="primeiroNome"
+            mode="ios"
+            labelPlacement="stacked"
+            placeholder="Ex: Felipe">
+            </ion-input>
+
+            <ion-icon
+            [ngClass]="{'ocultar-opacidade': informacoesForm.controls['primeiroNome'].valid}"
+            name="warning-outline"
+            class="fs-18 color-negative">
+            </ion-icon>
+          </ion-item>
+        </form>
+
+        <ion-text
+        mode="ios"
+        *ngIf="informacoesForm.controls['primeiroNome'].invalid"
+        class="text-left full-width">
+          <p class="color-negative fs-12">
+            <ng-container *ngIf="informacoesForm.get('primeiroNome')?.hasError('minlength')">no mínimo <b>3</b> caracteres</ng-container>
+            <ng-container *ngIf="informacoesForm.get('primeiroNome')?.hasError('required')">obrigatório</ng-container>
+          </p>
+        </ion-text>
+
+        <div class="form-buttons">
+          <ion-button
+          *ngIf="editandoNome"
+          (click)="cancelarEdicao()"
+          title="Cancelar"
+          fill="solid"
+          shape="round"
+          class="fs-14 icone-a-direita main-white cancelar"
+          mode="md">
+            Cancelar <ion-icon name="close-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button
+          (click)="definirNomeDefinitivo()"
+          [disabled]="informacoesForm.controls['primeiroNome'].invalid"
+          *ngIf="editandoNome"
+          title="Definir nome"
+          fill="solid"
+          shape="round"
+          class="main fs-14 mg-top-5 icone-a-direita definir"
+          mode="md">
+            Definir como <ng-container *ngIf="informacoesForm.controls['primeiroNome'].valid"><span class="mg-left-5"><b>{{ informacoesForm.get('primeiroNome')?.value }}</b></span> <ion-icon name="checkmark-outline"></ion-icon></ng-container>
+          </ion-button>
+
+          <ion-button
+          *ngIf="!editandoNome && informacoes.primeiroNome"
+          (click)="editarNome()"
+          title="Definir nome"
+          fill="solid"
+          shape="round"
+          class="fs-14 icone-a-direita main-white alterar"
+          mode="md">
+            Alterar <ion-icon name="refresh-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </section>
 </ion-content>

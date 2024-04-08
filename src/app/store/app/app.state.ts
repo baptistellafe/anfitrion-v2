@@ -9,7 +9,8 @@ export interface IAppState {
   cidadeEscolhida: Cidade,
   jaAcessouAnfitrion: boolean,
   saudacao: string,
-  whatsAppAnfitrion: string
+  whatsAppAnfitrion: string,
+  rotaAnterior: string | string[]
 }
 
 export const appInitialState: IAppState = {
@@ -43,7 +44,8 @@ export const appInitialState: IAppState = {
   },
   jaAcessouAnfitrion: false,
   saudacao: '',
-  whatsAppAnfitrion: '5513997330408'
+  whatsAppAnfitrion: '5513997330408',
+  rotaAnterior: ''
 }
 
 export const definirPrimeiroAcesso = createAction(
@@ -71,6 +73,11 @@ export const definirSaudacao = createAction(
   props<{ saudacao: string }>()
 )
 
+export const definirRotaAnterior = createAction(
+  '[APP] Definir rota anterior',
+  props<{ rotaAnterior: string | string[] }>()
+)
+
 export const appReducer = createReducer(
   appInitialState,
   on(
@@ -92,6 +99,10 @@ export const appReducer = createReducer(
   on(
     definirSaudacao,
     (state, { saudacao }) => ({ ...state, saudacao: saudacao })
+  ),
+  on(
+    definirRotaAnterior,
+    (state, { rotaAnterior }) => ({ ...state, rotaAnterior: rotaAnterior })
   )
 )
 
