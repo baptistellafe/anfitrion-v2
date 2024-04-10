@@ -1,11 +1,13 @@
 <ion-text
 mode="ios">
   <p
-  class="fs-14 color-gray-text centraliza-no-mobile mg-top-16"
+  class="fs-14  centraliza-no-mobile mg-top-16"
   [ngClass]="{
     'centralizar-no-mobile' : centralizarNoMobile,
     'centro' : posicionamento === 'centro',
-    'esquerda' : posicionamento === 'esquerda'
+    'esquerda' : posicionamento === 'esquerda',
+    'color-white' : darkMode,
+    'color-gray-text' : !darkMode
   }">
     feito com <ion-icon name="heart" class="mg-left-5 mg-right-5 color-green"></ion-icon> {{ informacoes.cidadeEscolhida.location[informacoes.idioma.value] }}
   </p>

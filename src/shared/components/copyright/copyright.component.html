@@ -1,5 +1,11 @@
 <ion-text mode="ios">
-  <p class="fs-14 color-gray-text text-center">
+  <p
+  class="fs-14 color-gray-text text-center"
+  [ngClass]="{
+    'color-white' : darkMode,
+    'color-gray-text' : !darkMode
+  }
+  ">
     &copy; anfitri<b>on</b>
 
     <ng-container *ngIf="anoAtual === anoDeCriacao">

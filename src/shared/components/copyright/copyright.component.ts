@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -8,6 +8,7 @@ import * as moment from 'moment';
 })
 export class CopyrightComponent  implements OnInit {
 
+  @Input() darkMode: boolean = false;
   public anoAtual : number = moment().year();
   public anoDeCriacao = 2024;
 

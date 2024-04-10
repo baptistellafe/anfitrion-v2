@@ -196,9 +196,9 @@ export class QualABoaPage implements OnInit {
    /**
     @description Responsável por levar o usuário ao topo da tela.
   */
-  public irParaTopoDaTela(): void {
-    this.conteudoQualAboa.scrollToTop(800);
-  }
+    public scrollarConteudoParaTopo(conteudo: IonContent, velocidade: number): void {
+      this.utilsService.scrollarConteudoParaTopo(conteudo, velocidade);
+    }
 
   /**
    * @description Obtém as informações guardadas no NGRX.

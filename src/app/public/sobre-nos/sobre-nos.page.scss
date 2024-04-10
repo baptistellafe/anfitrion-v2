@@ -28,11 +28,58 @@ ion-content {
         width: 100%;
         height: 100%;
       }
+
+      anf-scroll-down::ng-deep {
+        display: block;
+        position: absolute;
+        height: 40px;
+        width: 100%;
+        pointer-events: none;
+        opacity: 1;
+        z-index: 999;
+        bottom: 32px;
+      }
+
+      &.efeito-rodape {
+        &::after {
+          content: '';
+          height: 150px;
+          background: linear-gradient(to top, var(--gray-2) 50%, rgba(34, 34, 34, .5));
+          position: absolute;
+          bottom: -30px;
+          left: -50px;
+          right: -50px;
+          filter: blur(15px);
+        }
+      }
     }
 
-    &.sobre-nos-detalhes {
-      min-height: 100%;
-      background: green;
+    &.sobre-nos-conteudo {
+      padding: 32px;
+
+      .insta-wrapper {
+        width: 100%;
+        position: relative;
+        @include flexbox(center, center, column);
+
+        ion-fab {
+          border-radius: 100%;
+          margin: 0 0 16px 0;
+          background: transparent;
+
+          ion-fab-button {
+            width: 100px;
+            height: 100px;
+            --background: var(--gray-2);
+            --border-width: 1px;
+            --border-style: solid;
+            --border-color: var(--gray-3);
+            --background-focused: var(--gray-2);
+            --background-activated: var(--gray-2);
+            --background-hover: var(--gray-2);
+          }
+        }
+      }
     }
 
     .sobre-nos-content {
@@ -44,7 +91,7 @@ ion-content {
 
       &.slide-3 {
         align-items: flex-end;
-        padding: 0 0 32px 0;
+        padding: 0 0 85px 0;
       }
     }
   }

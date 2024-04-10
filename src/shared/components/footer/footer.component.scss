@@ -1,7 +1,31 @@
 @import './../../../assets/scss/utils/mixins.scss';
 
 .footer-wrapper {
-  background: linear-gradient(to bottom, var(--white), var(--gray-ed));
+  &.dark-mode {
+    background: var(--gray-2);
+
+    .footer-middle {
+      .anf-publicidade-wrapper {
+        .anf-publicidade-content {
+          background: var(--gray-2);
+          border: 1px solid var(--gray-3);
+        }
+      }
+    }
+  }
+
+  &.light-mode {
+    background: linear-gradient(to bottom, var(--white), var(--gray-ed));
+
+    .footer-middle {
+      .anf-publicidade-wrapper {
+        .anf-publicidade-content {
+          background: var(--white);
+          box-shadow: rgba(0, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+        }
+      }
+    }
+  }
 
   .footer-middle {
     .anf-publicidade-wrapper {
@@ -14,8 +38,6 @@
         width: 100%;
         height: 90px;
         border-radius: 8px;
-        background: var(--white);
-        box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
       }
     }
   }

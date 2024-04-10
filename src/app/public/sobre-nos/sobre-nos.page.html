@@ -1,10 +1,15 @@
 
 <ion-content
+#sobreNosConteudo
 class="ion-bg-gray"
 [forceOverscroll]="false">
-  <section class="sobre-nos-hero">
+  <section class="sobre-nos-hero efeito-rodape">
     <div class="anfitrion-bg">
-      <img src="./../../../assets/images/backgrounds/anfitrion-bg.jpeg" alt="" class="animate__animated animate__fadeIn animate__slower">
+      <img
+      title="anfitrion"
+      src="./../../../assets/images/backgrounds/anfitrion-bg.jpeg"
+      alt="background"
+      class="animate__animated animate__fadeIn animate__slower">
     </div>
 
     <anf-header
@@ -29,9 +34,109 @@ class="ion-bg-gray"
         </swiper-slide>
       </swiper-container>
     </div>
+
+    <anf-scroll-down
+    [color]="'white'"
+    class="animate__animated animate__fadeIn animate__delay-1s animate__slow" />
   </section>
 
-  <section class="sobre-nos-detalhes">
+  <section class="sobre-nos-conteudo">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col size="12" size-lg="7">
+          <ion-row>
+            <ion-col size="12">
+              <ion-text
+              class="color-gray-text texto-longo line-height-20"
+              mode="ios">
+                <h2 class="font-baloo color-white">
+                  Bem vindo<span class="mg-left-5 color-linear"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : 'visitante' }}</b>,</span>
+                </h2>
 
+                <p class="fs-16 color-white font-w-300">
+                  Estamos somente na região da Baixada Santista. Auxiliamos moradores e principalmente turistas a encontrarem os melhores lugares da cidade de forma rápida e objetiva.
+                </p>
+
+                <p class="fs-16 color-white font-w-300">
+                  Além de fornecer informações sobre estes lugares nós também criamos conteúdo com informações que muitas vezes você precisa visitar vários perfis nas redes sociais. <span class="color-white highlighted"><b>Por exemplo: valor do rodízio de comida japonesa para casais, crianças</b></span> em todos os restaurantes.
+                </p>
+
+                <p class="fs-16 color-white mg-bottom-32 font-w-300">
+                  Poupando seu bem mais precioso: <b>seu tempo</b>.
+                </p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="12" size-lg="5">
+          <ion-row>
+            <ion-col size="12">
+              <div class="insta-wrapper">
+                <ion-fab
+                  class="p-relative"
+                  *ngIf="accordionAberto"
+                  mode="ios">
+                    <ion-fab-button
+                    [title]="'@' + informacoes.anfitrion.instagram"
+                    (click)="irParaInstagram()">
+                      <ng-container *ngIf="!querendoIrParaInstagram">
+                        <img src="./../../../assets/images/logotipos/logo.jpeg" alt="logo">
+                      </ng-container>
+
+                      <ng-container *ngIf="querendoIrParaInstagram">
+                        <ion-spinner name="lines-sharp"></ion-spinner>
+                      </ng-container>
+                    </ion-fab-button>
+                  </ion-fab>
+
+                  <ion-text mode="ios" class="line-height-18">
+                    <p class="fs-14 color-white">
+                      Instagram <b>oficial</b>
+                    </p>
+
+                    <p class="fs-16">
+                      <b>
+                        <a
+                        class="font-baloo color-linear"
+                        href="javascript:void(0)"
+                        [title]="'@' + informacoes.anfitrion.instagram"
+                        (click)="irParaInstagram($event)">
+                          {{ '@' + informacoes.anfitrion.instagram }}
+                        </a>
+                      </b>
+                    </p>
+                  </ion-text>
+
+                  <ion-button
+                  (click)="irParaInstagram()"
+                  [title]="'@' + informacoes.anfitrion.instagram"
+                  shape="round"
+                  fill="solid"
+                  size="normal"
+                  class="main icone-a-direita mg-top-32"
+                  mode="md">
+                    Seguir
+                    <ion-icon name="logo-instagram"></ion-icon>
+                  </ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </section>
+
+  <!-- RODAPÉ -->
+  <anf-footer [darkMode]="true">
+    <ion-button
+    fill="clear"
+    shape="round"
+    mode="md"
+    title="Voltar para o topo"
+    (click)="scrollarConteudoParaTopo(sobreNosConteudo, 1000)"
+    class="botao-scroll-to-top main-clear fs-13 tipo-link">
+      Voltar <span class="mg-left-5 mg-right-5"><b>para o topo</b></span> <ion-icon name="arrow-up-outline"></ion-icon>
+    </ion-button>
+  </anf-footer>
 </ion-content>

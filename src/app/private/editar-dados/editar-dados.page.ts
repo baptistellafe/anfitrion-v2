@@ -42,7 +42,6 @@ export class EditarDadosPage implements OnInit {
   ngOnInit() {
     this.inicializarFormInformacoes();
     this.obterTodasAsInformacoes();
-    this.definirSeVeioDeUmaRotaAnterior();
   }
 
   ionViewWillEnter(): void {
@@ -52,6 +51,7 @@ export class EditarDadosPage implements OnInit {
   ionViewDidEnter(): void {
     this.title.setTitle(`Altere suas informações`);
     this.mostrarInformativoDosDados();
+    this.definirSeVeioDeUmaRotaAnterior();
   }
 
   ionViewWillLeave(): void {

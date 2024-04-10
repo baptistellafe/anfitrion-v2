@@ -7,6 +7,7 @@ import * as AppStore from './../../app/store/app/app.state';
 import 'moment/locale/es';
 import 'moment/locale/en-au';
 import 'moment/locale/pt-br';
+import { IonContent } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -78,5 +79,9 @@ export class UtilsService {
   public definirRotaAnterior(rota: string | string[]): void {
     let props = { rotaAnterior: rota }
     this.store.dispatch(AppStore.definirRotaAnterior(props))
+  }
+
+  public scrollarConteudoParaTopo(conteudo: IonContent, velocidade: number): void {
+    conteudo.scrollToTop(velocidade);
   }
 }

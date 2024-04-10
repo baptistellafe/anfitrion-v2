@@ -7,6 +7,20 @@ $base: 0.3rem;
   align-items: center;
   justify-content: center;
   width: 100%;
+
+  &.white {
+    .seta::before,
+    .seta::after {
+      background: var(--white);
+    }
+  }
+
+  &.gray {
+    .seta::before,
+    .seta::after {
+      background: var(--gray-text);
+    }
+  }
  }
 
  .seta {
@@ -33,7 +47,6 @@ $base: 0.3rem;
   top: 0;
   height: 100%;
   width: 50%;
-  background: var(--gray-text);
  }
 
  .seta:before {

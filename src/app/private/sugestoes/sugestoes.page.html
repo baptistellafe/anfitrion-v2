@@ -63,7 +63,7 @@
         <p class="fs-12">sugestões</p>
       </ion-text>
 
-      <anf-scroll-down *ngIf="mostrarComponenteScrollDown"/>
+      <anf-scroll-down *ngIf="mostrarComponenteScrollDown" [color]="'gray'"/>
     </div>
   </section>
 
@@ -73,16 +73,16 @@
         <!-- SOBRE -->
         <ion-col size="12" size-md="6">
           <ion-text
-          class="color-gray-text texto-longo"
+          class="color-gray-text texto-longo line-height-16"
           mode="ios">
             <h1 class="fs-20 font-baloo">Sobre <b>{{ informacoes.cidadeEscolhida.text }}</b></h1>
 
-            <p class="fs-14">
+            <p class="fs-14 font-w-300">
               A principal cidade da região da Baixada Santista, o maior time de todos os tempos, a Bolsa do Café, a Orla da Praia,
               a cidade do rei do futebol, o Porto, são tantas as caracteristícas...blablabla.
             </p>
 
-            <p class="fs-14">
+            <p class="fs-14 font-w-300">
               Seja bem vindo, eu serei seu anfitrião por aqui.
             </p>
           </ion-text>
@@ -92,7 +92,7 @@
           shape="round"
           fill="solid"
           title="Conhecer pontos turísticos"
-          class="main fs-13 mg-top-16 mg-bottom-32"
+          class="main fs-13 mg-top-32 mg-bottom-32"
           mode="md">
             Conhecer <span class="mg-left-5"><b>pontos turísticos</b></span>
           </ion-button>
@@ -101,16 +101,16 @@
         <!-- O ANFITRION -->
         <ion-col size="12" size-md="6">
           <ion-text
-          class="color-gray-text texto-longo"
+          class="color-gray-text texto-longo line-height-16"
           mode="ios">
             <h1 class="fs-20 font-baloo">O que é o <b>anfitrion</b>?</h1>
 
-            <p class="fs-14">
+            <p class="fs-14 font-w-300">
               Nosso objetivo é ajudar moradores e turistas, fornecendo informações relevantes sobre restaurantes, bares, eventos, etc.
               Informações estas que muitas vezes precisamos visitar vários perfis em redes sociais, um de cada vez.
             </p>
 
-            <p class="fs-14">
+            <p class="fs-14 font-w-300">
               Aqui n região da Baixada Santista nós tentamos poupar o seu bem mais precioso, o tempo, trazendo o que é importante, de forma clara e objetiva.
             </p>
           </ion-text>
@@ -120,7 +120,7 @@
           shape="square"
           fill="clear"
           title="Saiba mais sobre nós"
-          class="fs-13 mg-top-16 mg-bottom-32 tipo-link main-clear com-underline"
+          class="fs-13 mg-top-32 mg-bottom-32 tipo-link main-clear com-underline"
           mode="md">
             <span class="mg-right-5"><b>Saiba mais</b></span> sobre nós
           </ion-button>

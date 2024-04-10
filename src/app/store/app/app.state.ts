@@ -1,5 +1,6 @@
 
 import { createAction, createReducer, createSelector, on, props, createFeatureSelector } from "@ngrx/store";
+import { Anfitrion } from "src/app/interfaces/Anfitrion";
 import { Cidade } from "src/app/interfaces/Cidade";
 import { Idioma } from "src/app/interfaces/Idioma";
 
@@ -9,7 +10,7 @@ export interface IAppState {
   cidadeEscolhida: Cidade,
   jaAcessouAnfitrion: boolean,
   saudacao: string,
-  whatsAppAnfitrion: string,
+  anfitrion: Anfitrion,
   rotaAnterior: string | string[]
 }
 
@@ -44,7 +45,10 @@ export const appInitialState: IAppState = {
   },
   jaAcessouAnfitrion: false,
   saudacao: '',
-  whatsAppAnfitrion: '5513997330408',
+  anfitrion: {
+    whatsApp: '5513997330408',
+    instagram: 'anfitrionapp'
+  },
   rotaAnterior: ''
 }
 

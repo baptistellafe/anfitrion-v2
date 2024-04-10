@@ -91,6 +91,20 @@ body {
 }
 
 .texto-longo {
-  h1 { margin-bottom: 25px; }
-  p { line-height: 16px; &:not(:last-child) { margin-bottom: 12px; } }
+  h1, h2 { margin-bottom: 25px; }
+  p { &:not(:last-child) { margin-bottom: 12px; } }
+}
+
+.highlighted {
+  background: linear-gradient(to right, transparent, var(--green), var(--green-dark) 40%, transparent);
+  border-radius: 30px;
+}
+
+ion-spinner {
+  --color: var(--green);
+}
+
+*::selection{
+  background-color: #45b6fe;
+  color: var(--white);
 }

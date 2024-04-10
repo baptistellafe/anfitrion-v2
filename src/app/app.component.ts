@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.bloquearSwiperDoMenu();
     this.obterOpcoesDoMenu();
     await this.recuperarInformacoesDaStorage();
     this.definirSaudacao();
@@ -123,5 +124,9 @@ export class AppComponent implements OnInit {
   public irParaEditarDados(): void {
     this.irPara(['editar-dados']);
     this.definirRotaAnterior();
+  }
+
+  public bloquearSwiperDoMenu(): void {
+    this.menuCtrl.swipeGesture(false)
   }
 }

@@ -12,6 +12,7 @@ import { Store } from '@ngrx/store';
 export class MadeWLoveComponent  implements OnInit {
   @Input() posicionamento: string;
   @Input() centralizarNoMobile: boolean;
+  @Input() darkMode: boolean = false;
 
   public informacoes$: Observable<IAppState>;
   public informacoes: IAppState;

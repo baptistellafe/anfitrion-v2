@@ -1,5 +1,9 @@
-<div class="footer-wrapper full-width">
-
+<div
+class="footer-wrapper full-width"
+[ngClass]="{
+  'dark-mode': darkMode,
+  'light-mode': !darkMode
+}">
   <div class="footer-middle full-width">
     <ion-grid
     [fixed]="true">
@@ -12,7 +16,12 @@
             </div>
 
             <ion-text mode="ios">
-              <p class="fs-12 color-gray-text mg-top-8">Publicidade</p>
+              <p
+              class="fs-12 mg-top-8"
+              [ngClass]="{
+                'color-white': darkMode,
+                'color-gray-text': !darkMode
+              }">Publicidade</p>
             </ion-text>
           </div>
         </ion-col>
@@ -37,13 +46,14 @@
         size="12">
         <!-- ESPAÇO RESERVADO PARA O BOTÃO SCROLL TO TOP -->
           <anf-made-w-love
+          [darkMode]="darkMode"
           [centralizarNoMobile]="true"
           [posicionamento]="'esquerda'">
           </anf-made-w-love>
         </ion-col>
 
         <ion-col size="12" class="mg-bottom-16">
-          <anf-copyright></anf-copyright>
+          <anf-copyright [darkMode]="darkMode"></anf-copyright>
         </ion-col>
       </ion-row>
     </ion-grid>

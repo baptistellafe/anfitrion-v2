@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'anf-scroll-down',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./scroll-down.component.scss'],
 })
 export class ScrollDownComponent  implements OnInit {
+
+  @Input() color: string;
 
   constructor() { }
 
