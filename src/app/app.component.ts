@@ -47,6 +47,15 @@ export class AppComponent implements OnInit {
    */
   public definirItem(itemDoMeu: any): void {
     this.itemSelecionado = itemDoMeu;
+
+    let rotaAtual: string = this.router.url;
+    let rotaAnterior: string = rotaAtual;
+
+    // QUANDO VAI PARA PREFERÊNCIAS DEVEMOS SETAR A ROTA PARA SER USADO NO BOTÃO VOLTAR
+    // É UMA PÁGINA ABSTRATA.
+    if (this.itemSelecionado.rota === 'preferencias') {
+      this.store.dispatch(AppStore.definirRotaAnterior({ rotaAnterior }))
+    }
   }
 
   /**

@@ -1,0 +1,79 @@
+@import './../../../assets/scss/utils/mixins.scss';
+
+ion-header {
+  ion-toolbar {
+    --min-height: 0;
+
+    header.preferencias-header {
+      @include flexbox(center, flex-start, row);
+      padding: 16px;
+    }
+  }
+}
+
+ion-content {
+  section {
+
+    &.preferencias {
+      min-height: 100%;
+      background: linear-gradient(to bottom, var(--white), var(--gray-ed), var(--white));
+      @include flexbox(center, center, column);
+      width: 100%;
+
+      .preferencias-top-container {
+        margin-top: -50px;
+      }
+
+      .preferencias-content-container {
+        width: 100%;
+        max-width: 360px;
+        padding: 32px;
+        @include flexbox(center, center, column);
+
+        .botoes-de-preferencia {
+          @include flexbox(center, flex-end, row);
+
+          ion-button:last-child {
+            margin-left: 16px;
+          }
+        }
+
+        ion-item {
+          position: relative;
+          --padding-end: 0;
+          --inner-padding-end: 0;
+          --padding-start: 0;
+          cursor: pointer;
+
+          &:hover {
+            opacity: .6;
+          }
+
+          // NENHUM SELECT APARECE
+          ion-select {
+            opacity: 0;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            z-index: 314;
+          }
+        }
+
+        ion-item-divider {
+          background: linear-gradient(to right, transparent, var(--gray-light), transparent);
+          min-height: 0;
+          --inner-padding-end: 0;
+          --padding-start: 0;
+          --padding-end: 0;
+          border: 0;
+          height: 1px;
+          margin: 16px 0;
+        }
+      }
+    }
+  }
+}

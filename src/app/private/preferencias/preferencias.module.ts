@@ -7,12 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { PreferenciasPageRoutingModule } from './preferencias-routing.module';
 
 import { PreferenciasPage } from './preferencias.page';
+import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
+    SharedModule,
     PreferenciasPageRoutingModule
   ],
   declarations: [PreferenciasPage]

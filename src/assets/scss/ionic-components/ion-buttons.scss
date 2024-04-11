@@ -3,6 +3,27 @@ ion-button {
   font-size: 14px;
   font-weight: normal;
 
+  &.trocar {
+    --background: var(--gray-3);
+    --color: var(--white);
+    --padding-end: 8px;
+    --padding-start: 8px;
+    height: auto;
+    min-height: 24px;
+    font-size: 13px;
+    --box-shadow: none;
+    margin: 0;
+    text-transform: lowercase;
+    --border-width: 1px;
+    --border-style: solid;
+    --border-color: var(--green-dark);
+
+    ion-icon {
+      font-size: 14px;
+      margin: 0 0 0 5px;
+    }
+  }
+
   &.tipo-link {
     --padding-top: 0;
     --padding-end: 0;
@@ -31,24 +52,6 @@ ion-button {
     --border-width: 1px;
     --border-style: solid;
     --border-color: var(--green-dark);
-  }
-
-  &.trocar {
-    --background: linear-gradient(.351turn,#769834 43.71%,#547D0E 58.8%);
-    --color: var(--white);
-    --padding-end: 4px;
-    --padding-start: 8px;
-    height: auto;
-    min-height: 18px;
-    font-size: 8px;
-    --box-shadow: none;
-    margin: 0 0 0 6px;
-    text-transform: uppercase;
-
-    ion-icon {
-      font-size: 14px;
-      margin: 0 0 0 5px;
-    }
   }
 
   &.main-clear {

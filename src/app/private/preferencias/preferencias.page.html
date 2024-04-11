@@ -1,12 +1,206 @@
 <ion-header
+class="ion-no-border bg-white"
 mode="ios">
-  <ion-toolbar>
-    <ion-back-button class="ion-color-green"></ion-back-button>
-    <ion-title>editar-preferencias</ion-title>
+  <ion-toolbar
+  mode="ios"
+  class="ion-bg-white no-ion-padding">
+    <ion-grid
+    class="p-all-0"
+    [fixed]="true">
+      <ion-row>
+        <ion-col
+        size="12"
+        class="p-all-0">
+          <header class="preferencias-header">
+            <ion-button
+            [disabled]="houveMudancaEmAlgumSeletor"
+            shape="round"
+            (click)="retornarPara()"
+            title="Voltar"
+            fill="solid"
+            class="main fs-16 m-0"
+            mode="md">
+              <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-button>
+          </header>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content
 [forceOverscroll]="false">
+  <section class="preferencias full-width">
+    <div class="preferencias-top-container">
+      <ion-text
+      class="text-center color-gray-text full-width icone-titulo-texto"
+      mode="ios">
+        <ion-icon
+        name="settings-outline"
+        class="full-width fs-32 animate__animated animate__fadeInUp">
+        </ion-icon>
+        <h2 class="font-baloo"><b>Preferências</b></h2>
+        <p class="com-sarcasmo pt">configurações do app.</p>
+      </ion-text>
+    </div>
 
+    <div class="preferencias-content-container">
+      <!-- SE OBTER INFORMAÇÕES -->
+      <ng-container *ngIf="informacoes.jaAcessouAnfitrion && informacoes.idioma.value && informacoes.cidadeEscolhida.value">
+        <ion-item
+        lines="none"
+        mode="ios"
+        class="full-width ion-bg-transparent">
+          <ion-text
+          mode="ios"
+          class="full-width line-height-18">
+            <p class="color-gray-mid full-width fs-13">
+              cidade
+            </p>
+
+            <p class="font-baloo fs-18 color-gray-text">
+              <b>{{ cidadeEscolhida ? cidadeEscolhida.text : 'á definir' }}</b>
+            </p>
+          </ion-text>
+
+          <ion-button
+          fill="clear"
+          shape="round"
+          mode="md"
+          title="alterar"
+          class="main-clear fs-14 tipo-link">
+            alterar <ion-icon name="create-outline" class="mg-left-5"></ion-icon>
+          </ion-button>
+
+          <ion-select
+          [interfaceOptions]="cityButtonAlertOptions"
+          [interface]="'alert'"
+          [okText]="'Definir'"
+          [cancelText]="'Cancelar'"
+          [compareWith]="compararCidades"
+          [(ngModel)]="cidadeEscolhida"
+          (ionChange)="definirCidade()"
+          mode="ios">
+            <ion-select-option
+            [disabled]="!city.isActiveOnAnfitrion"
+            mode="ios"
+            *ngFor="let city of cities"
+            [value]="city">
+              {{ city.text }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item-divider></ion-item-divider>
+
+        <ion-item
+        id="seletor-de-idioma-tela-preferencias"
+        lines="none"
+        mode="ios"
+        class="full-width ion-bg-transparent">
+          <ion-text
+          mode="ios"
+          class="full-width line-height-18">
+            <p class="color-gray-mid full-width fs-13">
+              idioma
+            </p>
+
+            <p class="font-baloo fs-18 color-gray-text">
+              <b>{{ idiomaSelecionado.text[idiomaSelecionado.value] }}</b>
+            </p>
+          </ion-text>
+
+          <ion-button
+          fill="clear"
+          shape="round"
+          mode="md"
+          title="alterar"
+          class="main-clear fs-14 tipo-link">
+            alterar <ion-icon name="create-outline" class="mg-left-5"></ion-icon>
+          </ion-button>
+
+          <ion-popover
+          [dismissOnSelect]="true"
+          mode="ios"
+          trigger="seletor-de-idioma-tela-preferencias"
+          side="top"
+          alignment="center">
+            <ng-template>
+              <ion-content class="ion-padding">
+                <ion-list
+                class="seletor-de-idioma"
+                mode="ios"
+                lines="none">
+                  <ion-item
+                  *ngFor="let idioma of idiomas"
+                  [ngClass]="{ 'selected' : idiomaSelecionado.value === idioma.value }"
+                  (click)="definirIdioma(idioma)"
+                  [title]="'selecionar idioma'"
+                  mode="ios">
+                    <img
+                    [src]="'./../../../assets/flags/' + idioma.value + '.svg'"
+                    alt="flag"> {{ idioma.text[idiomaSelecionado.value] }} <ion-icon name="checkmark-outline" *ngIf="idiomaSelecionado.value === idioma.value"></ion-icon>
+                  </ion-item>
+                </ion-list>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-item>
+
+        <ion-text
+        *ngIf="houveMudancaEmAlgumSeletor"
+        mode="ios"
+        class="line-height-18">
+          <p class="fs-14 color-gray-text font-w-300 mg-top-32">você alterou <b>uma ou mais</b> preferências, gostaria de confirmar?</p>
+        </ion-text>
+      </ng-container>
+
+      <ng-container *ngIf="!informacoes.jaAcessouAnfitrion || !informacoes.idioma.value || !informacoes.cidadeEscolhida.value">
+        <ion-text mode="ios">
+          <p class="fs-15 color-gray-text font-w-300">
+            Sessão para usuários que já acessaram o nosso app pelo menos uma vez.
+          </p>
+        </ion-text>
+
+        <ion-button
+        (click)="irPara(['primeiro-acesso'])"
+        title="Definir preferências"
+        shape="round"
+        fill="solid"
+        size="normal"
+        class="main icone-a-direita mg-top-32"
+        mode="md">
+          Definir <span class="mg-left-5"><b>preferências</b></span>
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ng-container>
+
+      <div class="botoes-de-preferencia mg-top-32 full-width">
+        <ion-button
+        *ngIf="houveMudancaEmAlgumSeletor"
+        (click)="cancelouAlteracoes($event)"
+        title="Cancelar"
+        fill="solid"
+        shape="round"
+        class="fs-14 icone-a-direita main-white cancelar"
+        mode="md">
+          cancelar <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button
+        (click)="confirmarAlteracoes()"
+        [disabled]="!houveMudancaEmAlgumSeletor"
+        title="Avançar"
+        shape="round"
+        fill="solid"
+        size="normal"
+        class="main icone-a-direita"
+        mode="md">
+          <ng-container *ngIf="houveMudancaEmAlgumSeletor"><b>sim</b><span class="mg-right-5">,</span></ng-container>confirmar
+          <ion-icon name="reload-outline" class="mg-left-5"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </section>
 </ion-content>

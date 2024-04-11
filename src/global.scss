@@ -108,3 +108,28 @@ ion-spinner {
   background-color: #45b6fe;
   color: var(--white);
 }
+
+ion-list.seletor-de-idioma {
+  ion-item {
+    --color: var(--gray-text);
+    --padding-start: 16px;
+    --inner-padding-end: 0;
+    --padding-end: 16px;
+    font-size: 14px;
+
+    img { width: 26px; margin: 0 16px 0 0; }
+
+    &.selected {
+      font-weight: bold;
+      --color: var(--green);
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--gray-light);
+    }
+
+    ion-icon {
+      margin: 0 0 0 8px
+    }
+  }
+}
