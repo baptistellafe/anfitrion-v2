@@ -1,4 +1,3 @@
-
 import { createAction, createReducer, createSelector, on, props, createFeatureSelector } from "@ngrx/store";
 import { Anfitrion } from "src/app/interfaces/Anfitrion";
 import { Cidade } from "src/app/interfaces/Cidade";
@@ -82,6 +81,11 @@ export const definirRotaAnterior = createAction(
   props<{ rotaAnterior: string | string[] }>()
 )
 
+export const definirPreferencias = createAction(
+  '[APP] Definir preferências (Cidade e Idioma)',
+  props<{ preferencias: { idioma: Idioma, cidadeEscolhida: Cidade }  }>()
+)
+
 export const appReducer = createReducer(
   appInitialState,
   on(
@@ -107,7 +111,15 @@ export const appReducer = createReducer(
   on(
     definirRotaAnterior,
     (state, { rotaAnterior }) => ({ ...state, rotaAnterior: rotaAnterior })
-  )
+  ),
+  on(
+    definirPreferencias,
+    (state, { preferencias }) => ({
+      ...state,
+      idioma: preferencias.idioma,
+      cidadeEscolhida: preferencias.cidadeEscolhida
+    })
+  ),
 )
 
 // SELETORES

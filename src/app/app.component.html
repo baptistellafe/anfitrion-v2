@@ -23,13 +23,15 @@
               <p class="nome font-baloo fs-20" *ngIf="informacoes$"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : 'visitante' }}</b></p>
 
               <ion-menu-toggle>
-                <a
+                <ion-button
                 (click)="irParaEditarDados()"
-                title="editar"
-                href="javascript:void(0)"
-                class="link-com-icone pequeno mg-top-5">
-                  editar <ion-icon name="create-outline"></ion-icon>
-                </a>
+                fill="clear"
+                shape="round"
+                mode="md"
+                title="alterar"
+                class="main-clear fs-14 tipo-link">
+                  alterar <ion-icon name="create-outline" class="mg-left-5"></ion-icon>
+                </ion-button>
               </ion-menu-toggle>
             </ion-text>
           </ion-item>

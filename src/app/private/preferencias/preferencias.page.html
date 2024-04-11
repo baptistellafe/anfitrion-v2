@@ -56,11 +56,11 @@ mode="ios">
           mode="ios"
           class="full-width line-height-18">
             <p class="color-gray-mid full-width fs-13">
-              cidade
+              {{ houveMudancaEmAlgumSeletor ? 'nova cidade' : 'cidade atual' }}
             </p>
 
             <p class="font-baloo fs-18 color-gray-text">
-              <b>{{ cidadeEscolhida ? cidadeEscolhida.text : 'á definir' }}</b>
+              <b>{{ cidadeEscolhida.text }}</b>
             </p>
           </ion-text>
 
@@ -83,11 +83,11 @@ mode="ios">
           (ionChange)="definirCidade()"
           mode="ios">
             <ion-select-option
-            [disabled]="!city.isActiveOnAnfitrion"
+            [disabled]="!cidade.isActiveOnAnfitrion"
             mode="ios"
-            *ngFor="let city of cities"
-            [value]="city">
-              {{ city.text }}
+            *ngFor="let cidade of cidades"
+            [value]="cidade">
+              {{ cidade.text }}
             </ion-select-option>
           </ion-select>
         </ion-item>
@@ -103,11 +103,11 @@ mode="ios">
           mode="ios"
           class="full-width line-height-18">
             <p class="color-gray-mid full-width fs-13">
-              idioma
+              {{ houveMudancaEmAlgumSeletor ? 'novo idioma' : 'idioma atual' }}
             </p>
 
             <p class="font-baloo fs-18 color-gray-text">
-              <b>{{ idiomaSelecionado.text[idiomaSelecionado.value] }}</b>
+              <b>{{ idiomaSelecionado.text[informacoes.idioma.value] }}</b>
             </p>
           </ion-text>
 
@@ -127,7 +127,7 @@ mode="ios">
           side="top"
           alignment="center">
             <ng-template>
-              <ion-content class="ion-padding">
+              <ion-content>
                 <ion-list
                 class="seletor-de-idioma"
                 mode="ios"
@@ -140,7 +140,7 @@ mode="ios">
                   mode="ios">
                     <img
                     [src]="'./../../../assets/flags/' + idioma.value + '.svg'"
-                    alt="flag"> {{ idioma.text[idiomaSelecionado.value] }} <ion-icon name="checkmark-outline" *ngIf="idiomaSelecionado.value === idioma.value"></ion-icon>
+                    alt="flag"> {{ idioma.text[informacoes.idioma.value] }} <ion-icon name="checkmark-outline" *ngIf="idiomaSelecionado.value === idioma.value"></ion-icon>
                   </ion-item>
                 </ion-list>
               </ion-content>
@@ -179,7 +179,7 @@ mode="ios">
       <div class="botoes-de-preferencia mg-top-32 full-width">
         <ion-button
         *ngIf="houveMudancaEmAlgumSeletor"
-        (click)="cancelouAlteracoes($event)"
+        (click)="cancelouAlteracoes()"
         title="Cancelar"
         fill="solid"
         shape="round"
@@ -189,16 +189,22 @@ mode="ios">
         </ion-button>
 
         <ion-button
-        (click)="confirmarAlteracoes()"
-        [disabled]="!houveMudancaEmAlgumSeletor"
+        *ngIf="houveMudancaEmAlgumSeletor"
+        (click)="mostrarAlertaParaConfirmarMudancas()"
+        [disabled]="!houveMudancaEmAlgumSeletor || mudancasPendenteDeConfirmacao"
         title="Avançar"
         shape="round"
         fill="solid"
         size="normal"
         class="main icone-a-direita"
         mode="md">
-          <ng-container *ngIf="houveMudancaEmAlgumSeletor"><b>sim</b><span class="mg-right-5">,</span></ng-container>confirmar
-          <ion-icon name="reload-outline" class="mg-left-5"></ion-icon>
+          <ng-container *ngIf="mudancasPendenteDeConfirmacao">
+            <ion-spinner name="lines-sharp-small" class="color-white"></ion-spinner>
+          </ng-container>
+
+          <ng-container *ngIf="!mudancasPendenteDeConfirmacao">
+            <ng-container *ngIf="houveMudancaEmAlgumSeletor"><b>sim</b><span class="mg-right-5">,</span></ng-container>confirmar <ion-icon name="reload-outline" class="mg-left-5"></ion-icon>
+          </ng-container>
         </ion-button>
       </div>
     </div>

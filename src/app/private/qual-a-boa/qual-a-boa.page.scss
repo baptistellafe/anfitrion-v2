@@ -7,10 +7,11 @@ ion-content {
     &.qual-a-boa-wrapper {
       width: 100%;
       height: calc(100% - 70px);
-      margin-top: -32px;
       @include flexbox(center, center, column);
 
       .qual-a-boa-container {
+        margin-top: -32px;
+
         ion-text {
           p {
             &.nome {

@@ -4,10 +4,12 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/store/app/app.state';
 import * as AppStore from './../../store/app/app.state';
-import { AlertOptions, NavController } from '@ionic/angular';
+import { AlertController, AlertOptions, NavController, ToastController } from '@ionic/angular';
 import { Cidade } from 'src/app/interfaces/Cidade';
 import { Idioma } from 'src/app/interfaces/Idioma';
 import { AppConfigService } from 'src/app/services/app-config.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { CIDADE_ESCOLHIDA_KEY, IDIOMA_KEY } from 'src/app/consts/keys';
 
 @Component({
   selector: 'anf-preferencias',
@@ -19,18 +21,18 @@ export class PreferenciasPage implements OnInit {
   public idiomas: Idioma[];
   public idiomaSelecionado: Idioma;
 
-  public cities: Cidade[];
+  public cidadeEscolhida: Cidade;
+
+  public mudancasPendenteDeConfirmacao: boolean = false;
+  public houveMudancaEmAlgumSeletor: boolean = false;
+  public veioDeUmaRotaAnterior: boolean = false;
+
+  public cidades: Cidade[];
   public cityButtonAlertOptions: AlertOptions = {
     subHeader: 'Preferências',
     message: 'Escolha uma cidade',
     backdropDismiss: false
   }
-  public houveMudancaEmAlgumSeletor: boolean = false;
-
-  public cidadeEscolhida: Cidade;
-  public idiomaAntesDaMudanca: Idioma;
-
-  public veioDeUmaRotaAnterior: boolean;
 
   public informacoes$: Observable<IAppState>;
   public informacoes: IAppState = AppStore.appInitialState;
@@ -39,12 +41,15 @@ export class PreferenciasPage implements OnInit {
     private title : Title,
     private store : Store,
     public navCtrl : NavController,
-    public appConfig : AppConfigService
+    public appConfig : AppConfigService,
+    private storageService : StorageService,
+    private alertCtrl : AlertController,
+    private toastCtrl : ToastController
   ) { }
 
   ngOnInit() {
     this.obterTodasAsInformacoes();
-    this.cities = this.appConfig.obterCidades();
+    this.cidades = this.appConfig.obterCidades();
     this.idiomas = this.appConfig.obterIdiomas();
   }
 
@@ -125,10 +130,11 @@ export class PreferenciasPage implements OnInit {
    * Idioma e cidade escolhida.
    * @param e obrigatório do tipo evento.
    */
-  public cancelouAlteracoes(e: any): void {
+  public cancelouAlteracoes(): void {
     this.cidadeEscolhida = this.informacoes.cidadeEscolhida;
     this.idiomaSelecionado = this.informacoes.idioma;
     this.houveMudancaEmAlgumSeletor = false;
+    this.mudancasPendenteDeConfirmacao = false;
   }
 
   /**
@@ -136,10 +142,8 @@ export class PreferenciasPage implements OnInit {
    * @param obrigatório do tipo Idioma.
    */
   public definirIdioma(lang: Idioma): void {
-    this.idiomaSelecionado = lang;
-    console.log(this.idiomaSelecionado);
-
     this.houveMudancaEmAlgumSeletor = true;
+    this.idiomaSelecionado = lang;
   }
 
   /**
@@ -147,8 +151,6 @@ export class PreferenciasPage implements OnInit {
    * @param e obrigatório do tipo evento.
    */
   public definirCidade(): void {
-    let cidadeEscolhida: Cidade;
-    cidadeEscolhida = this.cidadeEscolhida;
     this.houveMudancaEmAlgumSeletor = true;
   }
 
@@ -163,15 +165,67 @@ export class PreferenciasPage implements OnInit {
   }
 
   /**
-   * @description Confirmar alterações realizadas.
+   * @description Confirmar alterações realizadas caso tenham alterado alguma informação.
    */
   public confirmarAlteracoes(): void {
-    let cidadeEscolhida = this.cidadeEscolhida;
-    this.store.dispatch(AppStore.definirCidade({ cidadeEscolhida }))
+    if (this.houveMudancaEmAlgumSeletor) {
+      let preferencias: { idioma: Idioma, cidadeEscolhida: Cidade } = {
+        idioma: this.idiomaSelecionado,
+        cidadeEscolhida: this.cidadeEscolhida
+      }
 
-    let idioma = this.idiomaSelecionado;
-    console.log(idioma);
+      this.store.dispatch(AppStore.definirPreferencias({ preferencias }));
+      this.storageService.armazenarChave(IDIOMA_KEY, this.idiomaSelecionado)
+      this.storageService.armazenarChave(CIDADE_ESCOLHIDA_KEY, this.cidadeEscolhida);
 
-    this.store.dispatch(AppStore.definirIdioma({ idioma }))
+      this.mudancasPendenteDeConfirmacao = false;
+      this.houveMudancaEmAlgumSeletor = false;
+
+      this.mostrarNotificacao();
+    }
+  }
+
+  public async mostrarAlertaParaConfirmarMudancas(): Promise<HTMLIonAlertElement> {
+    this.mudancasPendenteDeConfirmacao = true;
+
+    const alert = await this.alertCtrl.create({
+      mode: 'ios',
+      subHeader: 'Mudanças',
+      message: `Trocaremos a cidade para ${this.cidadeEscolhida.text} e o idioma para ${this.idiomaSelecionado.text[this.informacoes.idioma.value]}`,
+      buttons: [{
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {
+          this.cancelouAlteracoes();
+        }
+      },{
+        text: 'Confirmar',
+        role: 'confirm',
+        handler: () => {
+          this.confirmarAlteracoes();
+        }
+      }]
+    })
+
+    await alert.present();
+
+    return alert;
+  }
+
+  public async mostrarNotificacao(): Promise<HTMLIonToastElement> {
+    const toast = await this.toastCtrl.create({
+      icon: 'settings-outline',
+      mode: 'ios',
+      translucent: false,
+      position: 'top',
+      cssClass: 'default',
+      header: 'Alteração',
+      message: 'Suas preferências foram atualizadas.',
+      duration: 3000
+    })
+
+    await toast.present();
+
+    return toast;
   }
 }
