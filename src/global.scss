@@ -24,7 +24,9 @@
   ion-icon,
   p { margin: 0; }
 
-  h2 { margin: 16px 0 5px 0; }
+  h2 {
+    margin: 16px 0 5px 0;
+  }
 
   p {
     &.com-sarcasmo {
@@ -132,4 +134,14 @@ ion-list.seletor-de-idioma {
       margin: 0 0 0 8px
     }
   }
+}
+
+.simular-botao {
+  padding: 4px 10px;
+  color: var(--white);
+  background: linear-gradient(.351turn,#769834 43.71%,#547D0E 58.8%);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  margin-top: 3px;
 }

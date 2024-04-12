@@ -11,27 +11,37 @@ export class AppConfigService {
   private opcoesDoMenu: any[] = [
     {
       titulo: {
-        pt: 'Qual a boa'
+        pt: 'Qual a boa?',
+        en: `What's up?`,
+        es: 'Quala boa',
       },
       descricao: {
-        pt: 'Conheça a cidade'
+        pt: 'conheça a cidade',
+        en: 'know the city',
+        es: 'conocer la ciudad'
       },
       rota: 'qual-a-boa',
       icone: 'bulb'
     },
     {
       titulo: {
-        pt: 'Sugestões'
+        pt: 'Sugestões',
+        en: `Suggestions`,
+        es: 'Sugerencias',
       },
       descricao: {
-        pt: 'Poupe seu tempo'
+        pt: 'poupe seu tempo',
+        en: 'save your time',
+        es: 'ahorra tu tiempo'
       },
       rota: 'sugestoes',
       icone: 'qr-code'
     },
     {
       titulo: {
-        pt: 'Sobre'
+        pt: 'Sobre',
+        en: 'About',
+        es: 'Acerca de'
       },
       descricao: {
         pt: 'Conheça o anfitrion'
@@ -54,7 +64,7 @@ export class AppConfigService {
         pt: 'Contato'
       },
       descricao: {
-        pt: 'Fale com a gente'
+        pt: 'Fale comigo'
       },
       rota: 'contato',
       icone: 'chatbubble-ellipses'

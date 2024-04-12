@@ -1,73 +1,68 @@
 <ion-content
 [forceOverscroll]="false">
-  <anf-header [blacknwhite]="true"></anf-header>
+  <anf-header [darkMode]="false" [mostrarLogo]="false"></anf-header>
 
-  <section class="contato">
-    <div class="contato-wrapper">
-      <ion-grid [fixed]="true">
-        <ion-row>
-          <ion-col size="6">
-            <div class="contato-esquerda">
-              <ion-text
-              class="text-center color-white full-width icone-titulo-texto"
-              mode="ios">
-                <ion-icon
-                name="chatbubble-ellipses-outline"
-                class="full-width fs-32 animate__animated animate__fadeInUp">
-                </ion-icon>
-                <h2 class="font-baloo"><b>Contato</b></h2>
-                <p class="com-sarcasmo pt">Fale comigo.</p>
-              </ion-text>
-            </div>
-          </ion-col>
+  <section class="contato full-width">
+    <div class="contato-wrapper full-width">
+      <ion-text
+      class="text-center color-gray-text full-width icone-titulo-texto"
+      mode="ios">
+        <ion-icon
+        name="chatbubble-ellipses-outline"
+        class="full-width fs-32 animate__animated animate__fadeInUp">
+        </ion-icon>
+        <h2 class="font-baloo">
+          E aí<span class="mg-left-5"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : 'visitante' }}</b>,</span>
+        </h2>
+        <p>como eu posso te ajudar?</p>
+      </ion-text>
 
-          <ion-col size="6">
-            <div class="contato-direita">
-              <ion-text
-              mode="ios"
-              class="text-center full-width color-gray-text icone-titulo-texto">
-                <h2 class="font-baloo">
-                  E aí<span class="mg-left-5"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : 'visitante' }}</b>,</span>
-                </h2>
-                <p>como eu posso te ajudar?</p>
-              </ion-text>
+      <ion-segment
+      [(ngModel)]="tipoDeContato"
+      value="default"
+      mode="ios">
+        <ion-segment-button value="comercial">
+          <ion-label>comercial</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="outros">
+          <ion-label>outros</ion-label>
+        </ion-segment-button>
+      </ion-segment>
 
-              <ion-segment
-              [(ngModel)]="tipoDeContato"
-              value="default"
-              mode="ios">
-                <ion-segment-button value="comercial">
-                  <ion-label>comercial</ion-label>
-                </ion-segment-button>
-                <ion-segment-button value="outros">
-                  <ion-label>outros</ion-label>
-                </ion-segment-button>
-              </ion-segment>
+      <ng-container *ngIf="tipoDeContato === 'comercial'">
+        <a
+        (click)="mostrarAlerta('email')"
+        class="contato-zap-mail mg-bottom-32"
+        href="javascript:void(0)"
+        [title]="'Chamar no WhatsApp'">
+          <span class="color-linear font-baloo no-text-decor fs-14"><span class="fs-18"><b>anfitrionappoficial</b>{{'@gmail.com'}}</span></span>
+          <span class="simular-botao no-text-decor fs-13">enviar e-mail <ion-icon name="mail-outline" class="mg-left-5"></ion-icon></span>
+        </a>
 
-              <ng-container *ngIf="tipoDeContato === 'comercial'">
-                <ion-text mode="ios">
-                  <p class="fs-13 color-gray-mid">para<span class="mg-left-5"><b>anuncios e parcerias.</b></span></p>
-                </ion-text>
-              </ng-container>
+        <ion-text mode="ios">
+          <p class="fs-13 color-gray-mid">para<span class="mg-left-5"><b>anuncios e parcerias.</b></span></p>
+        </ion-text>
+      </ng-container>
 
-              <ng-container *ngIf="tipoDeContato === 'outros'">
-                <ion-text mode="ios">
-                  <p class="fs-13 color-gray-mid">para<span class="mg-left-5"><b>sugestões, críticas ou elogios.</b></span></p>
-                </ion-text>
-              </ng-container>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <ng-container *ngIf="tipoDeContato === 'outros'">
+        <a
+        (click)="mostrarAlerta('whatsapp')"
+        class="contato-zap-mail mg-bottom-32"
+        href="javascript:void(0)"
+        [title]="'Chamar no WhatsApp'">
+          <span class="color-linear font-baloo no-text-decor">+55 (013) <span class="fs-20"><b>9 9733.0408</b></span></span>
+          <span class="simular-botao no-text-decor fs-13">
+            enviar mensagem
+            <ion-icon name="logo-whatsapp" class="mg-left-5"></ion-icon>
+          </span>
+        </a>
+
+        <ion-text mode="ios">
+          <p class="fs-13 color-gray-mid">
+            para<span class="mg-left-5"><b>sugestões, críticas ou elogios.</b></span>
+          </p>
+        </ion-text>
+      </ng-container>
     </div>
-
-    <!-- PLAYER -->
-    <lottie-player
-    class="lottie-player animate__animated animate__fadeIn animate__slower"
-    autoplay
-    loop
-    mode="normal"
-    [src]="'./../../../assets/lotties/anfitrionapp.json'">
-    </lottie-player>
   </section>
 </ion-content>
