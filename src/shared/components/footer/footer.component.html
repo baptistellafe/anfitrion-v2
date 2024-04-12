@@ -52,6 +52,27 @@ class="footer-wrapper full-width"
           </anf-made-w-love>
         </ion-col>
 
+        <ion-col
+        class="no-padding-top-bottom"
+        size="12">
+          <div class="rede-social-wrapper full-width">
+            <ion-button
+            class="rede-social"
+            [ngClass]="{
+              'dark-mode' : darkMode,
+              'light-mode' : !darkMode
+            }"
+            *ngFor="let rede of redesSociais"
+            [href]="rede.url"
+            [title]="rede.nome.pt"
+            target="_blank"
+            size="small"
+            fill="clear">
+              <ion-icon [name]="'logo-' + rede.label"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-col>
+
         <ion-col size="12" class="mg-bottom-16">
           <anf-copyright [darkMode]="darkMode"></anf-copyright>
         </ion-col>

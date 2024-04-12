@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Cidade } from '../interfaces/Cidade';
 import { Idioma } from '../interfaces/Idioma';
+import { RedeSocial } from '../interfaces/RedeSocial';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,16 @@ export class AppConfigService {
       },
       rota: 'preferencias',
       icone: 'settings'
+    },
+    {
+      titulo: {
+        pt: 'Contato'
+      },
+      descricao: {
+        pt: 'Fale com a gente'
+      },
+      rota: 'contato',
+      icone: 'chatbubble-ellipses'
     }
   ]
 
@@ -156,6 +167,31 @@ export class AppConfigService {
     }
   ]
 
+  private redesSociais: RedeSocial[] = [
+    {
+      nome: {
+        pt: 'Instagram',
+        en: 'Instagram',
+        es: 'Instagram'
+      },
+      estaAtivo: true,
+      url: 'https://www.instagram.com/anfitrionapp/',
+      label: 'instagram',
+      usuario: 'anfitrionapp'
+    },
+    {
+      nome: {
+        pt: 'Instagram',
+        en: 'Instagram',
+        es: 'Instagram'
+      },
+      estaAtivo: true,
+      url: 'https://www.instagram.com/anfitrionapp/',
+      label: 'tiktok',
+      usuario: 'anfitrionapp'
+    }
+  ]
+
   constructor() { }
 
   public obterCidades(): Cidade[] {
@@ -179,5 +215,9 @@ export class AppConfigService {
 
   public obterOpcoesDoMenu(): Idioma[] {
     return this.opcoesDoMenu
+  }
+
+  public obterRedesSociais(): RedeSocial[] {
+    return this.redesSociais
   }
 }

@@ -69,6 +69,10 @@ const routes: Routes = [
     loadChildren: () => import('./public/trocar-idioma/trocar-idioma.module').then( m => m.TrocarIdiomaPageModule)
   },
   {
+    path: 'contato',
+    loadChildren: () => import('./public/contato/contato.module').then( m => m.ContatoPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     loadChildren: () => import('./public/nao-encontramos/nao-encontramos.module').then( m => m.NaoEncontramosPageModule)

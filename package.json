@@ -27,6 +27,7 @@
     "@capacitor/status-bar": "5.0.7",
     "@ionic/angular": "^7.0.0",
     "@ionic/storage-angular": "^4.0.0",
+    "@lottiefiles/lottie-player": "^2.0.4",
     "@ngrx/store": "^17.1.1",
     "@ngrx/store-devtools": "^17.1.1",
     "animate.css": "^4.1.1",

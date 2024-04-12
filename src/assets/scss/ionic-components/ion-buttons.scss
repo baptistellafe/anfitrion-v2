@@ -96,4 +96,28 @@ ion-button {
       margin: 0 6px 0 0;
     }
   }
+
+  &.rede-social {
+
+    --padding-start: 0;
+    --padding-end: 0;
+    margin: 0;
+    font-size: 16px;
+    transition: all 200ms ease;
+    --transition: all 200ms ease;
+
+    &:hover {
+      transform: scale(1.2) rotate(-15deg);
+    }
+
+    &.dark-mode {
+      --color: var(--green);
+      --color-hover: var(--green-dark);
+    }
+
+    &.light-mode {
+      --color: var(--gray-text);
+      --color-hover: var(--green-dark);
+    }
+  }
 }

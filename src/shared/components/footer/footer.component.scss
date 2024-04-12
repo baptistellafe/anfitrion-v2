@@ -46,5 +46,17 @@
     .footer-bottom-wrapper {
       @include flexbox(center, flex-end, row);
     }
+
+    .rede-social-wrapper {
+      @include flexbox(center, center, row);
+
+      ion-button:not(:first-child) {
+        margin-left: 8px;
+      }
+
+      @media only screen and (min-width: 768px) {
+        @include flexbox(center, flex-start, row);
+      }
+    }
   }
 }
