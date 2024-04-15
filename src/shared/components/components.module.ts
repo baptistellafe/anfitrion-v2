@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MadeWLoveComponent } from './made-w-love/made-w-love.component';
 import { CopyrightComponent } from './copyright/copyright.component';
 import { CategoryCardComponent } from './category-card/category-card.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CategoryCardComponent } from './category-card/category-card.component';
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ],
   exports: [
     LogoComponent,

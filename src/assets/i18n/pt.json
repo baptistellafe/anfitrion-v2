@@ -1,0 +1,48 @@
+{
+  "TELA_PRIMEIRO_ACESSO": {
+    "TITULO" : "Primeiro acesso ao anfitrion",
+    "SLIDE_UM" : {
+      "TITULO" : "Primeiro acesso",
+      "DESCRICAO" : "precisamos nos conhecer, é rapidinho."
+    },
+    "SLIDE_DOIS" : {
+      "TITULO" : "Seu nome",
+      "DESCRICAO" : "é assim que eu te chamei no app."
+    },
+    "SLIDE_TRES" : {
+      "TITULO" : "Seu idioma",
+      "DESCRICAO" : "como quer ver as informações."
+    },
+    "SLIDE_QUATRO" : {
+      "TITULO" : "Uma cidade",
+      "DESCRICAO" : "estamos somente na"
+    },
+    "SLIDE_CINCO" : {
+      "TITULO" : "Tudo pronto",
+      "DESCRICAO" : "serei seu anfitrião"
+    },
+    "AVISO_PARA_DEFINIR_NOME": ["Volte e defina", "um nome"]
+  },
+  "GERAL" : {
+    "AVANCAR" : "Avançar",
+    "VOLTAR" : "Voltar",
+    "INSIRA_ABAIXO" : "Insira abaixo",
+    "PLACEHOLDER_INPUT_NOME" : "Ex: Felipe...",
+    "NO_MINIMO" : "no mínimo",
+    "OBRIGATORIO" : "obrigatório",
+    "CARACTERES" : "caracteres",
+    "CONHECER" : "Conhecer",
+    "ALTERE_QUANDO_QUISER" : "Altere quando quiser",
+    "DEFINIR" : "Definir",
+    "CANCELAR" : "Cancelar",
+    "SELECIONAR" : "Selecionar"
+  },
+  "COMPONENTS" : {
+    "SELETOR_DE_CIDADES" : {
+      "TITULO" : "Selecionar cidade"
+    },
+    "SELETOR_DE_IDIOMAS" : {
+      "TITULO" : "Selecionar idioma"
+    }
+  }
+}

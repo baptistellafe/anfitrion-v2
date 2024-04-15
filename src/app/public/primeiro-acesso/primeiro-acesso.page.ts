@@ -2,13 +2,14 @@ import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/co
 import { Title } from '@angular/platform-browser';
 import { IonInput, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, take } from 'rxjs';
 import { JA_ACESSOU_ANFITRION_KEY, PRIMEIRO_NOME_KEY } from 'src/app/consts/keys';
 import { StorageService } from 'src/app/services/storage.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { IAppState, definirPrimeiroAcesso, definirPrimeiroNome } from 'src/app/store/app/app.state';
 import Swiper from 'swiper';
 import * as AppStore from './../../store/app/app.state';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'anf-primeiro-acesso',
@@ -26,12 +27,16 @@ export class PrimeiroAcessoPage implements OnInit {
   public informacoes$: Observable<IAppState>;
   public informacoes: IAppState;
 
+  public traducaoDaTela$: Observable<any>;
+  public traducaoDaTela: any;
+
   constructor(
     private title : Title,
     private utilsService : UtilsService,
     private navCtrl : NavController,
     private store : Store,
-    private storageService : StorageService
+    private storageService : StorageService,
+    private translate : TranslateService
   ) { }
 
   ngOnInit() {
@@ -39,7 +44,17 @@ export class PrimeiroAcessoPage implements OnInit {
   }
 
   ionViewWillEnter(): void {
-    this.title.setTitle('Primeiro acesso ao anfitrion')
+    this.obterTraducaoDaTela();
+    this.title.setTitle(`${this.traducaoDaTela?.TITULO}`)
+  }
+
+  public obterTraducaoDaTela(): void {
+    this.traducaoDaTela$ = this.translate.get('TELA_PRIMEIRO_ACESSO');
+    this.traducaoDaTela$
+    .pipe(take(1))
+    .subscribe((res: any) => {
+      this.traducaoDaTela = res;
+    })
   }
 
   /**

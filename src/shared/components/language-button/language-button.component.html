@@ -1,7 +1,7 @@
 <div class="language-button-wrapper">
   <ion-button
   id="seletor-de-idioma"
-  title="Selecionar idioma"
+  [title]="'COMPONENTS.SELETOR_DE_IDIOMAS.TITULO' | translate"
   shape="round"
   fill="solid"
   size="normal"
@@ -12,7 +12,9 @@
   </ion-button>
 
   <ion-text mode="ios" class="full-width text-center">
-    <p class="fs-12 color-gray-text">Altere quando quiser</p>
+    <p class="fs-12 color-gray-text">
+      {{ 'GERAL.ALTERE_QUANDO_QUISER' | translate }}
+    </p>
   </ion-text>
 
   <ion-popover
@@ -29,9 +31,9 @@
         lines="none">
           <ion-item
           *ngFor="let idioma of idiomas"
-          [ngClass]="{ 'selected' : idiomaSelecionado.value === idioma.value }"
           (click)="definirIdioma(idioma)"
-          [title]="'selecionar idioma'"
+          [ngClass]="{ 'selected' : idiomaSelecionado.value === idioma.value }"
+          [title]="'COMPONENTS.SELETOR_DE_IDIOMAS.TITULO' | translate"
           mode="ios">
             <img
             [src]="'./../../../assets/flags/' + idioma.value + '.svg'"

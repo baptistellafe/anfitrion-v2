@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, ViewChild, viewChild } from '@angular/core';
-import { IonSelect } from '@ionic/angular';
+import { IAppState } from 'src/app/store/app/app.state';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Idioma } from 'src/app/interfaces/Idioma';
 import { AppConfigService } from 'src/app/services/app-config.service';
 import * as AppStore from './../../../app/store/app/app.state';
-import { IDIOMA_KEY } from 'src/app/consts/keys';
-import { StorageService } from 'src/app/services/storage.service';
+import { TranslateAnfService } from 'src/app/services/translate-anf.service';
+import { Observable, Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,9 +13,13 @@ import { StorageService } from 'src/app/services/storage.service';
   templateUrl: './language-button.component.html',
   styleUrls: ['./language-button.component.scss'],
 })
-export class LanguageButtonComponent  implements OnInit {
+export class LanguageButtonComponent  implements OnInit, OnDestroy {
 
   @Input() darkMode: boolean = false;
+
+  public inscricaoEmInformacoes: Subscription;
+  public informacoes$: Observable<IAppState>;
+  public informacoes: IAppState = AppStore.appInitialState;
 
   public idiomaSelecionado: Idioma;
 
@@ -24,24 +28,39 @@ export class LanguageButtonComponent  implements OnInit {
   constructor(
     private appConfigService : AppConfigService,
     private store : Store,
-    private storageService : StorageService
+    private translateApp : TranslateAnfService
   ) { }
 
   ngOnInit() {
     this.obterIdiomas();
-    this.definirIdioma(this.idiomas[0]);
+    this.obterTodasAsInformacoes();
+  }
+
+  ngOnDestroy(): void {
+    this.desinscreverDeTodasAsInformacoes();
   }
 
   public definirIdioma(lang: Idioma): void {
-    this.idiomaSelecionado = lang;
-    let props = { idioma: this.idiomaSelecionado}
-
-    this.store.dispatch(AppStore.definirIdioma(props))
-    this.storageService.armazenarChave(IDIOMA_KEY, this.idiomaSelecionado);
+    this.translateApp.definirIdioma(lang.value);
   }
 
   public obterIdiomas(): void {
     this.idiomas = this.appConfigService.obterIdiomas();
+  }
+
+  /**
+   * @description Obtém as informações guardadas no NGRX.
+   */
+  public obterTodasAsInformacoes(): void {
+    this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
+    this.inscricaoEmInformacoes = this.informacoes$.subscribe((res: IAppState) => {
+      this.informacoes = res;
+      this.idiomaSelecionado = this.informacoes.idioma;
+    })
+  }
+
+  public desinscreverDeTodasAsInformacoes(): void {
+    this.inscricaoEmInformacoes.unsubscribe();
   }
 
 }

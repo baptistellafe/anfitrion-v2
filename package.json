@@ -30,6 +30,8 @@
     "@lottiefiles/lottie-player": "^2.0.4",
     "@ngrx/store": "^17.1.1",
     "@ngrx/store-devtools": "^17.1.1",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "animate.css": "^4.1.1",
     "ionicons": "^7.0.0",
     "moment": "^2.30.1",

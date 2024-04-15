@@ -9,6 +9,7 @@ import { StorageService } from './services/storage.service';
 import { CIDADE_ESCOLHIDA_KEY, IDIOMA_KEY, JA_ACESSOU_ANFITRION_KEY, PRIMEIRO_NOME_KEY } from './consts/keys';
 import { AppConfigService } from './services/app-config.service';
 import { Router } from '@angular/router';
+import { TranslateAnfService } from './services/translate-anf.service';
 
 @Component({
   selector: 'anf-root',
@@ -31,10 +32,12 @@ export class AppComponent implements OnInit {
     private store : Store,
     private storageService : StorageService,
     private appCfg : AppConfigService,
-    private router : Router
+    private router : Router,
+    private translateApp : TranslateAnfService
   ) {}
 
   async ngOnInit() {
+    this.translateApp.definirIdiomaInicial();
     this.bloquearSwiperDoMenu();
     this.obterOpcoesDoMenu();
     await this.recuperarInformacoesDaStorage();

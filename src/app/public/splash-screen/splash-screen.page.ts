@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable, skip, take, takeLast } from 'rxjs';
 import { IAppState } from 'src/app/store/app/app.state';
 import * as AppStore from './../../store/app/app.state';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'anf-splash-screen',
   templateUrl: './splash-screen.page.html',
@@ -20,12 +21,15 @@ export class SplashScreenPage implements OnInit {
     private store : Store
   ) { }
 
+  ionViewWillEnter(): void {
+  }
+
   ngOnInit() {
     this.obterTodasAsInformacoes();
   }
 
   ionViewDidEnter(): void {
-    this.title.setTitle('Bem vindo ao Anfitrion.')
+    this.title.setTitle(`anfitrion`)
   }
 
   /**

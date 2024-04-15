@@ -1,7 +1,7 @@
 <ion-content
 [fullscreen]="true">
   <section
-  class="primeiro-acesso full-size overflow-hidden ">
+  class="primeiro-acesso full-size overflow-hidden">
     <swiper-container
     #primeiroAcessoSwiper
     (swiperslidechange)="slideMudou()"
@@ -21,8 +21,8 @@
               class="full-width fs-32"
               [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 0}">
               </ion-icon>
-              <h2 class="font-baloo"><b>Primeiro acesso</b></h2>
-              <p class="com-sarcasmo pt">precisamos nos conhecer<span>, é rapidinho.</span></p>
+              <h2 class="font-baloo"><b>{{ 'TELA_PRIMEIRO_ACESSO.SLIDE_UM.TITULO' | translate }}</b></h2>
+              <p>{{ 'TELA_PRIMEIRO_ACESSO.SLIDE_UM.DESCRICAO' | translate }}</p>
             </ion-text>
           </div>
         </section>
@@ -40,14 +40,14 @@
               class="full-width fs-32"
               [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 1}">
               </ion-icon>
-              <h2 class="font-baloo"><b>Seu nome</b></h2>
-              <p>te chamarei pelo nome daqui pra frente.</p>
+              <h2 class="font-baloo"><b>{{ 'TELA_PRIMEIRO_ACESSO.SLIDE_DOIS.TITULO' | translate }}</b></h2>
+              <p>{{ 'TELA_PRIMEIRO_ACESSO.SLIDE_DOIS.DESCRICAO' | translate }}</p>
             </ion-text>
 
             <ion-text
             class="color-gray-text text-left full-width mg-top-32"
             mode="ios">
-              <p class="fs-12">Insira abaixo</p>
+              <p class="fs-12">{{ 'GERAL.INSIRA_ABAIXO' | translate }}</p>
             </ion-text>
 
             <ion-item
@@ -55,17 +55,17 @@
             class="full-width ion-bg-transparent"
             mode="ios">
               <ion-input
+              #inputPrimeiroNome
+              (keyup)="transformarNome(nomeDoVisitante)"
+              [(ngModel)]="nomeDoVisitante"
               [autocorrect]="false"
               [clearInput]="true"
+              [placeholder]="'GERAL.PLACEHOLDER_INPUT_NOME' | translate"
               class="ion-bg-transparent"
-              #inputPrimeiroNome
               type="text"
               inputmode="text"
-              [(ngModel)]="nomeDoVisitante"
-              (keyup)="transformarNome(nomeDoVisitante)"
               mode="ios"
-              labelPlacement="stacked"
-              placeholder="Ex: Felipe">
+              labelPlacement="stacked">
               </ion-input>
 
               <ion-icon
@@ -80,8 +80,8 @@
             [ngClass]="{'ocultar-opacidade': nomeDoVisitante.length >= 3}"
             class="text-left full-width">
               <p class="color-negative fs-12">
-                <ng-container *ngIf="nomeDoVisitante.length !== 0">no mínimo <b>3</b> caracteres</ng-container>
-                <ng-container *ngIf="nomeDoVisitante.length === 0">obrigatório</ng-container>
+                <ng-container *ngIf="nomeDoVisitante.length !== 0">{{ 'GERAL.NO_MINIMO' | translate }} <b>3</b> {{ 'GERAL.CARACTERES' | translate }}</ng-container>
+                <ng-container *ngIf="nomeDoVisitante.length === 0">{{ 'GERAL.OBRIGATORIO' | translate }}</ng-container>
               </p>
             </ion-text>
           </div>
@@ -100,8 +100,8 @@
               class="full-width fs-32"
               [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 2}">
               </ion-icon>
-              <h2 class="font-baloo"><b>Seu idioma</b></h2>
-              <p>como quer ver o conteúdo.</p>
+              <h2 class="font-baloo"><b>{{ 'TELA_PRIMEIRO_ACESSO.SLIDE_TRES.TITULO' | translate }}</b></h2>
+              <p>{{ 'TELA_PRIMEIRO_ACESSO.SLIDE_TRES.DESCRICAO' | translate }}</p>
             </ion-text>
 
             <anf-language-button></anf-language-button>
@@ -121,8 +121,8 @@
               class="full-width fs-32"
               [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 3}">
               </ion-icon>
-              <h2 class="font-baloo"><b>Uma cidade</b></h2>
-              <p>estamos somente na Baixada Santista.</p>
+              <h2 class="font-baloo"><b>{{ 'TELA_PRIMEIRO_ACESSO.SLIDE_QUATRO.TITULO' | translate }}</b></h2>
+              <p>{{ 'TELA_PRIMEIRO_ACESSO.SLIDE_QUATRO.DESCRICAO' | translate }} Baixada Santista.</p>
             </ion-text>
 
             <anf-city-button></anf-city-button>
@@ -142,21 +142,21 @@
               class="full-width fs-38"
               [ngClass]="{ 'animate__animated animate__fadeInUp':  indexAtual === 4}">
               </ion-icon>
-              <h2 class="font-baloo"><b>Tudo pronto</b></h2>
-              <p>serei o seu anfitrião {{ informacoes.cidadeEscolhida.location[informacoes.idioma.value] }}.</p>
+              <h2 class="font-baloo"><b>{{ 'TELA_PRIMEIRO_ACESSO.SLIDE_CINCO.TITULO' | translate }}</b></h2>
+              <p>{{ 'TELA_PRIMEIRO_ACESSO.SLIDE_CINCO.DESCRICAO' | translate }} {{ informacoes.cidadeEscolhida.location[informacoes.idioma.value] }}.</p>
             </ion-text>
 
             <ion-button
             (click)="boasVindas()"
             [disabled]="nomeDoVisitante.length <= 2"
-            title="Ver sugestões"
+            [title]="('GERAL.CONHECER' | translate) + ' ' + informacoes.cidadeEscolhida.text"
             shape="round"
             [fill]="'solid'"
             size="normal"
             [ngClass]="'main'"
             class="icone-a-direita mg-top-32"
             mode="md">
-              Conhecer <span class="mg-left-5"><b>{{ informacoes.cidadeEscolhida.text }}</b></span>
+              {{ 'GERAL.CONHECER' | translate }} <span class="mg-left-5"><b>{{ informacoes.cidadeEscolhida.text }}</b></span>
               <ion-icon name="arrow-forward-outline"></ion-icon>
             </ion-button>
 
@@ -171,7 +171,7 @@
                 class="fs-18 color-negative mg-right-5">
                 </ion-icon>
 
-                volte e defina <span class="mg-left-5"><b>um nome</b></span>
+                {{ 'TELA_PRIMEIRO_ACESSO.AVISO_PARA_DEFINIR_NOME.0' | translate }} <span class="mg-left-5"><b>{{ 'TELA_PRIMEIRO_ACESSO.AVISO_PARA_DEFINIR_NOME.1' | translate }}</b></span>
               </p>
             </ion-text>
           </div>
@@ -205,28 +205,28 @@ mode="ios">
           <ion-button
           *ngIf="indexAtual !== 0 && indexAtual !== 1"
           (click)="retornarSwiper()"
-          title="Voltar"
           [ngClass]="indexAtual === 0 || indexAtual === 1 ? 'item-escondido-suavemente' : 'aparecer-suavemente'"
+          [title]="'GERAL.VOLTAR' | translate"
           shape="round"
           fill="clear"
           size="normal"
           class="main-clear icone-a-esquerda"
           mode="md">
             <ion-icon name="arrow-back-outline"></ion-icon>
-            Voltar
+            {{ 'GERAL.VOLTAR' | translate }}
           </ion-button>
 
           <ion-button
-          [disabled]="(indexAtual === 1 && nomeDoVisitante.length <= 2)"
           *ngIf="indexAtual !== 4"
           (click)="avancarSwiper()"
-          title="Avançar"
+          [disabled]="(indexAtual === 1 && nomeDoVisitante.length <= 2)"
+          [title]="'GERAL.AVANCAR' | translate"
           shape="round"
           fill="solid"
           size="normal"
           class="main icone-a-direita"
           mode="md">
-            Avançar
+            {{ 'GERAL.AVANCAR' | translate }}
             <ion-icon name="arrow-forward-outline"></ion-icon>
           </ion-button>
         </ion-col>

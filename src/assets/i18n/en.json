@@ -1,0 +1,48 @@
+{
+  "TELA_PRIMEIRO_ACESSO": {
+    "TITULO" : "First access at anfitrion",
+    "SLIDE_UM" : {
+      "TITULO" : "First access",
+      "DESCRICAO" : "we need nos conhecer, é rapidinho."
+    },
+    "SLIDE_DOIS" : {
+      "TITULO" : "Your name",
+      "DESCRICAO" : "its assim que eu te chamei no app."
+    },
+    "SLIDE_TRES" : {
+      "TITULO" : "Your language",
+      "DESCRICAO" : "how quer ver as informações."
+    },
+    "SLIDE_QUATRO" : {
+      "TITULO" : "One city",
+      "DESCRICAO" : "we are just in"
+    },
+    "SLIDE_CINCO" : {
+      "TITULO" : "All ready",
+      "DESCRICAO" : "I will be your hostess"
+    },
+    "AVISO_PARA_DEFINIR_NOME": ["Back and define", "a name"]
+  },
+  "GERAL" : {
+    "AVANCAR" : "Forward",
+    "VOLTAR" : "Back",
+    "INSIRA_ABAIXO" : "Insert below",
+    "PLACEHOLDER_INPUT_NOME" : "Ex: Phelps...",
+    "NO_MINIMO" : "at least",
+    "OBRIGATORIO" : "required",
+    "CARACTERES" : "characters",
+    "CONHECER" : "Get to know",
+    "ALTERE_QUANDO_QUISER" : "Change when your want",
+    "DEFINIR" : "Define",
+    "CANCELAR" : "Cancel",
+    "SELECIONAR" : "Select"
+  },
+  "COMPONENTS" : {
+    "SELETOR_DE_CIDADES" : {
+      "TITULO" : "Select a city"
+    },
+    "SELETOR_DE_IDIOMAS" : {
+      "TITULO" : "Select a language"
+    }
+  }
+}
