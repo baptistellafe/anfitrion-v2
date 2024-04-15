@@ -35,14 +35,37 @@
     "ALTERE_QUANDO_QUISER" : "Change when your want",
     "DEFINIR" : "Define",
     "CANCELAR" : "Cancel",
-    "SELECIONAR" : "Select"
+    "SELECIONAR" : "Select",
+    "VISITANTE" : "visitant",
+    "ALTERAR" : "change",
+    "VER" : "See"
+  },
+  "TELA_BOAS_VINDAS" : {
+    "TITULO" : "Welcome",
+    "CONHECA" : "know the best"
+  },
+  "TELA_QUAL_A_BOA" : {
+    "QUAL_A_BOA": "what's up for today",
+    "PARA_QUEM_PROCURA" : "who looking for"
+  },
+  "TELA_PREFERENCIAS" : {
+    "TITULO" : "Preferences",
+    "DESCRICAO" : "app configuration.",
+    "NOVA_CIDADE" : "new city",
+    "CIDADE_ATUAL" : "current city",
+    "NOVO_IDIOMA" : "new language",
+    "IDIOMA_ATUAL" : "current language"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
-      "TITULO" : "Select a city"
+      "TITULO" : "Select a city",
+      "DESCRICAO" : "Choose one below"
     },
     "SELETOR_DE_IDIOMAS" : {
       "TITULO" : "Select a language"
+    },
+    "FEITO_COM_CARINHO" : {
+      "TEXTO" : "made with"
     }
   }
 }

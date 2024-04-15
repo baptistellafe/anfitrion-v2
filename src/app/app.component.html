@@ -11,26 +11,28 @@
           <ion-item
           lines="none"
           class="perfil ion-bg-transparent">
-            <ion-icon [name]="'finger-print-outline'" [ngClass]="{'color-green': informacoes.primeiroNome }"></ion-icon>
+            <ion-icon
+            [name]="'finger-print-outline'"
+            [ngClass]="{'color-green': informacoes.primeiroNome }">
+            </ion-icon>
 
             <ion-text
             class="color-gray-text line-height-23"
             mode="ios">
               <p class="fs-14 color-gray-text">
-                <ng-container></ng-container>
-                <ng-container *ngIf="informacoes$">{{ informacoes.saudacao }},</ng-container>
+                <ng-container *ngIf="informacoes$">{{ informacoes.saudacao[informacoes.idioma.value] }},</ng-container>
               </p>
-              <p class="nome font-baloo fs-20" *ngIf="informacoes$"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : 'visitante' }}</b></p>
+              <p class="nome font-baloo fs-20" *ngIf="informacoes$"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : ('GERAL.VISITANTE' | translate) }}</b></p>
 
               <ion-menu-toggle>
                 <ion-button
                 (click)="irParaEditarDados()"
+                [title]="'GERAL.ALTERAR' | translate"
+                class="main-clear fs-14 tipo-link"
                 fill="clear"
                 shape="round"
-                mode="md"
-                title="alterar"
-                class="main-clear fs-14 tipo-link">
-                  alterar <ion-icon name="create-outline" class="mg-left-5"></ion-icon>
+                mode="md">
+                  {{ 'GERAL.ALTERAR' | translate }} <ion-icon name="create-outline" class="mg-left-5"></ion-icon>
                 </ion-button>
               </ion-menu-toggle>
             </ion-text>
@@ -51,20 +53,20 @@
         mode="ios">
           <ion-menu-toggle>
             <ion-item
-            class="line-height-23"
             *ngFor="let item of opcoesDoMenu"
             (click)="definirItem(item)"
-            [title]="item.titulo['pt']"
-            [detailIcon]="true"
-            mode="ios"
             [routerLink]="[item.rota]"
+            [title]="item.titulo[informacoes.idioma.value]"
+            [detailIcon]="true"
+            class="line-height-23"
+            mode="ios"
             lines="none"
             routerLinkActive="rota-ativa">
               <ion-icon [name]="item.icone + '-outline'"></ion-icon>
 
               <ion-text mode="ios">
-                <p class="fs-20 titulo font-baloo">{{ item.titulo['pt'] }}</p>
-                <p class="fs-14 descricao">{{ item.descricao['pt'] }}</p>
+                <p class="fs-20 titulo font-baloo">{{ item.titulo[informacoes.idioma.value] }}</p>
+                <p class="fs-14 descricao">{{ item.descricao[informacoes.idioma.value] }}</p>
               </ion-text>
             </ion-item>
           </ion-menu-toggle>

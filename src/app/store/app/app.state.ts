@@ -8,7 +8,7 @@ export interface IAppState {
   idioma: Idioma,
   cidadeEscolhida: Cidade,
   jaAcessouAnfitrion: boolean,
-  saudacao: string,
+  saudacao: any,
   anfitrion: Anfitrion,
   rotaAnterior: string | string[]
 }
@@ -43,7 +43,11 @@ export const appInitialState: IAppState = {
     }
   },
   jaAcessouAnfitrion: false,
-  saudacao: '',
+  saudacao: {
+    pt: '',
+    en: '',
+    es: ''
+  },
   anfitrion: {
     whatsApp: '5513997330408',
     instagram: 'anfitrionapp'
@@ -73,7 +77,7 @@ export const definirCidade = createAction(
 
 export const definirSaudacao = createAction(
   '[APP] Definir saudação',
-  props<{ saudacao: string }>()
+  props<{ saudacao: any }>()
 )
 
 export const definirRotaAnterior = createAction(

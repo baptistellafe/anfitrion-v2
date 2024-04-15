@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AlertOptions } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, take } from 'rxjs';
 import { CIDADE_ESCOLHIDA_KEY, IDIOMA_KEY } from 'src/app/consts/keys';
 import { Cidade } from 'src/app/interfaces/Cidade';
 import { AppConfigService } from 'src/app/services/app-config.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { IAppState, definirCidade, definirIdioma } from 'src/app/store/app/app.state';
 import * as AppStore from './../../../app/store/app/app.state';
+import { LangChangeEvent, TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
 
 
 @Component({
@@ -15,33 +16,45 @@ import * as AppStore from './../../../app/store/app/app.state';
   templateUrl: './city-button.component.html',
   styleUrls: ['./city-button.component.scss'],
 })
-export class CityButtonComponent  implements OnInit {
+export class CityButtonComponent  implements OnInit, OnDestroy {
 
   public cities: Cidade[];
   public cidadeEscolhida: Cidade;
   public selectedCityValue: string;
 
-  public informacoes$: Observable<IAppState>;
-  public informacoes: IAppState;
-
   public cityButtonAlertOptions: AlertOptions = {
-    subHeader: 'Uma cidade',
-    message: 'Escolha uma da lista',
     backdropDismiss: false
   }
+
+  public informacoes: IAppState;
+  public informacoes$: Observable<IAppState>;
+  public inscricaoInformacoes: Subscription;
+
+  public traducaoDoComponent: any;
+  public traducaoDoComponent$: Observable<any>;
+  public inscricaoTraducaoDoComponente: Subscription;
+
+  public mudancasNoIdioma$: Observable<any>;
+  public inscricaoMudancaNoIdioma: Subscription;
 
   constructor(
     private appConfig : AppConfigService,
     private store : Store,
-    private storageService : StorageService
+    private storageService : StorageService,
+    private translate : TranslateService
   ) { }
 
   async ngOnInit() {
     this.cities = this.appConfig.obterCidades();
     this.obterTodasAsInformacoes();
+    this.obterTraducaoDaTela();
     this.definirCidadeInicial();
+    this.identificarMudancaNoIdioma();
   }
 
+  /**
+   * @description Define a cidade inicial.
+   */
   public definirCidadeInicial(): void {
 
     if (this.informacoes.cidadeEscolhida.value) {
@@ -55,6 +68,9 @@ export class CityButtonComponent  implements OnInit {
     this.store.dispatch(definirCidade({ cidadeEscolhida }));
   }
 
+  /**
+   * @description Define a cidade escolhida.
+   */
   public definirCidade(e?: any): void {
     let cidadeEscolhida: Cidade;
     cidadeEscolhida = this.cidadeEscolhida;
@@ -63,6 +79,10 @@ export class CityButtonComponent  implements OnInit {
     this.store.dispatch(definirCidade({ cidadeEscolhida }));
   }
 
+  /**
+   * @description Compara se a cidade selecionada é igual a da opção e checa.
+   * Disponível no próprio exemplo do Ionic.
+   */
   public compararCidades(city1: Cidade, city2: Cidade): boolean {
     return city1 && city2 ? city1.value === city2.value : city1 === city2;
   }
@@ -72,9 +92,55 @@ export class CityButtonComponent  implements OnInit {
    */
   public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
-    this.informacoes$.subscribe((res: IAppState) => {
+    this.inscricaoInformacoes = this.informacoes$
+    .subscribe((res: IAppState) => {
       this.informacoes = res;
     })
+  }
+
+  /**
+   * @description Obtém a tradução da tela para ser usado no TS.
+   * Neste caso não precisa se desinscrever por causa do Take(1).
+   */
+  public obterTraducaoDaTela(): void {
+    this.traducaoDoComponent$ = this.translate.get('COMPONENTS.SELETOR_DE_CIDADES');
+    this.inscricaoTraducaoDoComponente = this.traducaoDoComponent$
+    .subscribe((res: any) => {
+      this.traducaoDoComponent = res;
+    })
+  }
+
+  /**
+   * @description Função responsável por identificar mudança no idioma.
+   * Ele identifica mudanças, re-traduz a tela e re-define o que tiver que redefinir.
+   */
+  public identificarMudancaNoIdioma(): void {
+    this.mudancasNoIdioma$ = this.translate.onLangChange;
+    this.inscricaoMudancaNoIdioma = this.mudancasNoIdioma$
+    .subscribe((event: LangChangeEvent) => {
+      this.obterTraducaoDaTela();
+
+      this.definirCfgDoAlert({
+        subHeader: this.traducaoDoComponent.TITULO,
+        message: this.traducaoDoComponent.DESCRICAO
+      })
+    });
+  }
+
+  /**
+   * @description Define a configuração de algumas informações do Alert.
+   */
+  public definirCfgDoAlert(configuracao: AlertOptions): void {
+    this.cityButtonAlertOptions = configuracao;
+  }
+
+  /**
+   * @description Responsável por desinscrever-se de observables inicializados na tela.
+   */
+  ngOnDestroy(): void {
+    this.inscricaoInformacoes.unsubscribe();
+    this.inscricaoTraducaoDoComponente.unsubscribe();
+    this.inscricaoMudancaNoIdioma.unsubscribe();
   }
 
 }

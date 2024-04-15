@@ -1,9 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { IonContent, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { UtilsService } from 'src/app/services/utils.service';
 import { IAppState } from 'src/app/store/app/app.state';
 import Swiper from 'swiper';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   templateUrl: './qual-a-boa.page.html',
   styleUrls: ['./qual-a-boa.page.scss'],
 })
-export class QualABoaPage implements OnInit {
+export class QualABoaPage implements OnInit, OnDestroy {
   @ViewChild('conteudoQualAboa') conteudoQualAboa: IonContent;
 
   public categoriaSelecionada: any;
@@ -28,8 +28,10 @@ export class QualABoaPage implements OnInit {
   public horaAtual : number = moment().hour();
   public categorias: any[];
 
-  public informacoes$: Observable<IAppState>;
   public informacoes: IAppState = AppStore.appInitialState;
+  public informacoes$: Observable<IAppState>;
+  public inscricaoInformacoes: Subscription;
+
 
   public rotaAtual: string | string[] = this.router.url;
 
@@ -44,7 +46,14 @@ export class QualABoaPage implements OnInit {
   ngOnInit() {
     this.obterTodasAsInformacoes();
     this.obterCategorias();
+  }
+
+  ionViewWillEnter(): void {
     this.definirSlideInicial();
+  }
+
+  ionViewWillLeave(): void {
+    this.indexAtual = 0;
   }
 
   ionViewDidEnter(): void {
@@ -60,88 +69,120 @@ export class QualABoaPage implements OnInit {
       {
         icone: 'beer',
         texto: {
-          pt: 'Bares'
+          pt: 'Bares',
+          en: 'Bars',
+          es: 'Barito'
         },
         value: 'bares',
         descricao: {
-          pt: 'bares, botecos e pubs.'
+          pt: 'bares, botecos e pubs.',
+          en: 'bar and pubs.',
+          es: 'barizots, boteqitops e pb.'
         },
         especial: false
       },
       {
         icone: 'restaurant',
         texto: {
-          pt: 'Restaurantes'
+          pt: 'Restaurantes',
+          en: 'Restaurants',
+          es: 'Restaurantito'
         },
         value: 'restaurantes',
         descricao: {
-          pt: 'comida japonesa, mexicana, etc...'
+          pt: 'comida japonesa, mexicana, etc...',
+          en: 'japan food, mexican food, etc...',
+          es: 'japonesito, mexicanito, etc...'
         },
         especial: false
       },
       {
         icone: 'fast-food',
         texto: {
-          pt: 'Hamburguerias'
+          pt: 'Hamburguerias',
+          en: 'Burguer place',
+          es: 'Hamburguerita'
         },
         value: 'hamburguerias',
         descricao: {
-          pt: 'hamburguer, fast-food...'
+          pt: 'hamburguer, fast-food...',
+          en: 'hamburguer, fast-food...',
+          es: 'hamburguer, comidita rapidita, etc...'
         },
         especial: false
       },
       {
         icone: 'pizza',
         texto: {
-          pt: 'Pizzarias e esfiharias'
+          pt: 'Pizzarias e esfiharias',
+          en: 'Pizza and esfihas',
+          es: 'Pizzitas e esfihitas'
         },
         value: 'pizzarias-e-esfihas',
         descricao: {
-          pt: 'pizzas, esfihas, brotos, etc...'
+          pt: 'pizzas, esfihas, brotos, etc...',
+          en: 'pizzas, esfihas, etc...',
+          es: 'pizzitas, esfihitas, etc...'
         },
         especial: false
       },
       {
         icone: 'musical-notes',
         texto: {
-          pt: 'Casas noturnas'
+          pt: 'Casas noturnas',
+          en: 'Nightclubs',
+          es: 'Casas nocturnas'
         },
         value: 'casasnoturnas',
         descricao: {
-          pt: 'música ao vivo, etc...'
+          pt: 'música ao vivo, dj, etc...',
+          en: 'live music, dj, etc...',
+          es: 'musiquita ao vivo, djzito, etc...'
         },
         especial: false
       },
       {
         icone: 'wine',
         texto: {
-          pt: 'Adegas'
+          pt: 'Adegas',
+          en: 'Wine Houses',
+          es: 'Casa de bebidas'
         },
         value: 'adegas',
         descricao: {
-          pt: 'combo de bebida, gelo, etc...'
+          pt: 'combo de bebida, gelo, etc...',
+          en: 'drink comb, ice, etc...',
+          es: 'combito de bebida, gelito, etc...'
         },
         especial: false
       },
       {
         icone: 'flame',
         texto: {
-          pt: 'Tabacarias'
+          pt: 'Tabacarias',
+          en: 'Smoke House',
+          es: 'Tabacarita'
         },
         value: 'tabacarias',
         descricao: {
-          pt: 'vape, narguile, seda, etc...'
+          pt: 'vape, narguile, seda, etc...',
+          en: 'vaps, narguils, seds...',
+          es: 'vapito, narguilito, sedita, etc...'
         },
         especial: false
       },
       {
         icone: 'qr-code',
         texto: {
-          pt: 'Sugestões'
+          pt: 'Sugestões',
+          en: 'Sugesttions',
+          es: 'Suggests'
         },
         value: 'sugestoes',
         descricao: {
-          pt: 'poupar tempo'
+          pt: 'poupar tempo',
+          en: 'save your time',
+          es: 'salve tu tiempo'
         },
         especial: true
       }
@@ -205,7 +246,8 @@ export class QualABoaPage implements OnInit {
    */
   public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
-    this.informacoes$.subscribe((res: IAppState) => {
+    this.inscricaoInformacoes = this.informacoes$
+    .subscribe((res: IAppState) => {
       this.informacoes = res;
     })
   }
@@ -222,5 +264,9 @@ export class QualABoaPage implements OnInit {
   public definirSlideInicial(): void {
     this.categoriaSelecionada = this.categorias[this.indexAtual];
     this.pularSlidePara(this.indexAtual)
+  }
+
+  ngOnDestroy(): void {
+    this.inscricaoInformacoes.unsubscribe();
   }
 }

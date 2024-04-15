@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, viewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { IonInput, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
@@ -16,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './primeiro-acesso.page.html',
   styleUrls: ['./primeiro-acesso.page.scss'],
 })
-export class PrimeiroAcessoPage implements OnInit {
+export class PrimeiroAcessoPage implements OnInit, OnDestroy {
 
   @ViewChild('inputPrimeiroNome') inputPrimeiroNome: IonInput;
   public nomeDoVisitante: string = '';
@@ -24,11 +24,13 @@ export class PrimeiroAcessoPage implements OnInit {
   @ViewChild('primeiroAcessoSwiper') primeiroAcessoSwiper?: ElementRef<{ swiper: Swiper }>
   public indexAtual: number | undefined = 0;
 
-  public informacoes$: Observable<IAppState>;
   public informacoes: IAppState;
+  private informacoes$: Observable<IAppState>;
+  private inscricaoInformacoes: Subscription;
 
-  public traducaoDaTela$: Observable<any>;
   public traducaoDaTela: any;
+  private traducaoDaTela$: Observable<any>;
+  private inscricaoTraducaoDaTela: Subscription;
 
   constructor(
     private title : Title,
@@ -41,20 +43,11 @@ export class PrimeiroAcessoPage implements OnInit {
 
   ngOnInit() {
     this.obterTodasAsInformacoes();
-  }
-
-  ionViewWillEnter(): void {
     this.obterTraducaoDaTela();
-    this.title.setTitle(`${this.traducaoDaTela?.TITULO}`)
   }
 
-  public obterTraducaoDaTela(): void {
-    this.traducaoDaTela$ = this.translate.get('TELA_PRIMEIRO_ACESSO');
-    this.traducaoDaTela$
-    .pipe(take(1))
-    .subscribe((res: any) => {
-      this.traducaoDaTela = res;
-    })
+  ionViewDidEnter(): void {
+    this.title.setTitle(`${this.traducaoDaTela?.TITULO}`);
   }
 
   /**
@@ -140,9 +133,35 @@ export class PrimeiroAcessoPage implements OnInit {
    */
    public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
-    this.informacoes$.subscribe((res: IAppState) => {
+    this.inscricaoInformacoes = this.informacoes$
+    .subscribe((res: IAppState) => {
       this.informacoes = res;
     })
   }
 
+  /**
+   * @description Obtém a tradução da tela para ser usado no TS.
+   * Neste caso não precisa se desinscrever por causa do Take(1).
+   */
+  public obterTraducaoDaTela(): void {
+    this.traducaoDaTela$ = this.translate.get('TELA_PRIMEIRO_ACESSO');
+    this.inscricaoTraducaoDaTela = this.traducaoDaTela$
+    .subscribe((res: any) => {
+      this.traducaoDaTela = res;
+      this.title.setTitle(`${this.traducaoDaTela?.TITULO}`);
+    })
+  }
+
+  /**
+   * @description Dispara uma ação quando o idioma é alterado.
+   * Capturamos o evento e neste caso re-traduzimos o TS.
+   */
+  public idiomaMudou(): void {
+    this.obterTraducaoDaTela();
+  }
+
+  ngOnDestroy(): void {
+    this.inscricaoInformacoes.unsubscribe();
+    this.inscricaoTraducaoDaTela.unsubscribe();
+  }
 }

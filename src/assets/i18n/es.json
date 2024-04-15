@@ -35,14 +35,37 @@
     "ALTERE_QUANDO_QUISER" : "Altiere quano qusieres",
     "DEFINIR" : "Debini",
     "CANCELAR" : "Cancela",
-    "SELECIONAR" : "Seleccionar"
+    "SELECIONAR" : "Seleccionar",
+    "VISITANTE" : "visitantito",
+    "ALTERAR" : "trocadito",
+    "VER" : "Vier"
+  },
+  "TELA_BOAS_VINDAS" : {
+    "TITULO" : "Bien-venido(a)",
+    "CONHECA" : "cunieça lo mehor"
+  },
+  "TELA_QUAL_A_BOA" : {
+    "QUAL_A_BOA": "o que tienes para hoy",
+    "PARA_QUEM_PROCURA" : "para quem procuera"
+  },
+  "TELA_PREFERENCIAS" : {
+    "TITULO" : "Prefiro",
+    "DESCRICAO" : "confiracion del app.",
+    "NOVA_CIDADE" : "nueva ciudad",
+    "CIDADE_ATUAL" : "cidade atuale",
+    "NOVO_IDIOMA" : "nuevo idioma",
+    "IDIOMA_ATUAL" : "idioma atuale"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
-      "TITULO" : "Seleccionar ciudad"
+      "TITULO" : "Seleccionar ciudad",
+      "DESCRICAO" : "Seleccione una dela lista"
     },
     "SELETOR_DE_IDIOMAS" : {
       "TITULO" : "Selecionar la lingua"
+    },
+    "FEITO_COM_CARINHO" : {
+      "TEXTO" : "feito con"
     }
   }
 }

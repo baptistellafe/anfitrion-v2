@@ -23,6 +23,22 @@
     },
     "AVISO_PARA_DEFINIR_NOME": ["Volte e defina", "um nome"]
   },
+  "TELA_BOAS_VINDAS" : {
+    "TITULO" : "Bem vindo(a)",
+    "CONHECA" : "Conheça o melhor"
+  },
+  "TELA_QUAL_A_BOA" : {
+    "QUAL_A_BOA": "qual a boa pra hoje",
+    "PARA_QUEM_PROCURA" : "para quem procura"
+  },
+  "TELA_PREFERENCIAS" : {
+    "TITULO" : "Preferências",
+    "DESCRICAO" : "configurações do app.",
+    "NOVA_CIDADE" : "nova cidade",
+    "CIDADE_ATUAL" : "cidade atual",
+    "NOVO_IDIOMA" : "novo idioma",
+    "IDIOMA_ATUAL" : "idioma atual"
+  },
   "GERAL" : {
     "AVANCAR" : "Avançar",
     "VOLTAR" : "Voltar",
@@ -35,14 +51,21 @@
     "ALTERE_QUANDO_QUISER" : "Altere quando quiser",
     "DEFINIR" : "Definir",
     "CANCELAR" : "Cancelar",
-    "SELECIONAR" : "Selecionar"
+    "SELECIONAR" : "Selecionar",
+    "VISITANTE" : "visitante",
+    "ALTERAR" : "alterar",
+    "VER" : "Ver"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
-      "TITULO" : "Selecionar cidade"
+      "TITULO" : "Selecionar cidade",
+      "DESCRICAO" : "Selecione uma da lista"
     },
     "SELETOR_DE_IDIOMAS" : {
       "TITULO" : "Selecionar idioma"
+    },
+    "FEITO_COM_CARINHO" : {
+      "TEXTO" : "feito com"
     }
   }
 }

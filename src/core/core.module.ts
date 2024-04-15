@@ -44,7 +44,8 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   exports: [
     IonicModule,
-    BrowserModule
+    BrowserModule,
+    TranslateModule
   ]
 })
 export class CoreModule { }

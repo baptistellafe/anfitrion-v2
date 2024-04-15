@@ -1,36 +1,42 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavController } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, take } from 'rxjs';
 import { IAppState } from 'src/app/store/app/app.state';
 import * as AppStore from './../../store/app/app.state';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'anf-boas-vindas',
   templateUrl: './boas-vindas.page.html',
   styleUrls: ['./boas-vindas.page.scss'],
 })
-export class BoasVindasPage implements OnInit {
-  public informacoes$: Observable<IAppState>;
+export class BoasVindasPage implements OnInit, OnDestroy {
+
   public informacoes: IAppState;
+  public informacoes$: Observable<IAppState>;
+  public inscricaoInformacoes: Subscription;
+
+  public traducaoDaTela: any;
+  public traducaoDaTela$: Observable<any>;
+  public inscricaoTraducaoDaTela: Subscription;
 
   constructor(
     private title : Title,
     private renderer: Renderer2,
     private navCtrl : NavController,
-    private store : Store
+    private store : Store,
+    private translate : TranslateService
   ) { }
 
   ngOnInit(): void {
     this.obterTodasAsInformacoes();
-  }
-
-  ionViewWillEnter(): void {
-    this.title.setTitle(`Bem vindo(a)`);
+    this.obterTraducaoDaTela();
   }
 
   ionViewDidEnter(): void {
-    this.animarElementos()
+    this.animarElementos();
+    this.title.setTitle(`${this.traducaoDaTela?.TITULO}`)
   }
 
   /**
@@ -63,9 +69,27 @@ export class BoasVindasPage implements OnInit {
    */
   public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
-    this.informacoes$.subscribe((res: IAppState) => {
+    this.inscricaoInformacoes = this.informacoes$
+    .subscribe((res: IAppState) => {
       this.informacoes = res;
     })
+  }
+
+  /**
+   * @description Obtém a tradução da tela para ser usado no TS.
+   * Neste caso não precisa se desinscrever por causa do Take(1).
+   */
+  public obterTraducaoDaTela(): void {
+    this.traducaoDaTela$ = this.translate.get('TELA_BOAS_VINDAS');
+    this.inscricaoTraducaoDaTela = this.traducaoDaTela$
+    .subscribe((res: any) => {
+      this.traducaoDaTela = res;
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.inscricaoInformacoes.unsubscribe();
+    this.inscricaoTraducaoDaTela.unsubscribe();
   }
 
 }

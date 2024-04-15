@@ -44,27 +44,37 @@ export class AppConfigService {
         es: 'Acerca de'
       },
       descricao: {
-        pt: 'Conheça o anfitrion'
+        pt: 'Conheça o anfitrion',
+        en: 'What we do',
+        es: 'O que hacemos'
       },
       rota: 'sobre-nos',
       icone: 'terminal'
     },
     {
       titulo: {
-        pt: 'Preferências'
+        pt: 'Preferências',
+        en: 'Preferences',
+        es: 'Preferiencias'
       },
       descricao: {
-        pt: 'Configuração do app'
+        pt: 'Configuração do app',
+        en: 'App configuration',
+        es: 'Configuracion del app'
       },
       rota: 'preferencias',
       icone: 'settings'
     },
     {
       titulo: {
-        pt: 'Contato'
+        pt: 'Contato',
+        en: 'Contact',
+        es: 'Contatito'
       },
       descricao: {
-        pt: 'Fale comigo'
+        pt: 'Fale comigo',
+        en: 'Contact me',
+        es: 'Habla comigo'
       },
       rota: 'contato',
       icone: 'chatbubble-ellipses'

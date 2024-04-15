@@ -10,6 +10,7 @@ import { Idioma } from 'src/app/interfaces/Idioma';
 import { AppConfigService } from 'src/app/services/app-config.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { CIDADE_ESCOLHIDA_KEY, IDIOMA_KEY } from 'src/app/consts/keys';
+import { TranslateAnfService } from 'src/app/services/translate-anf.service';
 
 @Component({
   selector: 'anf-preferencias',
@@ -44,7 +45,8 @@ export class PreferenciasPage implements OnInit {
     public appConfig : AppConfigService,
     private storageService : StorageService,
     private alertCtrl : AlertController,
-    private toastCtrl : ToastController
+    private toastCtrl : ToastController,
+    private translate : TranslateAnfService
   ) { }
 
   ngOnInit() {
@@ -166,6 +168,7 @@ export class PreferenciasPage implements OnInit {
 
   /**
    * @description Confirmar alterações realizadas caso tenham alterado alguma informação.
+   * No caso do idioma, precisamos mudar o idioma de forma geral.
    */
   public confirmarAlteracoes(): void {
     if (this.houveMudancaEmAlgumSeletor) {
@@ -175,8 +178,9 @@ export class PreferenciasPage implements OnInit {
       }
 
       this.store.dispatch(AppStore.definirPreferencias({ preferencias }));
-      this.storageService.armazenarChave(IDIOMA_KEY, this.idiomaSelecionado)
       this.storageService.armazenarChave(CIDADE_ESCOLHIDA_KEY, this.cidadeEscolhida);
+
+      this.confirmarNovoIdioma(this.idiomaSelecionado.value);
 
       this.mudancasPendenteDeConfirmacao = false;
       this.houveMudancaEmAlgumSeletor = false;
@@ -227,5 +231,9 @@ export class PreferenciasPage implements OnInit {
     await toast.present();
 
     return toast;
+  }
+
+  public confirmarNovoIdioma(idioma: string): void {
+    this.translate.definirIdioma(idioma);
   }
 }

@@ -1,5 +1,5 @@
 import { IAppState } from 'src/app/store/app/app.state';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Idioma } from 'src/app/interfaces/Idioma';
 import { AppConfigService } from 'src/app/services/app-config.service';
@@ -14,6 +14,7 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./language-button.component.scss'],
 })
 export class LanguageButtonComponent  implements OnInit, OnDestroy {
+  @Output() idiomaAlterado: EventEmitter<any> = new EventEmitter();
 
   @Input() darkMode: boolean = false;
 
@@ -42,6 +43,7 @@ export class LanguageButtonComponent  implements OnInit, OnDestroy {
 
   public definirIdioma(lang: Idioma): void {
     this.translateApp.definirIdioma(lang.value);
+    this.emitirMudancaNoBotao(lang);
   }
 
   public obterIdiomas(): void {
@@ -61,6 +63,10 @@ export class LanguageButtonComponent  implements OnInit, OnDestroy {
 
   public desinscreverDeTodasAsInformacoes(): void {
     this.inscricaoEmInformacoes.unsubscribe();
+  }
+
+  public emitirMudancaNoBotao(idioma: Idioma): void {
+    this.idiomaAlterado.emit(idioma);
   }
 
 }

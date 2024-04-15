@@ -37,10 +37,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.translateApp.definirIdiomaInicial();
+    this.definirIdiomaInicial();
+    await this.recuperarInformacoesDaStorage();
     this.bloquearSwiperDoMenu();
     this.obterOpcoesDoMenu();
-    await this.recuperarInformacoesDaStorage();
     this.definirSaudacao();
     this.obterTodasAsInformacoes();
   }
@@ -140,5 +140,9 @@ export class AppComponent implements OnInit {
 
   public bloquearSwiperDoMenu(): void {
     this.menuCtrl.swipeGesture(false)
+  }
+
+  public definirIdiomaInicial(): void {
+    this.translateApp.definirIdiomaInicial();
   }
 }

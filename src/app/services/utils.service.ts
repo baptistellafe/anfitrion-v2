@@ -53,16 +53,36 @@ export class UtilsService {
    */
   public definirSaudacaoDeAcordoComHorario(): void {
     let horaAtual: number = parseInt(moment().format('HH').split(':')[0]);
-    let saudacao: string = '';
+    let saudacao = {
+      pt: '',
+      en: '',
+      es: ''
+    };
 
     if (horaAtual >= 0 && horaAtual <= 5) {
-      saudacao = 'A noite é uma criança'
+      saudacao = {
+        pt: 'A noite é uma criança',
+        en: 'The night is a child',
+        es: 'La notche é una criança'
+      }
     } else if(horaAtual >= 6 && horaAtual <= 11) {
-      saudacao = 'Bom dia'
+      saudacao = {
+        pt: 'Bom dia',
+        en: 'Good morning',
+        es: 'Buenos dias'
+      }
     } else if(horaAtual >= 12 && horaAtual <= 18) {
-      saudacao = 'Boa tarde'
+      saudacao = {
+        pt: 'Boa tarde',
+        en: 'Good afternoon',
+        es: 'Buenas tardes'
+      }
     } else {
-      saudacao = 'Boa noite'
+      saudacao = {
+        pt: 'Boa noite',
+        en: 'Good night',
+        es: 'Buenas notches'
+      }
     }
 
     this.store.dispatch(definirSaudacao({ saudacao: saudacao }));
