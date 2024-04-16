@@ -115,7 +115,9 @@
     "DIRECIONAR_INSTAGRAM" : "Redirecionito para instagtioto, tudo bien?",
     "SUGESTOES" : "sugestiones",
     "DE" : "de",
-    "DEFINIR_COMO" : "debinir cuomo"
+    "DEFINIR_COMO" : "debinir cuomo",
+    "PARA" : "pla",
+    "NENHUM_REGISTRO" : "nadita encontradito"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {

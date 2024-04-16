@@ -115,7 +115,9 @@
     "DIRECIONAR_INSTAGRAM" : "Vou te direcionar para o nosso perfil do Instagram, tudo bem?",
     "SUGESTOES" : "sugestões",
     "DE" : "de",
-    "DEFINIR_COMO" : "definir como"
+    "DEFINIR_COMO" : "definir como",
+    "PARA" : "para",
+    "NENHUM_REGISTRO" : "nenhum registro encontrado"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {

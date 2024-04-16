@@ -115,7 +115,9 @@
     "DIRECIONAR_INSTAGRAM" : "Redirect to instagram, ok?",
     "SUGESTOES" : "suggestions",
     "DE" : "of",
-    "DEFINIR_COMO" : "define as"
+    "DEFINIR_COMO" : "define as",
+    "PARA" : "to",
+    "NENHUM_REGISTRO" : "no entries found"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {

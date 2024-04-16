@@ -3,11 +3,151 @@ import { Cidade } from '../interfaces/Cidade';
 import { Idioma } from '../interfaces/Idioma';
 import { RedeSocial } from '../interfaces/RedeSocial';
 import { Sugestao } from '../interfaces/Sugestao';
+import { Categoria } from '../interfaces/Categoria';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppConfigService {
+
+  private categorias: Categoria[] = [
+    {
+      icone: 'beer',
+      texto: {
+        pt: 'Bares',
+        en: 'Bars',
+        es: 'Barito'
+      },
+      value: 'bares',
+      descricao: {
+        pt: 'bares, botecos e pubs.',
+        en: 'bar and pubs.',
+        es: 'barizots, boteqitops e pb.'
+      },
+      especial: false,
+      cities: ['santos'],
+      ativo: true
+    },
+    {
+      icone: 'restaurant',
+      texto: {
+        pt: 'Restaurantes',
+        en: 'Restaurants',
+        es: 'Restaurantito'
+      },
+      value: 'restaurantes',
+      descricao: {
+        pt: 'comida japonesa, mexicana, etc...',
+        en: 'japan food, mexican food, etc...',
+        es: 'japonesito, mexicanito, etc...'
+      },
+      especial: false,
+      cities: ['santos'],
+      ativo: false
+    },
+    {
+      icone: 'fast-food',
+      texto: {
+        pt: 'Hamburguerias',
+        en: 'Burguer place',
+        es: 'Hamburguerita'
+      },
+      value: 'hamburguerias',
+      descricao: {
+        pt: 'hamburguer, fast-food...',
+        en: 'hamburguer, fast-food...',
+        es: 'hamburguer, comidita rapidita, etc...'
+      },
+      especial: false,
+      cities: ['santos'],
+      ativo: false
+    },
+    {
+      icone: 'pizza',
+      texto: {
+        pt: 'Pizzarias e esfiharias',
+        en: 'Pizza and esfihas',
+        es: 'Pizzitas e esfihitas'
+      },
+      value: 'pizzarias-e-esfihas',
+      descricao: {
+        pt: 'pizzas, esfihas, brotos, etc...',
+        en: 'pizzas, esfihas, etc...',
+        es: 'pizzitas, esfihitas, etc...'
+      },
+      especial: false,
+      cities: ['santos'],
+      ativo: false
+    },
+    {
+      icone: 'musical-notes',
+      texto: {
+        pt: 'Casas noturnas',
+        en: 'Nightclubs',
+        es: 'Casas nocturnas'
+      },
+      value: 'casasnoturnas',
+      descricao: {
+        pt: 'música ao vivo, dj, etc...',
+        en: 'live music, dj, etc...',
+        es: 'musiquita ao vivo, djzito, etc...'
+      },
+      especial: false,
+      cities: ['santos'],
+      ativo: false
+    },
+    {
+      icone: 'wine',
+      texto: {
+        pt: 'Adegas',
+        en: 'Wine Houses',
+        es: 'Casa de bebidas'
+      },
+      value: 'adegas',
+      descricao: {
+        pt: 'combo de bebida, gelo, etc...',
+        en: 'drink comb, ice, etc...',
+        es: 'combito de bebida, gelito, etc...'
+      },
+      especial: false,
+      cities: ['santos'],
+      ativo: false
+    },
+    {
+      icone: 'flame',
+      texto: {
+        pt: 'Tabacarias',
+        en: 'Smoke House',
+        es: 'Tabacarita'
+      },
+      value: 'tabacarias',
+      descricao: {
+        pt: 'vape, narguile, seda, etc...',
+        en: 'vaps, narguils, seds...',
+        es: 'vapito, narguilito, sedita, etc...'
+      },
+      especial: false,
+      cities: ['santos'],
+      ativo: false
+    },
+    {
+      icone: 'qr-code',
+      texto: {
+        pt: 'Sugestões',
+        en: 'Sugesttions',
+        es: 'Suggests'
+      },
+      value: 'sugestoes',
+      descricao: {
+        pt: 'poupar tempo',
+        en: 'save your time',
+        es: 'salve tu tiempo'
+      },
+      especial: true,
+      cities: ['santos'],
+      ativo: true
+    }
+  ]
 
   private sugestoes: Sugestao[] = [
     {
@@ -339,6 +479,18 @@ export class AppConfigService {
     })
 
     return sugestoes
+  }
+
+  public obterCategorias(cidade: string): Categoria[] {
+    console.log(cidade);
+
+    let categorias = this.categorias.filter((categoria: Categoria) => {
+      return categoria.cities.includes(cidade) && categoria.ativo
+    })
+
+    console.log(categorias);
+
+    return categorias
   }
 
   public async identificarSeAtendeCidadeSolicitada(nomeDaCidadeEmFormatoDeValor: string): Promise<Cidade | undefined> {

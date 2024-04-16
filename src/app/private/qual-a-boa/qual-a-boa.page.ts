@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { IonContent, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
@@ -9,6 +9,8 @@ import { IAppState } from 'src/app/store/app/app.state';
 import Swiper from 'swiper';
 import * as AppStore from './../../store/app/app.state';
 import { Router } from '@angular/router';
+import { Categoria } from 'src/app/interfaces/Categoria';
+import { AppConfigService } from 'src/app/services/app-config.service';
 
 @Component({
   selector: 'anf-qual-a-boa',
@@ -18,6 +20,7 @@ import { Router } from '@angular/router';
 export class QualABoaPage implements OnInit, OnDestroy {
   @ViewChild('conteudoQualAboa') conteudoQualAboa: IonContent;
 
+
   public categoriaSelecionada: any;
 
   @ViewChild('qualaboaSwiper') qualaboaSwiper?: ElementRef<{ swiper: Swiper }>
@@ -25,31 +28,30 @@ export class QualABoaPage implements OnInit, OnDestroy {
 
   @ViewChild('qualaboaDescricaoSwiper') qualaboaDescricaoSwiper?: ElementRef<{ swiper: Swiper }>
 
-  public horaAtual : number = moment().hour();
-  public categorias: any[];
+  public categorias: Categoria[] = [];
 
   public informacoes: IAppState = AppStore.appInitialState;
   public informacoes$: Observable<IAppState>;
   public inscricaoInformacoes: Subscription;
 
-
   public rotaAtual: string | string[] = this.router.url;
+
+  public mostrarControladoresDoSwiper: boolean = false;
+  public mostrarBotaoCategoria: boolean = false;
+  public mostrarAvisoSemCategorias: boolean = false;
+  public carregandoCategorias: boolean = false;
 
   constructor(
     private navCtrl : NavController,
     private title : Title,
     private utilsService : UtilsService,
     private store : Store,
-    private router : Router
+    private router : Router,
+    private appConfig : AppConfigService
     ) { }
 
   ngOnInit() {
     this.obterTodasAsInformacoes();
-    this.obterCategorias();
-  }
-
-  ionViewWillEnter(): void {
-    this.definirSlideInicial();
   }
 
   ionViewWillLeave(): void {
@@ -64,129 +66,25 @@ export class QualABoaPage implements OnInit, OnDestroy {
     this.navCtrl.navigateForward('/trocar-cidade');
   }
 
-  public obterCategorias(): void {
-    this.categorias = [
-      {
-        icone: 'beer',
-        texto: {
-          pt: 'Bares',
-          en: 'Bars',
-          es: 'Barito'
-        },
-        value: 'bares',
-        descricao: {
-          pt: 'bares, botecos e pubs.',
-          en: 'bar and pubs.',
-          es: 'barizots, boteqitops e pb.'
-        },
-        especial: false
-      },
-      {
-        icone: 'restaurant',
-        texto: {
-          pt: 'Restaurantes',
-          en: 'Restaurants',
-          es: 'Restaurantito'
-        },
-        value: 'restaurantes',
-        descricao: {
-          pt: 'comida japonesa, mexicana, etc...',
-          en: 'japan food, mexican food, etc...',
-          es: 'japonesito, mexicanito, etc...'
-        },
-        especial: false
-      },
-      {
-        icone: 'fast-food',
-        texto: {
-          pt: 'Hamburguerias',
-          en: 'Burguer place',
-          es: 'Hamburguerita'
-        },
-        value: 'hamburguerias',
-        descricao: {
-          pt: 'hamburguer, fast-food...',
-          en: 'hamburguer, fast-food...',
-          es: 'hamburguer, comidita rapidita, etc...'
-        },
-        especial: false
-      },
-      {
-        icone: 'pizza',
-        texto: {
-          pt: 'Pizzarias e esfiharias',
-          en: 'Pizza and esfihas',
-          es: 'Pizzitas e esfihitas'
-        },
-        value: 'pizzarias-e-esfihas',
-        descricao: {
-          pt: 'pizzas, esfihas, brotos, etc...',
-          en: 'pizzas, esfihas, etc...',
-          es: 'pizzitas, esfihitas, etc...'
-        },
-        especial: false
-      },
-      {
-        icone: 'musical-notes',
-        texto: {
-          pt: 'Casas noturnas',
-          en: 'Nightclubs',
-          es: 'Casas nocturnas'
-        },
-        value: 'casasnoturnas',
-        descricao: {
-          pt: 'música ao vivo, dj, etc...',
-          en: 'live music, dj, etc...',
-          es: 'musiquita ao vivo, djzito, etc...'
-        },
-        especial: false
-      },
-      {
-        icone: 'wine',
-        texto: {
-          pt: 'Adegas',
-          en: 'Wine Houses',
-          es: 'Casa de bebidas'
-        },
-        value: 'adegas',
-        descricao: {
-          pt: 'combo de bebida, gelo, etc...',
-          en: 'drink comb, ice, etc...',
-          es: 'combito de bebida, gelito, etc...'
-        },
-        especial: false
-      },
-      {
-        icone: 'flame',
-        texto: {
-          pt: 'Tabacarias',
-          en: 'Smoke House',
-          es: 'Tabacarita'
-        },
-        value: 'tabacarias',
-        descricao: {
-          pt: 'vape, narguile, seda, etc...',
-          en: 'vaps, narguils, seds...',
-          es: 'vapito, narguilito, sedita, etc...'
-        },
-        especial: false
-      },
-      {
-        icone: 'qr-code',
-        texto: {
-          pt: 'Sugestões',
-          en: 'Sugesttions',
-          es: 'Suggests'
-        },
-        value: 'sugestoes',
-        descricao: {
-          pt: 'poupar tempo',
-          en: 'save your time',
-          es: 'salve tu tiempo'
-        },
-        especial: true
+  public obterCategorias(cidade: string): void {
+    this.carregandoCategorias = true;
+
+    setTimeout(() => {
+      this.categorias = this.appConfig.obterCategorias(cidade);
+
+      if (this.categorias.length === 0) {
+        this.mostrarAvisoSemCategorias = true;
+      } else if (this.categorias.length === 1) {
+        this.definirSlideInicial();
+        this.mostrarBotaoCategoria = true;
+      } else {
+        this.definirSlideInicial();
+        this.mostrarBotaoCategoria = true;
+        this.mostrarControladoresDoSwiper = true;
       }
-    ]
+
+      this.carregandoCategorias = false;
+    }, 3000);
   }
 
   public selecionarCategoria(index: number): void {
@@ -249,6 +147,10 @@ export class QualABoaPage implements OnInit, OnDestroy {
     this.inscricaoInformacoes = this.informacoes$
     .subscribe((res: IAppState) => {
       this.informacoes = res;
+
+      if (this.informacoes.cidadeEscolhida.value) {
+        this.obterCategorias(this.informacoes.cidadeEscolhida.value);
+      }
     })
   }
 

@@ -30,10 +30,29 @@
       </ion-text>
     </div>
 
+    <!-- AVISO SEM CATEGORIAS -->
+    <div
+    class="sem-categorias"
+    *ngIf="mostrarAvisoSemCategorias && !carregandoCategorias">
+      <ion-text mode="ios">
+        <p class="color-gray-mid fs-14">
+          {{ 'GERAL.NENHUM_REGISTRO' | translate }}
+        </p>
+      </ion-text>
+    </div>
+
+    <!-- BUSCANDO CATEGORIAS -->
+    <div
+    class="carregando-categorias"
+    *ngIf="carregandoCategorias">
+      <ion-spinner [name]="'dots'" class="color-gray-mid"></ion-spinner>
+    </div>
+
     <div class="qual-a-boa-swiper full-width">
       <!-- CATEGORIA -->
       <swiper-container
       #qualaboaSwiper
+      init="true"
       class="qual-a-boa full-width"
       free-mode="false"
       allow-touch-move="false"
@@ -54,7 +73,8 @@
         </swiper-slide>
       </swiper-container>
 
-      <div class="swiper-buttons">
+      <!-- SÓ APARECE SE HOUVER INICIALIZADO OS SWIPERS -->
+      <div class="swiper-buttons" *ngIf="mostrarControladoresDoSwiper">
         <ion-button
         (click)="retrocederSwiper()"
         [title]="'GERAL.VOLTAR' | translate"
@@ -74,9 +94,10 @@
 
       <!-- DESCRIÇÃO -->
       <swiper-container
+      #qualaboaDescricaoSwiper
+      init="true"
       free-mode="true"
       allow-touch-move="false"
-      #qualaboaDescricaoSwiper
       slides-per-view="1"
       centered-slides="true"
       speed="0"
@@ -105,7 +126,8 @@
       </swiper-container>
     </div>
 
-    <div class="qual-a-boa-botao-wrapper">
+     <!-- SÓ APARECE SE HOUVER INICIALIZADO OS SWIPERS -->
+    <div class="qual-a-boa-botao-wrapper" *ngIf="mostrarBotaoCategoria">
       <ion-button
       (click)="irPara(categoriaSelecionada)"
       title="Ver"
