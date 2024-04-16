@@ -15,7 +15,7 @@ mode="ios">
             <ion-button
             shape="round"
             (click)="retornarPara()"
-            title="Voltar"
+            [title]="'GERAL.VOLTAR' | translate"
             fill="solid"
             class="main fs-16 m-0"
             mode="md">
@@ -39,8 +39,8 @@ mode="ios">
         name="finger-print-outline"
         class="full-width fs-32 animate__animated animate__fadeInUp">
         </ion-icon>
-        <h2 class="font-baloo"><b>Informações</b></h2>
-        <p class="com-sarcasmo pt">sessão responsável por definir seus dados.</p>
+        <h2 class="font-baloo"><b>{{ 'TELA_EDITAR_DADOS.TITULO' | translate }}</b></h2>
+        <p>{{ 'TELA_EDITAR_DADOS.DESCRICAO' | translate }}</p>
       </ion-text>
     </div>
 
@@ -48,9 +48,9 @@ mode="ios">
       <div class="editar-dados-input-container">
         <form [formGroup]="informacoesForm">
           <ion-item
-            [lines]="'none'"
-            class="full-width ion-bg-transparent"
-            mode="ios">
+          [lines]="'none'"
+          class="full-width ion-bg-transparent"
+          mode="ios">
             <ion-input
             #inputEditarPrimeiroNome
             [readonly]="!editandoNome"
@@ -63,7 +63,7 @@ mode="ios">
             formControlName="primeiroNome"
             mode="ios"
             labelPlacement="stacked"
-            placeholder="Ex: Felipe">
+            [placeholder]="'GERAL.PLACEHOLDER_INPUT_NOME' | translate">
             </ion-input>
 
             <ion-icon
@@ -79,8 +79,8 @@ mode="ios">
         *ngIf="informacoesForm.controls['primeiroNome'].invalid"
         class="text-left full-width">
           <p class="color-negative fs-12">
-            <ng-container *ngIf="informacoesForm.get('primeiroNome')?.hasError('minlength')">no mínimo <b>3</b> caracteres</ng-container>
-            <ng-container *ngIf="informacoesForm.get('primeiroNome')?.hasError('required')">obrigatório</ng-container>
+            <ng-container *ngIf="informacoesForm.get('primeiroNome')?.hasError('minlength')">{{ 'GERAL.NO_MINIMO' | translate }} <b>3</b> {{ 'GERAL.CARACTERES' | translate }}</ng-container>
+            <ng-container *ngIf="informacoesForm.get('primeiroNome')?.hasError('required')">{{ 'GERAL.OBRIGATORIO' | translate }}</ng-container>
           </p>
         </ion-text>
 
@@ -88,35 +88,35 @@ mode="ios">
           <ion-button
           *ngIf="editandoNome"
           (click)="cancelarEdicao()"
-          title="Cancelar"
+          [title]="'GERAL.CANCELAR' | translate"
           fill="solid"
           shape="round"
           class="fs-14 icone-a-direita main-white cancelar"
           mode="md">
-            cancelar <ion-icon name="close-outline"></ion-icon>
+            {{ 'GERAL.CANCELAR' | translate }} <ion-icon name="close-outline"></ion-icon>
           </ion-button>
 
           <ion-button
           (click)="definirNomeDefinitivo()"
           [disabled]="informacoesForm.controls['primeiroNome'].invalid"
           *ngIf="editandoNome"
-          title="Definir nome"
+          [title]="'GERAL.DEFINIR_COMO' | translate"
           fill="solid"
           shape="round"
           class="main fs-14 mg-top-5 icone-a-direita definir"
           mode="md">
-            definir como <ng-container *ngIf="informacoesForm.controls['primeiroNome'].valid"><span class="mg-left-5"><b>{{ informacoesForm.get('primeiroNome')?.value }}</b></span> <ion-icon name="checkmark-outline"></ion-icon></ng-container>
+            {{ 'GERAL.DEFINIR_COMO' | translate }} <ng-container *ngIf="informacoesForm.controls['primeiroNome'].valid"><span class="mg-left-5"><b>{{ informacoesForm.get('primeiroNome')?.value }}</b></span> <ion-icon name="checkmark-outline"></ion-icon></ng-container>
           </ion-button>
 
           <ion-button
           *ngIf="!editandoNome && informacoes.primeiroNome"
           (click)="editarNome()"
-          title="Definir nome"
+          [title]="'GERAL.ALTERAR' | translate"
           fill="solid"
           shape="round"
           class="fs-14 icone-a-direita main-white alterar"
           mode="md">
-            alterar <ion-icon name="create-outline"></ion-icon>
+            {{ 'GERAL.ALTERAR' | translate }} <ion-icon name="create-outline"></ion-icon>
           </ion-button>
         </div>
       </div>

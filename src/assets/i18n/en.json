@@ -68,6 +68,31 @@
       ]
     }
   },
+  "TELA_SUGESTOES" : {
+    "SOBRE" : {
+      "TITULO" : "About",
+      "BOTAO_CONHECER_PONTOS_TURISTICOS" : [
+        "see some",
+        "touristic points"
+      ]
+    },
+    "O_QUE_E" : {
+      "TITULO" : "What is",
+      "TEXTO" : [
+        "Our meta ir ldaldaldal.",
+        "Is the best city of brasil tetetete."
+      ],
+      "BOTAO_SAIBA_MAIS" : [
+        "see more",
+        "about us"
+      ]
+    }
+  },
+  "TELA_EDITAR_DADOS" : {
+    "TITULO_TELA" : "Change your informations",
+    "TITULO" : "Informations",
+    "DESCRICAO" : "session to define your personal info."
+  },
   "GERAL" : {
     "AVANCAR" : "Forward",
     "VOLTAR" : "Back",
@@ -87,7 +112,10 @@
     "PUBLICIDADE" : "Publicity",
     "TUDO_BEM" : "OK",
     "SEGUIR" : "Follow",
-    "DIRECIONAR_INSTAGRAM" : "Redirect to instagram, ok?"
+    "DIRECIONAR_INSTAGRAM" : "Redirect to instagram, ok?",
+    "SUGESTOES" : "suggestions",
+    "DE" : "of",
+    "DEFINIR_COMO" : "define as"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
@@ -102,6 +130,15 @@
     },
     "VOLTAR_PARA_O_TOPO" : {
       "TEXTO" : ["back", "to top"]
+    },
+    "TOAST_INFORMACOES_ALTERADAS" : {
+      "HEADER" : "Changes",
+      "MENSAGEM" : "Your informations has updated."
+    },
+    "ALERTA_O_QUE_FAZEMOS_COM_INFORMACOES" : {
+      "SUBHEADER" : "Attention",
+      "MENSAGEM" : "The name you will define or defined will be used to.",
+      "BOTAO_ENTENDI" : "I understood"
     }
   }
 }

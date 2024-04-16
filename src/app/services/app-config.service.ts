@@ -2,11 +2,99 @@ import { Injectable } from '@angular/core';
 import { Cidade } from '../interfaces/Cidade';
 import { Idioma } from '../interfaces/Idioma';
 import { RedeSocial } from '../interfaces/RedeSocial';
+import { Sugestao } from '../interfaces/Sugestao';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppConfigService {
+
+  private sugestoes: Sugestao[] = [
+    {
+      label: {
+        pt: 'festival de',
+        en: 'festival of',
+        es: 'festivito del'
+      },
+      texto: {
+        pt: 'comida japonesa',
+        en: 'japonese food',
+        es: 'comidita japonesa'
+      },
+      layoutInvertido: false,
+      categoria: {
+        pt: 'comer',
+        en: 'eat',
+        es: 'cume'
+      },
+      value: 'festival-de-comida-japonesa',
+      cities: ['santos'],
+      ativo: true
+    },
+    {
+      label: {
+        pt: 'o que tem na',
+        en: 'places on the',
+        es: 'lugar en la'
+      },
+      texto: {
+        pt: 'rua gastronômica',
+        en: 'gastronomic street',
+        es: 'rua gastronomi'
+      },
+      layoutInvertido: false,
+      categoria: {
+        pt: 'conhecer',
+        en: 'know',
+        es: 'cuniecer'
+      },
+      value: 'festival-de-comida-japonesa',
+      cities: ['santos'],
+      ativo: true
+    },
+    {
+      label: {
+        pt: 'pontos',
+        en: 'points',
+        es: 'pontes'
+      },
+      texto: {
+        pt: 'turísticos',
+        en: 'touristics',
+        es: 'turistes'
+      },
+      layoutInvertido: false,
+      categoria: {
+        pt: 'turistas',
+        en: 'tourists',
+        es: 'turismts'
+      },
+      value: 'pontos-turisticos',
+      cities: ['santos'],
+      ativo: true
+    },
+    {
+      label: {
+        pt: 'lugares para',
+        en: 'places to',
+        es: 'logaries'
+      },
+      texto: {
+        pt: 'tatuar',
+        en: 'make tattoo',
+        es: 'tatuazitas'
+      },
+      layoutInvertido: false,
+      categoria: {
+        pt: 'estética',
+        en: 'estics',
+        es: 'turestismts'
+      },
+      value: 'pontos-turisticos',
+      cities: ['santos'],
+      ativo: true
+    }
+  ]
 
   private opcoesDoMenu: any[] = [
     {
@@ -21,7 +109,8 @@ export class AppConfigService {
         es: 'conocer la ciudad'
       },
       rota: 'qual-a-boa',
-      icone: 'bulb'
+      icone: 'bulb',
+
     },
     {
       titulo: {
@@ -81,7 +170,7 @@ export class AppConfigService {
     }
   ]
 
-  private cities: Cidade[] = [
+  private cidades: Cidade[] = [
     {
       text: 'Santos',
       name: 'Santos',
@@ -99,6 +188,11 @@ export class AppConfigService {
         pt: 'em Santos',
         en: 'in Santos',
         es: 'en Santos'
+      },
+      descricao: {
+        pt: ["Santos é uma cidade fenomenal, a principal cidade da Baixada.", "Blablaboablabal."],
+        en: ["Santos is the best citt.", "Thanks for daldaoda."],
+        es: ["Santos és la ciudad mas dada.", "ticaracitaca."]
       }
     },
     {
@@ -118,6 +212,11 @@ export class AppConfigService {
         pt: 'em São Vicente',
         en: 'at São Vicente',
         es: 'en São Vicente'
+      },
+      descricao: {
+        pt: ["Sao Vicente é uma cidade fenomenal, a principal cidade da Baixada.", "Blablaboablabal."],
+        en: ["Sao Vicente is the best citt.", "Thanks for daldaoda."],
+        es: ["Sao Vicente és la ciudad mas dada.", "ticaracitaca."]
       }
     },
     {
@@ -137,6 +236,11 @@ export class AppConfigService {
         pt: 'no Guarujá',
         en: 'on Guarujá',
         es: 'en Guarujá'
+      },
+      descricao: {
+        pt: ["Guarujá é uma cidade fenomenal, a principal cidade da Baixada.", "Blablaboablabal."],
+        en: ["Guarujá is the best citt.", "Thanks for daldaoda."],
+        es: ["Guarujá és la ciudad mas dada.", "ticaracitaca."]
       }
     },
     {
@@ -156,6 +260,11 @@ export class AppConfigService {
         pt: 'na Praia Grande',
         en: 'in Praia Grande',
         es: 'en Praia Grande'
+      },
+      descricao: {
+        pt: ["Praia Grande é uma cidade fenomenal, a principal cidade da Baixada.", "Blablaboablabal."],
+        en: ["Praia Grande is the best citt.", "Thanks for daldaoda."],
+        es: ["Praia Grande és la ciudad mas dada.", "ticaracitaca."]
       }
     },
   ]
@@ -215,15 +324,25 @@ export class AppConfigService {
   constructor() { }
 
   public obterCidades(): Cidade[] {
-    return this.cities
+    return this.cidades
   }
 
   public obterIdiomas(): Idioma[] {
     return this.idiomas
   }
 
+  public obterSugestoes(cidade: string): Sugestao[] {
+    console.log(cidade);
+
+    let sugestoes = this.sugestoes.filter((sugestao: Sugestao) => {
+      return sugestao.cities.includes(cidade) && sugestao.ativo
+    })
+
+    return sugestoes
+  }
+
   public async identificarSeAtendeCidadeSolicitada(nomeDaCidadeEmFormatoDeValor: string): Promise<Cidade | undefined> {
-    let cidade: Cidade | undefined = this.cities.find((cidade: Cidade) => {
+    let cidade: Cidade | undefined = this.cidades.find((cidade: Cidade) => {
       return cidade.value === nomeDaCidadeEmFormatoDeValor
     })
 

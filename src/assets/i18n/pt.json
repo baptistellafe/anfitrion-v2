@@ -68,6 +68,31 @@
       ]
     }
   },
+  "TELA_SUGESTOES" : {
+    "SOBRE" : {
+      "TITULO" : "Sobre",
+      "BOTAO_CONHECER_PONTOS_TURISTICOS" : [
+        "conhecer",
+        "pontos turísticos"
+      ]
+    },
+    "O_QUE_E" : {
+      "TITULO" : "O que é o",
+      "TEXTO" : [
+        "Nosso objetivo é ajudar moradores e turistas, fornecendo informações relevantes sobre restaurantes, bares, eventos, etc. Informações estas que muitas vezes precisamos visitar vários perfis em redes sociais, um de cada vez.",
+        "Aqui n região da Baixada Santista nós tentamos poupar o seu bem mais precioso, o tempo, trazendo o que é importante, de forma clara e objetiva."
+      ],
+      "BOTAO_SAIBA_MAIS" : [
+        "saiba mais",
+        "sobre nós"
+      ]
+    }
+  },
+  "TELA_EDITAR_DADOS" : {
+    "TITULO_TELA" : "Altere suas informações",
+    "TITULO" : "Informações",
+    "DESCRICAO" : "sessão responsável por definir seus dados."
+  },
   "GERAL" : {
     "AVANCAR" : "Avançar",
     "VOLTAR" : "Voltar",
@@ -87,7 +112,10 @@
     "PUBLICIDADE" : "Publicidade",
     "TUDO_BEM" : "Tudo bem",
     "SEGUIR" : "Seguir",
-    "DIRECIONAR_INSTAGRAM" : "Vou te direcionar para o nosso perfil do Instagram, tudo bem?"
+    "DIRECIONAR_INSTAGRAM" : "Vou te direcionar para o nosso perfil do Instagram, tudo bem?",
+    "SUGESTOES" : "sugestões",
+    "DE" : "de",
+    "DEFINIR_COMO" : "definir como"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
@@ -102,6 +130,15 @@
     },
     "VOLTAR_PARA_O_TOPO" : {
       "TEXTO" : ["voltar", "para o topo"]
+    },
+    "TOAST_INFORMACOES_ALTERADAS" : {
+      "HEADER" : "Alterações",
+      "MENSAGEM" : "Suas informações foram atualizadas."
+    },
+    "ALERTA_O_QUE_FAZEMOS_COM_INFORMACOES" : {
+      "SUBHEADER" : "Atenção",
+      "MENSAGEM" : "O nome que você definir é como nós te chamaremos dentro do app. Essa informação não é gravada em nenhum servidor, apenas na memória do navegador.",
+      "BOTAO_ENTENDI" : "Entendi"
     }
   }
 }

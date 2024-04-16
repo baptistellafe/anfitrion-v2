@@ -68,6 +68,31 @@
       ]
     }
   },
+  "TELA_SUGESTOES" : {
+    "SOBRE" : {
+      "TITULO" : "Suebre",
+      "BOTAO_CONHECER_PONTOS_TURISTICOS" : [
+        "veja los",
+        "pontos turisticos"
+      ]
+    },
+    "O_QUE_E" : {
+      "TITULO" : "O que és lo",
+      "TEXTO" : [
+        "Nuestro objetivo és lalallaa.",
+        "Aqui en la region lalalala."
+      ],
+      "BOTAO_SAIBA_MAIS" : [
+        "saiba mutcho",
+        "sobre nósito"
+      ]
+    }
+  },
+  "TELA_EDITAR_DADOS" : {
+    "TITULO_TELA" : "Altere suas informações",
+    "TITULO" : "Informações",
+    "DESCRICAO" : "sessão responsável por definir seus dados."
+  },
   "GERAL" : {
     "AVANCAR" : "Avançar",
     "VOLTAR" : "Voltar",
@@ -87,7 +112,10 @@
     "PUBLICIDADE" : "Publicidad",
     "TUDO_BEM" : "Tudo bien",
     "SEGUIR" : "Seguite",
-    "DIRECIONAR_INSTAGRAM" : "Redirecionito para instagtioto, tudo bien?"
+    "DIRECIONAR_INSTAGRAM" : "Redirecionito para instagtioto, tudo bien?",
+    "SUGESTOES" : "sugestiones",
+    "DE" : "de",
+    "DEFINIR_COMO" : "debinir cuomo"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
@@ -102,6 +130,15 @@
     },
     "VOLTAR_PARA_O_TOPO" : {
       "TEXTO" : ["vueltar", "para ahiba"]
+    },
+    "TOAST_INFORMACOES_ALTERADAS" : {
+      "HEADER" : "Alteraciones",
+      "MENSAGEM" : "Tu informaciones foi atualizitada."
+    },
+    "ALERTA_O_QUE_FAZEMOS_COM_INFORMACOES" : {
+      "SUBHEADER" : "Atencione",
+      "MENSAGEM" : "Lo nombre que tu usarás etc etc.",
+      "BOTAO_ENTENDI" : "Yo entendi"
     }
   }
 }

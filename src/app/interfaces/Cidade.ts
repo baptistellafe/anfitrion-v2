@@ -7,5 +7,6 @@ export interface Cidade {
   isComingSoon: boolean,
   naturalFrom?: string,
   origin: any,
-  location: any
+  location: any,
+  descricao: any
 }

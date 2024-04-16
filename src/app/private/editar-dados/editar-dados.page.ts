@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IAppState } from 'src/app/store/app/app.state';
 import * as AppStore from './../../store/app/app.state';
 import { Router } from '@angular/router';
@@ -10,13 +10,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilsService } from 'src/app/services/utils.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { PRIMEIRO_NOME_KEY } from 'src/app/consts/keys';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'anf-editar-dados',
   templateUrl: './editar-dados.page.html',
   styleUrls: ['./editar-dados.page.scss'],
 })
-export class EditarDadosPage implements OnInit {
+export class EditarDadosPage implements OnInit, OnDestroy {
   @ViewChild('inputEditarPrimeiroNome') inputEditarPrimeiroNome: IonInput;
 
   public informacoesForm: FormGroup;
@@ -24,6 +25,7 @@ export class EditarDadosPage implements OnInit {
 
   public informacoes$: Observable<IAppState>;
   public informacoes: IAppState = AppStore.appInitialState;
+  public inscricaoInformacoes: Subscription;
 
   public veioDeUmaRotaAnterior: boolean;
 
@@ -36,7 +38,8 @@ export class EditarDadosPage implements OnInit {
     private utilsService : UtilsService,
     private storageService : StorageService,
     private toastCtrl : ToastController,
-    private alertCtrl : AlertController
+    private alertCtrl : AlertController,
+    private translate : TranslateService
   ) { }
 
   ngOnInit() {
@@ -86,7 +89,8 @@ export class EditarDadosPage implements OnInit {
    */
   public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
-    this.informacoes$.subscribe((res: IAppState) => {
+    this.inscricaoInformacoes = this.informacoes$
+    .subscribe((res: IAppState) => {
       this.informacoes = res;
       this.preencherPrimeiroNome(this.informacoes.primeiroNome);
     })
@@ -141,8 +145,8 @@ export class EditarDadosPage implements OnInit {
       translucent: false,
       position: 'top',
       cssClass: 'default',
-      header: 'Alteração',
-      message: 'Seu novo nome foi definido.',
+      header: `${this.translate.instant('COMPONENTS.TOAST_INFORMACOES_ALTERADAS.HEADER')}`,
+      message: `${this.translate.instant('COMPONENTS.TOAST_INFORMACOES_ALTERADAS.MENSAGEM')}`,
       duration: 3000
     })
 
@@ -154,9 +158,9 @@ export class EditarDadosPage implements OnInit {
   public async mostrarInformativoDosDados(): Promise<HTMLIonAlertElement> {
     const alert = await this.alertCtrl.create({
       mode: 'ios',
-      subHeader: 'Atenção',
-      message: `O nome que você definir é como nós te chamaremos dentro do app. Essa informação não é gravada em nenhum servidor, apenas na memória do navegador.`,
-      buttons: ['Entendi']
+      subHeader: `${this.translate.instant('COMPONENTS.ALERTA_O_QUE_FAZEMOS_COM_INFORMACOES.SUBHEADER')}`,
+      message: `${this.translate.instant('COMPONENTS.ALERTA_O_QUE_FAZEMOS_COM_INFORMACOES.MENSAGEM')}`,
+      buttons: [`${this.translate.instant('COMPONENTS.ALERTA_O_QUE_FAZEMOS_COM_INFORMACOES.BOTAO_ENTENDI')}`]
     })
 
     await alert.present();
@@ -173,16 +177,9 @@ export class EditarDadosPage implements OnInit {
     }, 500);
   }
 
-  public async mostrarUtilidadeDoNome(): Promise<HTMLIonAlertElement> {
-    const alert = await this.alertCtrl.create({
-      mode: 'ios',
-      subHeader: 'Importância do nome',
-      message: `No momento não utilizamos seu nome para nada`,
-      buttons: ['Entendi']
-    })
+  ngOnDestroy(): void {
+    this.inscricaoInformacoes.unsubscribe();
+    console.log('destruir');
 
-    await alert.present();
-
-    return alert;
   }
 }

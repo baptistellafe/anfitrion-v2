@@ -40,6 +40,11 @@ export const appInitialState: IAppState = {
       pt: '',
       en: '',
       es: ''
+    },
+    descricao: {
+      pt: '',
+      en: '',
+      es: ''
     }
   },
   jaAcessouAnfitrion: false,

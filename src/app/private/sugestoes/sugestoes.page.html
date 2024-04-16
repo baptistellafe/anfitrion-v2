@@ -59,8 +59,8 @@
       class="line-height-22"
       mode="ios"
       class="color-gray-text fs-14 text-center">
-        <p><span class="fs-18"><b>{{ indexAtual  }}</b></span> de {{ totalDeSugestoes }}</p>
-        <p class="fs-12">sugestões</p>
+        <p><span class="fs-18"><b>{{ indexAtual  }}</b></span> {{ 'GERAL.DE' | translate }} {{ totalDeSugestoes }}</p>
+        <p class="fs-12">{{ 'GERAL.SUGESTOES' | translate }}</p>
       </ion-text>
 
       <anf-scroll-down *ngIf="mostrarComponenteScrollDown" [color]="'gray'"/>
@@ -75,26 +75,24 @@
           <ion-text
           class="color-gray-text texto-longo line-height-16"
           mode="ios">
-            <h1 class="fs-20 font-baloo">Sobre <b>{{ informacoes.cidadeEscolhida.text }}</b></h1>
+            <h1 class="fs-20 font-baloo">{{ 'TELA_SUGESTOES.SOBRE.TITULO' | translate }} <b>{{ informacoes.cidadeEscolhida.text }}</b></h1>
 
-            <p class="fs-14 font-w-300">
-              A principal cidade da região da Baixada Santista, o maior time de todos os tempos, a Bolsa do Café, a Orla da Praia,
-              a cidade do rei do futebol, o Porto, são tantas as caracteristícas...blablabla.
-            </p>
-
-            <p class="fs-14 font-w-300">
-              Seja bem vindo, eu serei seu anfitrião por aqui.
-            </p>
+            <ng-container
+              *ngFor="let texto of informacoes.cidadeEscolhida.descricao?.[informacoes.idioma.value]; let i = index">
+                <p class="fs-14 font-w-300">
+                  {{ texto }}
+                </p>
+              </ng-container>
           </ion-text>
 
           <ion-button
           (click)="irParaPontosTuristicos()"
           shape="round"
           fill="solid"
-          title="Conhecer pontos turísticos"
+          [title]="('TELA_SUGESTOES.SOBRE.BOTAO_CONHECER_PONTOS_TURISTICOS.0' | translate) + ' ' + ('TELA_SUGESTOES.SOBRE.BOTAO_CONHECER_PONTOS_TURISTICOS.1' | translate)"
           class="main fs-13 mg-top-32 mg-bottom-32"
           mode="md">
-            Conhecer <span class="mg-left-5"><b>pontos turísticos</b></span>
+            {{ 'TELA_SUGESTOES.SOBRE.BOTAO_CONHECER_PONTOS_TURISTICOS.0' | translate }} <span class="mg-left-5"><b>{{ 'TELA_SUGESTOES.SOBRE.BOTAO_CONHECER_PONTOS_TURISTICOS.1' | translate }}</b></span>
           </ion-button>
         </ion-col>
 
@@ -103,26 +101,24 @@
           <ion-text
           class="color-gray-text texto-longo line-height-16"
           mode="ios">
-            <h1 class="fs-20 font-baloo">O que é o <b>anfitrion</b>?</h1>
+            <h1 class="fs-20 font-baloo">{{ 'TELA_SUGESTOES.O_QUE_E.TITULO' | translate }} <b>anfitrion</b>?</h1>
 
-            <p class="fs-14 font-w-300">
-              Nosso objetivo é ajudar moradores e turistas, fornecendo informações relevantes sobre restaurantes, bares, eventos, etc.
-              Informações estas que muitas vezes precisamos visitar vários perfis em redes sociais, um de cada vez.
-            </p>
-
-            <p class="fs-14 font-w-300">
-              Aqui n região da Baixada Santista nós tentamos poupar o seu bem mais precioso, o tempo, trazendo o que é importante, de forma clara e objetiva.
-            </p>
+            <ng-container
+            *ngFor="let texto of ('TELA_SUGESTOES.O_QUE_E.TEXTO' | translate); let i = index">
+              <p class="fs-14 font-w-300">
+                {{ texto }}
+              </p>
+            </ng-container>
           </ion-text>
 
           <ion-button
           (click)="irParaSobreNos()"
           shape="square"
           fill="clear"
-          title="Saiba mais sobre nós"
+          [title]="('TELA_SUGESTOES.O_QUE_E.BOTAO_SAIBA_MAIS.0' | translate) + ' ' + ('TELA_SUGESTOES.O_QUE_E.BOTAO_SAIBA_MAIS.1' | translate)"
           class="fs-13 mg-top-32 mg-bottom-32 tipo-link main-clear com-underline"
           mode="md">
-            <span class="mg-right-5"><b>Saiba mais</b></span> sobre nós
+            <span class="mg-right-5"><b>{{ 'TELA_SUGESTOES.O_QUE_E.BOTAO_SAIBA_MAIS.0' | translate }}</b></span> {{ 'TELA_SUGESTOES.O_QUE_E.BOTAO_SAIBA_MAIS.1' | translate }}
           </ion-button>
         </ion-col>
       </ion-row>
@@ -139,7 +135,7 @@
       title="Voltar para o topo"
       (click)="irParaTopoDaTela()"
       class="botao-scroll-to-top main-clear fs-13 tipo-link">
-        Voltar <span class="mg-left-5 mg-right-5"><b>para o topo</b></span> <ion-icon name="arrow-up-outline"></ion-icon>
+        {{ 'COMPONENTS.VOLTAR_PARA_O_TOPO.TEXTO.0' | translate }} <span class="mg-left-5 mg-right-5"><b>{{ 'COMPONENTS.VOLTAR_PARA_O_TOPO.TEXTO.1' | translate }}</b></span> <ion-icon name="arrow-up-outline"></ion-icon>
       </ion-button>
     </anf-footer>
   </section>
