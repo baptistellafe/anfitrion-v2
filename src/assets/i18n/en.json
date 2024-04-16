@@ -52,6 +52,22 @@
     "ALERTA_WHATSAPP" : "If you have WhatsApp instaled we'll send you to there, alright?",
     "ALERTA_EMAIL" : "We'll open your default e-mail app, alright?"
   },
+  "TELA_SOBRE" : {
+    "TITULO" : "About anfitrion",
+    "TITULO_CONTEUDO" : "Welcome",
+    "DESCRICAO" : {
+      "PARAGRAFO_UM" : "We are just in Santos. We help each other de forma clear objective.",
+      "PARAGRAFO_DOIS" : [
+        "We create content to facilities the life of diaejdieaj.",
+        "Exemple: value of restaurants, festivals, childs",
+        "every restaurant."
+      ],
+      "PARAGRAFO_TRES" : [
+        "Saving your best bem:",
+        "your time"
+      ]
+    }
+  },
   "GERAL" : {
     "AVANCAR" : "Forward",
     "VOLTAR" : "Back",
@@ -69,7 +85,9 @@
     "ALTERAR" : "change",
     "VER" : "See",
     "PUBLICIDADE" : "Publicity",
-    "TUDO_BEM" : "OK"
+    "TUDO_BEM" : "OK",
+    "SEGUIR" : "Follow",
+    "DIRECIONAR_INSTAGRAM" : "Redirect to instagram, ok?"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {

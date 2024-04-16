@@ -52,19 +52,35 @@ class="ion-bg-gray"
               class="color-gray-text texto-longo line-height-20"
               mode="ios">
                 <h2 class="font-baloo color-white">
-                  Bem vindo(a)<span class="mg-left-5 color-linear"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : 'visitante' }}</b>,</span>
+                  {{ 'TELA_SOBRE.TITULO_CONTEUDO' | translate }}<span class="mg-left-5 color-linear"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : ('GERAL.VISITANTE' | translate) }}</b>,</span>
                 </h2>
 
                 <p class="fs-16 color-white font-w-300">
-                  Estamos somente na região da Baixada Santista. Auxiliamos moradores e principalmente turistas a encontrarem os melhores lugares da cidade de forma rápida e objetiva.
+                  {{ 'TELA_SOBRE.DESCRICAO.PARAGRAFO_UM' | translate }}
                 </p>
 
                 <p class="fs-16 color-white font-w-300">
-                  Além de fornecer informações sobre estes lugares nós também criamos conteúdo com informações que muitas vezes você precisa visitar vários perfis nas redes sociais. <span class="color-white highlighted"><b>Por exemplo: valor do rodízio de comida japonesa para casais, crianças</b></span> em todos os restaurantes.
+                  <ng-container *ngFor="let text of ('TELA_SOBRE.DESCRICAO.PARAGRAFO_DOIS' | translate); let i = index">
+                    <ng-container *ngIf="i !== 1">
+                      {{ text }}
+                    </ng-container>
+
+                    <ng-container *ngIf="i === 1">
+                      <span class="color-white highlighted"><b>{{ text }}</b></span>
+                    </ng-container>
+                  </ng-container>
                 </p>
 
                 <p class="fs-16 color-white mg-bottom-32 font-w-300">
-                  Poupando seu bem mais precioso: <b>seu tempo</b>.
+                  <ng-container *ngFor="let text of ('TELA_SOBRE.DESCRICAO.PARAGRAFO_TRES' | translate); let i = index">
+                    <ng-container *ngIf="i === 0">
+                      {{ text }}
+                    </ng-container>
+
+                    <ng-container *ngIf="i === 1">
+                      <b>{{ text }}</b>.
+                    </ng-container>
+                  </ng-container>
                 </p>
               </ion-text>
             </ion-col>
@@ -83,7 +99,10 @@ class="ion-bg-gray"
                     [title]="'@' + informacoes.anfitrion.instagram"
                     (click)="irParaInstagram()">
                       <ng-container *ngIf="!querendoIrParaInstagram">
-                        <img src="./../../../assets/images/logotipos/logo.jpeg" alt="logo">
+                        <img
+                        [title]="'@' + informacoes.anfitrion.instagram"
+                        src="./../../../assets/images/logotipos/logo.jpeg"
+                        alt="logo">
                       </ng-container>
 
                       <ng-container *ngIf="querendoIrParaInstagram">
@@ -118,7 +137,7 @@ class="ion-bg-gray"
                   size="normal"
                   class="main icone-a-direita mg-top-32"
                   mode="md">
-                    Seguir
+                    {{ 'GERAL.SEGUIR' | translate }}
                     <ion-icon name="logo-instagram"></ion-icon>
                   </ion-button>
               </div>
@@ -132,13 +151,13 @@ class="ion-bg-gray"
   <!-- RODAPÉ -->
   <anf-footer [darkMode]="true">
     <ion-button
+    [title]="('COMPONENTS.VOLTAR_PARA_O_TOPO.TEXTO.0' | translate) + ' ' + ('COMPONENTS.VOLTAR_PARA_O_TOPO.TEXTO.1' | translate)"
+    (click)="scrollarConteudoParaTopo(sobreNosConteudo, 1000)"
+    class="botao-scroll-to-top main-clear fs-13 tipo-link"
     fill="clear"
     shape="round"
-    mode="md"
-    title="Voltar para o topo"
-    (click)="scrollarConteudoParaTopo(sobreNosConteudo, 1000)"
-    class="botao-scroll-to-top main-clear fs-13 tipo-link">
-      Voltar <span class="mg-left-5 mg-right-5"><b>para o topo</b></span> <ion-icon name="arrow-up-outline"></ion-icon>
+    mode="md">
+    {{ 'COMPONENTS.VOLTAR_PARA_O_TOPO.TEXTO.0' | translate }} <span class="mg-left-5 mg-right-5"><b>{{ 'COMPONENTS.VOLTAR_PARA_O_TOPO.TEXTO.1' | translate }}</b></span> <ion-icon name="arrow-up-outline"></ion-icon>
     </ion-button>
   </anf-footer>
 </ion-content>

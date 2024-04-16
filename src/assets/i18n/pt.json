@@ -52,6 +52,22 @@
     "ALERTA_WHATSAPP" : "Se você tiver o app do WhatsApp nós te direcionaremos para lá, tudo bem?",
     "ALERTA_EMAIL" : "Nós abriremos o seu app padrão de e-mail, tudo bem?"
   },
+  "TELA_SOBRE" : {
+    "TITULO" : "Sobre o anfitrion",
+    "TITULO_CONTEUDO" : "Bem vindo(a)",
+    "DESCRICAO" : {
+      "PARAGRAFO_UM" : "Estamos somente na região da Baixada Santista. Auxiliamos moradores e principalmente turistas a encontrarem os melhores lugares da cidade de forma rápida e objetiva.",
+      "PARAGRAFO_DOIS" : [
+        "Além de fornecer informações sobre estes lugares nós também criamos conteúdo com informações que muitas vezes você precisa visitar vários perfis nas redes sociais.",
+        "Por exemplo: valor do rodízio de comida japonesa para casais, crianças",
+        "em todos os restaurantes."
+      ],
+      "PARAGRAFO_TRES" : [
+        "Poupando seu bem mais precioso:",
+        "seu tempo"
+      ]
+    }
+  },
   "GERAL" : {
     "AVANCAR" : "Avançar",
     "VOLTAR" : "Voltar",
@@ -69,7 +85,9 @@
     "ALTERAR" : "alterar",
     "VER" : "Ver",
     "PUBLICIDADE" : "Publicidade",
-    "TUDO_BEM" : "Tudo bem"
+    "TUDO_BEM" : "Tudo bem",
+    "SEGUIR" : "Seguir",
+    "DIRECIONAR_INSTAGRAM" : "Vou te direcionar para o nosso perfil do Instagram, tudo bem?"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {

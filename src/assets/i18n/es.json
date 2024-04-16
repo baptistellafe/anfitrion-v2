@@ -52,6 +52,22 @@
     "ALERTA_WHATSAPP" : "Bamos abrir blblblblbl whats",
     "ALERTA_EMAIL" : "Bamos abrir babaa email"
   },
+  "TELA_SOBRE" : {
+    "TITULO" : "Suebre lo anfitrion",
+    "TITULO_CONTEUDO" : "Bien-venido(a)",
+    "DESCRICAO" : {
+      "PARAGRAFO_UM" : "Estamos solamiente em Baixada Santista.",
+      "PARAGRAFO_DOIS" : [
+        "Alénzito de fornecito dlbalbalblablaba.",
+        "Por exemplito: ada crianças bllba",
+        "en todos los restaurants."
+      ],
+      "PARAGRAFO_TRES" : [
+        "Poupando los bem ur mas valioso:",
+        "tu tiempo"
+      ]
+    }
+  },
   "GERAL" : {
     "AVANCAR" : "Avançar",
     "VOLTAR" : "Voltar",
@@ -69,7 +85,9 @@
     "ALTERAR" : "trocadito",
     "VER" : "Vier",
     "PUBLICIDADE" : "Publicidad",
-    "TUDO_BEM" : "Tudo bien"
+    "TUDO_BEM" : "Tudo bien",
+    "SEGUIR" : "Seguite",
+    "DIRECIONAR_INSTAGRAM" : "Redirecionito para instagtioto, tudo bien?"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {

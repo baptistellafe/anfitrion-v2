@@ -1,18 +1,19 @@
-import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, viewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IAppState } from 'src/app/store/app/app.state';
 import * as AppStore from './../../store/app/app.state';
 import Swiper from 'swiper';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AlertController, IonContent } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'anf-sobre-nos',
   templateUrl: './sobre-nos.page.html',
   styleUrls: ['./sobre-nos.page.scss'],
 })
-export class SobreNosPage implements OnInit {
+export class SobreNosPage implements OnInit, OnDestroy {
   @ViewChild('sobreNosConteudo') sobreNosConteudo: IonContent;
 
   @ViewChild('sobreNosSwiper') sobreNosSwiper?: ElementRef<{ swiper: Swiper }>
@@ -21,14 +22,16 @@ export class SobreNosPage implements OnInit {
   public accordionAberto: 'sobre' | '' = 'sobre';
   public querendoIrParaInstagram: boolean = false;
 
-  public informacoes$: Observable<IAppState>;
   public informacoes: IAppState = AppStore.appInitialState;
+  public informacoes$: Observable<IAppState>;
+  public inscricaoInformacoes: Subscription;
 
   constructor(
     private title : Title,
     private store : Store,
     private utilsService : UtilsService,
-    private alertCtrl : AlertController
+    private alertCtrl : AlertController,
+    private translate : TranslateService
   ) { }
 
   ngOnInit() {
@@ -45,7 +48,8 @@ export class SobreNosPage implements OnInit {
    */
   public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
-    this.informacoes$.subscribe((res: IAppState) => {
+    this.inscricaoInformacoes = this.informacoes$
+    .subscribe((res: IAppState) => {
       this.informacoes = res;
     })
   }
@@ -55,8 +59,6 @@ export class SobreNosPage implements OnInit {
   */
   public obterIndexAtualDoSwiper() {
     this.indexAtual = this.utilsService.obterIndexAtualDoSwiper(this.sobreNosSwiper);
-    console.log(this.indexAtual);
-
   }
 
   public slideSobreNosMudou(): void {
@@ -72,18 +74,18 @@ export class SobreNosPage implements OnInit {
 
     const alert = await this.alertCtrl.create({
       mode: 'ios',
-      subHeader: `${this.informacoes.primeiroNome ? this.informacoes.primeiroNome : 'visitante'},`,
-      message: 'Vou te direcionar para o nosso perfil do Instagram, tudo bem?',
+      subHeader: `${this.informacoes.primeiroNome ? this.informacoes.primeiroNome : this.translate.instant('GERAL.VISITANTE')},`,
+      message: `${this.translate.instant('GERAL.DIRECIONAR_INSTAGRAM')}`,
       buttons: [
         {
           role: 'cancel',
-          text: 'Cancelar',
+          text: this.translate.instant('GERAL.CANCELAR'),
           handler: () => {
             this.querendoIrParaInstagram = false;
           }
         },
         {
-          text: 'Tudo bem',
+          text: this.translate.instant('GERAL.TUDO_BEM'),
           handler: () => {
             alert.onDidDismiss().then(() => {
               this.querendoIrParaInstagram = false;
@@ -106,6 +108,10 @@ export class SobreNosPage implements OnInit {
   */
   public scrollarConteudoParaTopo(conteudo: IonContent, velocidade: number): void {
     this.utilsService.scrollarConteudoParaTopo(conteudo, velocidade);
+  }
+
+  ngOnDestroy(): void {
+    this.inscricaoInformacoes.unsubscribe();
   }
 
 }
