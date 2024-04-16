@@ -11,7 +11,7 @@ class="footer-wrapper full-width"
         <ion-col
         size="12">
           <div class="anf-publicidade-wrapper">
-            <div class="anf-publicidade-content overflow-hidden" scrollTo>
+            <div class="anf-publicidade-content overflow-hidden">
 
             </div>
 
@@ -21,7 +21,7 @@ class="footer-wrapper full-width"
               [ngClass]="{
                 'color-white': darkMode,
                 'color-gray-text': !darkMode
-              }">Publicidade</p>
+              }">{{ 'GERAL.PUBLICIDADE' | translate }}</p>
             </ion-text>
           </div>
         </ion-col>
@@ -57,14 +57,14 @@ class="footer-wrapper full-width"
         size="12">
           <div class="rede-social-wrapper full-width">
             <ion-button
+            *ngFor="let rede of redesSociais"
+            [href]="rede.url"
+            [title]="rede.nome?.[informacoes.idioma.value]"
             class="rede-social"
             [ngClass]="{
               'dark-mode' : darkMode,
               'light-mode' : !darkMode
             }"
-            *ngFor="let rede of redesSociais"
-            [href]="rede.url"
-            [title]="rede.nome.pt"
             target="_blank"
             size="small"
             fill="clear">

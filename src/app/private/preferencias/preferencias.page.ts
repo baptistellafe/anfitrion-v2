@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IAppState } from 'src/app/store/app/app.state';
 import * as AppStore from './../../store/app/app.state';
 import { AlertController, AlertOptions, NavController, ToastController } from '@ionic/angular';
@@ -11,13 +11,14 @@ import { AppConfigService } from 'src/app/services/app-config.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { CIDADE_ESCOLHIDA_KEY, IDIOMA_KEY } from 'src/app/consts/keys';
 import { TranslateAnfService } from 'src/app/services/translate-anf.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'anf-preferencias',
   templateUrl: './preferencias.page.html',
   styleUrls: ['./preferencias.page.scss'],
 })
-export class PreferenciasPage implements OnInit {
+export class PreferenciasPage implements OnInit, OnDestroy {
 
   public idiomas: Idioma[];
   public idiomaSelecionado: Idioma;
@@ -28,15 +29,17 @@ export class PreferenciasPage implements OnInit {
   public houveMudancaEmAlgumSeletor: boolean = false;
   public veioDeUmaRotaAnterior: boolean = false;
 
+  public informacoes: IAppState = AppStore.appInitialState;
+  public informacoes$: Observable<IAppState>;
+  public inscricaoInformacoes: Subscription;
+
   public cidades: Cidade[];
+
   public cityButtonAlertOptions: AlertOptions = {
-    subHeader: 'Preferências',
-    message: 'Escolha uma cidade',
+    subHeader: this.translate.instant('COMPONENTS.SELETOR_DE_CIDADES.TITULO'),
+    message: this.translate.instant('COMPONENTS.SELETOR_DE_CIDADES.DESCRICAO'),
     backdropDismiss: false
   }
-
-  public informacoes$: Observable<IAppState>;
-  public informacoes: IAppState = AppStore.appInitialState;
 
   constructor(
     private title : Title,
@@ -46,7 +49,8 @@ export class PreferenciasPage implements OnInit {
     private storageService : StorageService,
     private alertCtrl : AlertController,
     private toastCtrl : ToastController,
-    private translate : TranslateAnfService
+    private translateApp : TranslateAnfService,
+    private translate : TranslateService
   ) { }
 
   ngOnInit() {
@@ -77,7 +81,8 @@ export class PreferenciasPage implements OnInit {
    */
   public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
-    this.informacoes$.subscribe((res: IAppState) => {
+    this.inscricaoInformacoes = this.informacoes$
+    .subscribe((res: IAppState) => {
       this.informacoes = res;
       this.identificarCidadeInicial(this.informacoes.cidadeEscolhida);
       this.identificarIdiomaInicial(this.informacoes.idioma);
@@ -234,6 +239,10 @@ export class PreferenciasPage implements OnInit {
   }
 
   public confirmarNovoIdioma(idioma: string): void {
-    this.translate.definirIdioma(idioma);
+    this.translateApp.definirIdioma(idioma);
+  }
+
+  ngOnDestroy(): void {
+    this.inscricaoInformacoes.unsubscribe();
   }
 }

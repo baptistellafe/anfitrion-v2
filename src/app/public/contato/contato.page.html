@@ -12,20 +12,19 @@
         class="full-width fs-32 animate__animated animate__fadeInUp">
         </ion-icon>
         <h2 class="font-baloo">
-          E aí<span class="mg-left-5"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : 'visitante' }}</b>,</span>
+          {{ 'TELA_CONTATO.EAI' | translate }}<span class="mg-left-5"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : ('GERAL.VISITANTE' | translate) }}</b>,</span>
         </h2>
-        <p>como eu posso te ajudar?</p>
+        <p>{{ 'TELA_CONTATO.DESCRICAO' | translate }}</p>
       </ion-text>
 
       <ion-segment
       [(ngModel)]="tipoDeContato"
-      value="default"
       mode="ios">
-        <ion-segment-button value="comercial">
-          <ion-label>comercial</ion-label>
+        <ion-segment-button value="comercial" [title]="'TELA_CONTATO.COMERCIAL' | translate">
+          <ion-label>{{ 'TELA_CONTATO.COMERCIAL' | translate }}</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="outros">
-          <ion-label>outros</ion-label>
+        <ion-segment-button value="outros" [title]="'TELA_CONTATO.OUTROS' | translate">
+          <ion-label>{{ 'TELA_CONTATO.OUTROS' | translate }}</ion-label>
         </ion-segment-button>
       </ion-segment>
 
@@ -34,13 +33,13 @@
         (click)="mostrarAlerta('email')"
         class="contato-zap-mail mg-bottom-32"
         href="javascript:void(0)"
-        [title]="'Chamar no WhatsApp'">
+        [title]="'TELA_CONTATO.ENVIAR_EMAIL' | translate">
           <span class="color-linear font-baloo no-text-decor fs-14"><span class="fs-18"><b>anfitrionappoficial</b>{{'@gmail.com'}}</span></span>
-          <span class="simular-botao no-text-decor fs-13">enviar e-mail <ion-icon name="mail-outline" class="mg-left-5"></ion-icon></span>
+          <span class="simular-botao no-text-decor fs-13">{{ 'TELA_CONTATO.ENVIAR_EMAIL' | translate }} <ion-icon name="mail-outline" class="mg-left-5"></ion-icon></span>
         </a>
 
         <ion-text mode="ios">
-          <p class="fs-13 color-gray-mid">para<span class="mg-left-5"><b>anuncios e parcerias.</b></span></p>
+          <p class="fs-13 color-gray-mid">{{ 'TELA_CONTATO.PARA_ANUNCIOS_E_PARCERIAS.0' | translate }}<span class="mg-left-5"><b>{{ 'TELA_CONTATO.PARA_ANUNCIOS_E_PARCERIAS.1' | translate }}</b></span></p>
         </ion-text>
       </ng-container>
 
@@ -49,17 +48,17 @@
         (click)="mostrarAlerta('whatsapp')"
         class="contato-zap-mail mg-bottom-32"
         href="javascript:void(0)"
-        [title]="'Chamar no WhatsApp'">
+        [title]="'TELA_CONTATO.ENVIAR_MENSAGEM' | translate">
           <span class="color-linear font-baloo no-text-decor">+55 (013) <span class="fs-20"><b>9 9733.0408</b></span></span>
           <span class="simular-botao no-text-decor fs-13">
-            enviar mensagem
+            {{ 'TELA_CONTATO.ENVIAR_MENSAGEM' | translate }}
             <ion-icon name="logo-whatsapp" class="mg-left-5"></ion-icon>
           </span>
         </a>
 
         <ion-text mode="ios">
           <p class="fs-13 color-gray-mid">
-            para<span class="mg-left-5"><b>sugestões, críticas ou elogios.</b></span>
+            {{ 'TELA_CONTATO.PARA_SUGESTOES_CRITICAS_ELOGIOS.0' | translate }}<span class="mg-left-5"><b>{{ 'TELA_CONTATO.PARA_SUGESTOES_CRITICAS_ELOGIOS.1' | translate }}</b></span>
           </p>
         </ion-text>
       </ng-container>

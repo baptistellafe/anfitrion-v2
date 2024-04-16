@@ -39,6 +39,19 @@
     "NOVO_IDIOMA" : "novo idioma",
     "IDIOMA_ATUAL" : "idioma atual"
   },
+  "TELA_CONTATO" : {
+    "TITULO" : "Fale comigo",
+    "EAI" : "E aí",
+    "DESCRICAO" : "como eu posso te ajudar?",
+    "COMERCIAL" : "comercial",
+    "OUTROS" : "outros",
+    "ENVIAR_EMAIL" : "enviar e-mail",
+    "PARA_ANUNCIOS_E_PARCERIAS" : ["para", "anuncios e parcerias."],
+    "ENVIAR_MENSAGEM" : "enviar mensagem",
+    "PARA_SUGESTOES_CRITICAS_ELOGIOS" : ["para", "sugestões, críticas e elogios."],
+    "ALERTA_WHATSAPP" : "Se você tiver o app do WhatsApp nós te direcionaremos para lá, tudo bem?",
+    "ALERTA_EMAIL" : "Nós abriremos o seu app padrão de e-mail, tudo bem?"
+  },
   "GERAL" : {
     "AVANCAR" : "Avançar",
     "VOLTAR" : "Voltar",
@@ -54,7 +67,9 @@
     "SELECIONAR" : "Selecionar",
     "VISITANTE" : "visitante",
     "ALTERAR" : "alterar",
-    "VER" : "Ver"
+    "VER" : "Ver",
+    "PUBLICIDADE" : "Publicidade",
+    "TUDO_BEM" : "Tudo bem"
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
@@ -66,6 +81,9 @@
     },
     "FEITO_COM_CARINHO" : {
       "TEXTO" : "feito com"
+    },
+    "VOLTAR_PARA_O_TOPO" : {
+      "TEXTO" : ["voltar", "para o topo"]
     }
   }
 }

@@ -23,23 +23,6 @@
     },
     "AVISO_PARA_DEFINIR_NOME": ["Back and define", "a name"]
   },
-  "GERAL" : {
-    "AVANCAR" : "Forward",
-    "VOLTAR" : "Back",
-    "INSIRA_ABAIXO" : "Insert below",
-    "PLACEHOLDER_INPUT_NOME" : "Ex: Phelps...",
-    "NO_MINIMO" : "at least",
-    "OBRIGATORIO" : "required",
-    "CARACTERES" : "characters",
-    "CONHECER" : "Get to know",
-    "ALTERE_QUANDO_QUISER" : "Change when your want",
-    "DEFINIR" : "Define",
-    "CANCELAR" : "Cancel",
-    "SELECIONAR" : "Select",
-    "VISITANTE" : "visitant",
-    "ALTERAR" : "change",
-    "VER" : "See"
-  },
   "TELA_BOAS_VINDAS" : {
     "TITULO" : "Welcome",
     "CONHECA" : "know the best"
@@ -56,6 +39,38 @@
     "NOVO_IDIOMA" : "new language",
     "IDIOMA_ATUAL" : "current language"
   },
+  "TELA_CONTATO" : {
+    "TITULO" : "Contact me",
+    "EAI" : "Hi there",
+    "DESCRICAO" : "how can I help you?",
+    "COMERCIAL" : "comercial",
+    "OUTROS" : "others",
+    "ENVIAR_EMAIL" : "send e-mail",
+    "PARA_ANUNCIOS_E_PARCERIAS" : ["for", "ads e partnerships."],
+    "ENVIAR_MENSAGEM" : "send message",
+    "PARA_SUGESTOES_CRITICAS_ELOGIOS" : ["for", "suggestions, criticisms and compliments."],
+    "ALERTA_WHATSAPP" : "If you have WhatsApp instaled we'll send you to there, alright?",
+    "ALERTA_EMAIL" : "We'll open your default e-mail app, alright?"
+  },
+  "GERAL" : {
+    "AVANCAR" : "Forward",
+    "VOLTAR" : "Back",
+    "INSIRA_ABAIXO" : "Insert below",
+    "PLACEHOLDER_INPUT_NOME" : "Ex: Phelps...",
+    "NO_MINIMO" : "at least",
+    "OBRIGATORIO" : "required",
+    "CARACTERES" : "characters",
+    "CONHECER" : "Get to know",
+    "ALTERE_QUANDO_QUISER" : "Change when your want",
+    "DEFINIR" : "Define",
+    "CANCELAR" : "Cancel",
+    "SELECIONAR" : "Select",
+    "VISITANTE" : "visitant",
+    "ALTERAR" : "change",
+    "VER" : "See",
+    "PUBLICIDADE" : "Publicity",
+    "TUDO_BEM" : "OK"
+  },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
       "TITULO" : "Select a city",
@@ -66,6 +81,9 @@
     },
     "FEITO_COM_CARINHO" : {
       "TEXTO" : "made with"
+    },
+    "VOLTAR_PARA_O_TOPO" : {
+      "TEXTO" : ["back", "to top"]
     }
   }
 }

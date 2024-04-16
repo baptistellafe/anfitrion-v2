@@ -24,7 +24,7 @@ export class PrimeiroAcessoPage implements OnInit, OnDestroy {
   @ViewChild('primeiroAcessoSwiper') primeiroAcessoSwiper?: ElementRef<{ swiper: Swiper }>
   public indexAtual: number | undefined = 0;
 
-  public informacoes: IAppState;
+  public informacoes: IAppState = AppStore.appInitialState;
   private informacoes$: Observable<IAppState>;
   private inscricaoInformacoes: Subscription;
 
@@ -43,6 +43,9 @@ export class PrimeiroAcessoPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.obterTodasAsInformacoes();
+  }
+
+  ionViewWillEnter(): void {
     this.obterTraducaoDaTela();
   }
 

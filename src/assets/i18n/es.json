@@ -23,23 +23,6 @@
     },
     "AVISO_PARA_DEFINIR_NOME": ["Vuelte e define", "um nonbre"]
   },
-  "GERAL" : {
-    "AVANCAR" : "Avançar",
-    "VOLTAR" : "Voltar",
-    "INSIRA_ABAIXO" : "Insira abaixo",
-    "PLACEHOLDER_INPUT_NOME" : "Ex: Felipe...",
-    "NO_MINIMO" : "no mínimo",
-    "OBRIGATORIO" : "obrigatório",
-    "CARACTERES" : "caracteres",
-    "CONHECER" : "Cunecer",
-    "ALTERE_QUANDO_QUISER" : "Altiere quano qusieres",
-    "DEFINIR" : "Debini",
-    "CANCELAR" : "Cancela",
-    "SELECIONAR" : "Seleccionar",
-    "VISITANTE" : "visitantito",
-    "ALTERAR" : "trocadito",
-    "VER" : "Vier"
-  },
   "TELA_BOAS_VINDAS" : {
     "TITULO" : "Bien-venido(a)",
     "CONHECA" : "cunieça lo mehor"
@@ -56,6 +39,38 @@
     "NOVO_IDIOMA" : "nuevo idioma",
     "IDIOMA_ATUAL" : "idioma atuale"
   },
+  "TELA_CONTATO" : {
+    "TITULO" : "Contatito me",
+    "EAI" : "Hola que ta",
+    "DESCRICAO" : "cueomo posso ahudar?",
+    "COMERCIAL" : "comerciale",
+    "OUTROS" : "los outros",
+    "ENVIAR_EMAIL" : "enbiar e-mail",
+    "PARA_ANUNCIOS_E_PARCERIAS" : ["paha", "propagandas e parcerias."],
+    "ENVIAR_MENSAGEM" : "envia messagem",
+    "PARA_SUGESTOES_CRITICAS_ELOGIOS" : ["paha", "sugerencias, críticas y elogios."],
+    "ALERTA_WHATSAPP" : "Bamos abrir blblblblbl whats",
+    "ALERTA_EMAIL" : "Bamos abrir babaa email"
+  },
+  "GERAL" : {
+    "AVANCAR" : "Avançar",
+    "VOLTAR" : "Voltar",
+    "INSIRA_ABAIXO" : "Insira abaixo",
+    "PLACEHOLDER_INPUT_NOME" : "Ex: Felipe...",
+    "NO_MINIMO" : "no mínimo",
+    "OBRIGATORIO" : "obrigatório",
+    "CARACTERES" : "caracteres",
+    "CONHECER" : "Cunecer",
+    "ALTERE_QUANDO_QUISER" : "Altiere quano qusieres",
+    "DEFINIR" : "Debini",
+    "CANCELAR" : "Cancela",
+    "SELECIONAR" : "Seleccionar",
+    "VISITANTE" : "visitantito",
+    "ALTERAR" : "trocadito",
+    "VER" : "Vier",
+    "PUBLICIDADE" : "Publicidad",
+    "TUDO_BEM" : "Tudo bien"
+  },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
       "TITULO" : "Seleccionar ciudad",
@@ -66,6 +81,9 @@
     },
     "FEITO_COM_CARINHO" : {
       "TEXTO" : "feito con"
+    },
+    "VOLTAR_PARA_O_TOPO" : {
+      "TEXTO" : ["vueltar", "para ahiba"]
     }
   }
 }

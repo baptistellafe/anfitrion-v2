@@ -123,13 +123,13 @@
   <!-- RODAPÉ -->
   <anf-footer>
     <ion-button
+    (click)="scrollarConteudoParaTopo(conteudoQualAboa, 1000)"
+    [title]="('COMPONENTS.VOLTAR_PARA_O_TOPO.TEXTO.0' | translate) + ' ' + ('COMPONENTS.VOLTAR_PARA_O_TOPO.TEXTO.1' | translate)"
+    class="botao-scroll-to-top main-clear fs-13 tipo-link"
     fill="clear"
     shape="round"
-    mode="md"
-    title="Voltar para o topo"
-    (click)="scrollarConteudoParaTopo(conteudoQualAboa, 1000)"
-    class="botao-scroll-to-top main-clear fs-13 tipo-link">
-      Voltar <span class="mg-left-5 mg-right-5"><b>para o topo</b></span> <ion-icon name="arrow-up-outline"></ion-icon>
+    mode="md">
+      {{ 'COMPONENTS.VOLTAR_PARA_O_TOPO.TEXTO.0' | translate }} <span class="mg-left-5 mg-right-5"><b>{{ 'COMPONENTS.VOLTAR_PARA_O_TOPO.TEXTO.1' | translate }}</b></span> <ion-icon name="arrow-up-outline"></ion-icon>
     </ion-button>
   </anf-footer>
 </ion-content>
