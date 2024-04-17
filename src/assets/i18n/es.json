@@ -37,7 +37,17 @@
     "NOVA_CIDADE" : "nueva ciudad",
     "CIDADE_ATUAL" : "cidade atuale",
     "NOVO_IDIOMA" : "nuevo idioma",
-    "IDIOMA_ATUAL" : "idioma atuale"
+    "IDIOMA_ATUAL" : "idioma atuale",
+    "PREFERENCIAS_ALTERADAS" : [
+      "trocastes",
+      "uno o mais de uno",
+      "preferenciatitas,",
+      "quieres confirmar?"
+    ],
+    "BOTAO_SIM_CONFIRMAR" : [
+      "si",
+      "confirme"
+    ]
   },
   "TELA_CONTATO" : {
     "TITULO" : "Contatito me",
@@ -103,8 +113,8 @@
     "CARACTERES" : "caracteres",
     "CONHECER" : "Cunecer",
     "ALTERE_QUANDO_QUISER" : "Altiere quano qusieres",
-    "DEFINIR" : "Debini",
-    "CANCELAR" : "Cancela",
+    "DEFINIR" : "debini",
+    "CANCELAR" : "cancela",
     "SELECIONAR" : "Seleccionar",
     "VISITANTE" : "visitantito",
     "ALTERAR" : "trocadito",

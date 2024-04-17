@@ -37,7 +37,17 @@
     "NOVA_CIDADE" : "nova cidade",
     "CIDADE_ATUAL" : "cidade atual",
     "NOVO_IDIOMA" : "novo idioma",
-    "IDIOMA_ATUAL" : "idioma atual"
+    "IDIOMA_ATUAL" : "idioma atual",
+    "PREFERENCIAS_ALTERADAS" : [
+      "você alterou",
+      "uma ou mais",
+      "preferencias,",
+      "gostaria de confirmar?"
+    ],
+    "BOTAO_SIM_CONFIRMAR" : [
+      "sim",
+      "confirmar"
+    ]
   },
   "TELA_CONTATO" : {
     "TITULO" : "Fale comigo",

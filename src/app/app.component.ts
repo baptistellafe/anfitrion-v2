@@ -4,7 +4,7 @@ import { MenuController, NavController } from '@ionic/angular';
 import { UtilsService } from './services/utils.service';
 import { Store } from '@ngrx/store';
 import * as AppStore from './store/app/app.state';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { StorageService } from './services/storage.service';
 import { CIDADE_ESCOLHIDA_KEY, IDIOMA_KEY, JA_ACESSOU_ANFITRION_KEY, PRIMEIRO_NOME_KEY } from './consts/keys';
 import { AppConfigService } from './services/app-config.service';
@@ -23,8 +23,6 @@ export class AppComponent implements OnInit {
   public informacoes$: Observable<IAppState>;
   public informacoes: IAppState = AppStore.appInitialState;
 
-  public rotaAtual: string | string[] = this.router.url;
-
   constructor(
     public menuCtrl : MenuController,
     private navCtrl : NavController,
@@ -37,8 +35,8 @@ export class AppComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    await this.identificarPrimeiroAcesso();
     this.definirIdiomaInicial();
-    await this.recuperarInformacoesDaStorage();
     this.bloquearSwiperDoMenu();
     this.obterOpcoesDoMenu();
     this.definirSaudacao();
@@ -51,13 +49,14 @@ export class AppComponent implements OnInit {
   public definirItem(itemDoMeu: any): void {
     this.itemSelecionado = itemDoMeu;
 
+    // A ROTA ATUAL SERÁ DEFINIDA COMO ROTA ANTERIOR NA PRÓXIMA TELA.
     let rotaAtual: string = this.router.url;
     let rotaAnterior: string = rotaAtual;
 
     // QUANDO VAI PARA PREFERÊNCIAS DEVEMOS SETAR A ROTA PARA SER USADO NO BOTÃO VOLTAR
     // É UMA PÁGINA ABSTRATA.
     if (this.itemSelecionado.rota === 'preferencias') {
-      this.store.dispatch(AppStore.definirRotaAnterior({ rotaAnterior }))
+      this.utilsService.definirRotaAnterior(rotaAnterior);
     }
   }
 
@@ -83,41 +82,13 @@ export class AppComponent implements OnInit {
   }
 
   /**
-   * @description Resgata informações da Storage e se encontrar/existir guarda no NGRX para ser usado no app.
-   */
-  public async recuperarInformacoesDaStorage() {
-    let primeiroNome = await this.storageService.obterChave(PRIMEIRO_NOME_KEY);
-    let jaAcessouAnfitrion = await this.storageService.obterChave(JA_ACESSOU_ANFITRION_KEY);
-    let idioma = await this.storageService.obterChave(IDIOMA_KEY);
-    let cidadeEscolhida = await this.storageService.obterChave(CIDADE_ESCOLHIDA_KEY);
-
-    if (jaAcessouAnfitrion) {
-      let props = { jaAcessouAnfitrion: jaAcessouAnfitrion }
-      this.store.dispatch(AppStore.definirPrimeiroAcesso(props));
-    }
-
-    if (idioma) {
-      let props = { idioma: idioma }
-      this.store.dispatch(AppStore.definirIdioma(props));
-    }
-
-    if (primeiroNome) {
-      let props = { primeiroNome: primeiroNome };
-      this.store.dispatch(AppStore.definirPrimeiroNome(props));
-    }
-
-    if (cidadeEscolhida) {
-      let props = { cidadeEscolhida: cidadeEscolhida }
-      this.store.dispatch(AppStore.definirCidade(props));
-    }
-  }
-
-  /**
    * @description Obtém as informações guardadas no NGRX.
    */
   public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
-    this.informacoes$.subscribe((res: IAppState) => {
+    this.informacoes$
+    .pipe(take(5))
+    .subscribe((res: IAppState) => {
       this.informacoes = res;
     })
   }
@@ -129,20 +100,41 @@ export class AppComponent implements OnInit {
     this.opcoesDoMenu = this.appCfg.obterOpcoesDoMenu();
   }
 
+  /**
+   * @description Direcionar o usuário para a tela: Editar dados.
+   */
   public definirRotaAnterior(): void {
-    this.utilsService.definirRotaAnterior(this.rotaAtual)
+    let rotaAtual: string = this.router.url;
+    let rotaAnterior: string = rotaAtual;
+    this.utilsService.definirRotaAnterior(rotaAnterior);
   }
 
+  /**
+   * @description Direcionar o usuário para a tela: Editar dados.
+   */
   public irParaEditarDados(): void {
     this.irPara(['editar-dados']);
     this.definirRotaAnterior();
   }
 
+  /**
+   * @description Bloquea o gesto 'swipe' do menu.
+   */
   public bloquearSwiperDoMenu(): void {
     this.menuCtrl.swipeGesture(false)
   }
 
+  /**
+   * @description Define o idioma inicial do app.
+   */
   public definirIdiomaInicial(): void {
     this.translateApp.definirIdiomaInicial();
+  }
+
+  /**
+   * @description Identifica se é o primeiro acesso do usuário.
+   */
+  public async identificarPrimeiroAcesso() {
+    return await this.utilsService.identificarPrimeiroAcesso();
   }
 }

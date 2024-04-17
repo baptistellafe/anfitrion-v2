@@ -67,20 +67,26 @@ export class QualABoaPage implements OnInit, OnDestroy {
   }
 
   public obterCategorias(cidade: string): void {
-    this.carregandoCategorias = true;
+    if (!this.categorias.length) {
+      this.carregandoCategorias = true;
+    }
 
     setTimeout(() => {
       this.categorias = this.appConfig.obterCategorias(cidade);
 
       if (this.categorias.length === 0) {
         this.mostrarAvisoSemCategorias = true;
+        this.mostrarBotaoCategoria = false;
+        this.mostrarControladoresDoSwiper = false;
       } else if (this.categorias.length === 1) {
         this.definirSlideInicial();
         this.mostrarBotaoCategoria = true;
+        this.mostrarAvisoSemCategorias = false;
       } else {
         this.definirSlideInicial();
         this.mostrarBotaoCategoria = true;
         this.mostrarControladoresDoSwiper = true;
+        this.mostrarAvisoSemCategorias = false;
       }
 
       this.carregandoCategorias = false;

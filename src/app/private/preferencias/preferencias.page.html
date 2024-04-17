@@ -159,7 +159,17 @@ mode="ios">
         *ngIf="houveMudancaEmAlgumSeletor"
         mode="ios"
         class="line-height-18">
-          <p class="fs-14 color-gray-text font-w-300 mg-top-32">você alterou <b>uma ou mais</b> preferências, gostaria de confirmar?</p>
+          <p class="fs-14 color-gray-text font-w-300 mg-top-32">
+            <ng-container *ngFor="let texto of ('TELA_PREFERENCIAS.PREFERENCIAS_ALTERADAS' | translate); let index = index">
+              <ng-container *ngIf="index !== 1">
+                {{ texto }}
+              </ng-container>
+
+              <ng-container *ngIf="index === 1">
+                <b>{{ texto }}</b>
+              </ng-container>
+            </ng-container>
+          </p>
         </ion-text>
       </ng-container>
 
@@ -187,19 +197,19 @@ mode="ios">
         <ion-button
         *ngIf="houveMudancaEmAlgumSeletor"
         (click)="cancelouAlteracoes()"
-        title="Cancelar"
+        [title]="'GERAL.CANCELAR' | translate"
         fill="solid"
         shape="round"
         class="fs-14 icone-a-direita main-white cancelar"
         mode="md">
-          cancelar <ion-icon name="close-outline"></ion-icon>
+          {{ 'GERAL.CANCELAR' | translate }} <ion-icon name="close-outline"></ion-icon>
         </ion-button>
 
         <ion-button
         *ngIf="houveMudancaEmAlgumSeletor"
         (click)="mostrarAlertaParaConfirmarMudancas()"
         [disabled]="!houveMudancaEmAlgumSeletor || mudancasPendenteDeConfirmacao"
-        title="Avançar"
+        [title]="('TELA_PREFERENCIAS.BOTAO_SIM_CONFIRMAR.0' | translate) + ', ' + ('TELA_PREFERENCIAS.BOTAO_SIM_CONFIRMAR.1' | translate)"
         shape="round"
         fill="solid"
         size="normal"
@@ -210,7 +220,7 @@ mode="ios">
           </ng-container>
 
           <ng-container *ngIf="!mudancasPendenteDeConfirmacao">
-            <ng-container *ngIf="houveMudancaEmAlgumSeletor"><b>sim</b><span class="mg-right-5">,</span></ng-container>confirmar <ion-icon name="reload-outline" class="mg-left-5"></ion-icon>
+            <ng-container *ngIf="houveMudancaEmAlgumSeletor"><b>{{ 'TELA_PREFERENCIAS.BOTAO_SIM_CONFIRMAR.0' | translate }}</b><span class="mg-right-5">,</span></ng-container>{{ 'TELA_PREFERENCIAS.BOTAO_SIM_CONFIRMAR.1' | translate }} <ion-icon name="reload-outline" class="mg-left-5"></ion-icon>
           </ng-container>
         </ion-button>
       </div>

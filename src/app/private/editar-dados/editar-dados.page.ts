@@ -27,8 +27,6 @@ export class EditarDadosPage implements OnInit, OnDestroy {
   public informacoes: IAppState = AppStore.appInitialState;
   public inscricaoInformacoes: Subscription;
 
-  public veioDeUmaRotaAnterior: boolean;
-
   constructor(
     private title : Title,
     private store : Store,
@@ -47,41 +45,9 @@ export class EditarDadosPage implements OnInit, OnDestroy {
     this.obterTodasAsInformacoes();
   }
 
-  ionViewWillEnter(): void {
-
-  }
-
   ionViewDidEnter(): void {
     this.title.setTitle(`Altere suas informações`);
     this.mostrarInformativoDosDados();
-    this.definirSeVeioDeUmaRotaAnterior();
-  }
-
-  ionViewWillLeave(): void {
-    this.veioDeUmaRotaAnterior = false;
-  }
-
-  /**
-   * @description Identificar e definir se veio de uma tela anterior do app ou acessou diretamente.
-   */
-  public definirSeVeioDeUmaRotaAnterior(): void {
-
-    if (this.informacoes.rotaAnterior) {
-      this.veioDeUmaRotaAnterior = true;
-    } else {
-      this.veioDeUmaRotaAnterior = false;
-    }
-  }
-
-  /**
-   * @description Retornar para tela de onde veio.
-   */
-  public retornarPara(): void {
-    if (this.veioDeUmaRotaAnterior) {
-      this.navCtrl.back();
-    } else {
-      this.navCtrl.navigateRoot(['qual-a-boa']);
-    }
   }
 
   /**
@@ -94,6 +60,14 @@ export class EditarDadosPage implements OnInit, OnDestroy {
       this.informacoes = res;
       this.preencherPrimeiroNome(this.informacoes.primeiroNome);
     })
+  }
+
+  public retornarPara(): void {
+    if (this.informacoes.rotaAnterior) {
+      this.navCtrl.navigateBack(this.informacoes.rotaAnterior);
+    } else {
+      this.navCtrl.navigateRoot(['qual-a-boa']);
+    }
   }
 
   public inicializarFormInformacoes(): void {
@@ -179,7 +153,5 @@ export class EditarDadosPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.inscricaoInformacoes.unsubscribe();
-    console.log('destruir');
-
   }
 }

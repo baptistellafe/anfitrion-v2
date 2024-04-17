@@ -27,7 +27,6 @@ export class PreferenciasPage implements OnInit, OnDestroy {
 
   public mudancasPendenteDeConfirmacao: boolean = false;
   public houveMudancaEmAlgumSeletor: boolean = false;
-  public veioDeUmaRotaAnterior: boolean = false;
 
   public informacoes: IAppState = AppStore.appInitialState;
   public informacoes$: Observable<IAppState>;
@@ -61,19 +60,6 @@ export class PreferenciasPage implements OnInit, OnDestroy {
 
   ionViewDidEnter(): void {
     this.title.setTitle('Preferências');
-    this.definirSeVeioDeUmaRotaAnterior();
-  }
-
-  /**
-   * @description Identificar e definir se veio de uma tela anterior do app ou acessou diretamente.
-   */
-  public definirSeVeioDeUmaRotaAnterior(): void {
-
-    if (this.informacoes.rotaAnterior) {
-      this.veioDeUmaRotaAnterior = true;
-    } else {
-      this.veioDeUmaRotaAnterior = false;
-    }
   }
 
   /**
@@ -87,25 +73,6 @@ export class PreferenciasPage implements OnInit, OnDestroy {
       this.identificarCidadeInicial(this.informacoes.cidadeEscolhida);
       this.identificarIdiomaInicial(this.informacoes.idioma);
     })
-  }
-
-  /**
-   * @description Retorna para a tela anterior mas existem alguns cenários.
-   Cenário 1: veio de outra tela e já preencheu informações no site.
-   Cenário 2: veio de outra tela mas não tenha preenchido (dificil mas possível)
-   Cenário 3: entrou direto na tela mas tem alguma informação faltando.
-   Cenário 4: entrou direto na tela mas nunca acessou o app antes.
-   */
-  public retornarPara(): void {
-    if (this.veioDeUmaRotaAnterior && this.informacoes.jaAcessouAnfitrion && this.informacoes.cidadeEscolhida.value && this.informacoes.idioma.value) {
-      this.navCtrl.back();
-    } else if (this.veioDeUmaRotaAnterior && (!this.informacoes.jaAcessouAnfitrion || !this.informacoes.cidadeEscolhida.value || this.informacoes.idioma.value)) {
-      this.navCtrl.navigateRoot(['qual-a-boa']);
-    } else if (!this.veioDeUmaRotaAnterior && this.informacoes.jaAcessouAnfitrion || this.informacoes.cidadeEscolhida.value || this.informacoes.idioma.value) {
-      this.navCtrl.navigateRoot(['qual-a-boa']);
-    } else {
-      this.navCtrl.navigateRoot(['primeiro-acesso']);
-    }
   }
 
   /**
@@ -240,6 +207,14 @@ export class PreferenciasPage implements OnInit, OnDestroy {
 
   public confirmarNovoIdioma(idioma: string): void {
     this.translateApp.definirIdioma(idioma);
+  }
+
+  public retornarPara(): void {
+    if (this.informacoes.rotaAnterior) {
+      this.navCtrl.navigateBack(this.informacoes.rotaAnterior);
+    } else {
+      this.navCtrl.navigateRoot(['qual-a-boa']);
+    }
   }
 
   ngOnDestroy(): void {

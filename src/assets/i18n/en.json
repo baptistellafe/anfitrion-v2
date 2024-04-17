@@ -37,7 +37,17 @@
     "NOVA_CIDADE" : "new city",
     "CIDADE_ATUAL" : "current city",
     "NOVO_IDIOMA" : "new language",
-    "IDIOMA_ATUAL" : "current language"
+    "IDIOMA_ATUAL" : "current language",
+    "PREFERENCIAS_ALTERADAS" : [
+      "you changed",
+      "more or more than one",
+      "preferences,",
+      "would you like to confirm?"
+    ],
+    "BOTAO_SIM_CONFIRMAR" : [
+      "yes",
+      "confirm"
+    ]
   },
   "TELA_CONTATO" : {
     "TITULO" : "Contact me",

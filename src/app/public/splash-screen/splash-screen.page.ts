@@ -1,54 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { Observable, skip, take, takeLast } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IAppState } from 'src/app/store/app/app.state';
 import * as AppStore from './../../store/app/app.state';
-import { TranslateService } from '@ngx-translate/core';
+import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'anf-splash-screen',
   templateUrl: './splash-screen.page.html',
   styleUrls: ['./splash-screen.page.scss'],
 })
-export class SplashScreenPage implements OnInit {
-  public informacoes$: Observable<IAppState>;
+export class SplashScreenPage implements OnInit, OnDestroy {
   public informacoes: IAppState = AppStore.appInitialState;
+  public informacoes$: Observable<IAppState>;
+  private inscricaoInformacoes: Subscription;
 
   constructor(
     private navCtrl : NavController,
-    private title : Title,
     private store : Store
   ) { }
-
-  ionViewWillEnter(): void {
-  }
 
   ngOnInit() {
     this.obterTodasAsInformacoes();
   }
 
-  ionViewDidEnter(): void {
-    this.title.setTitle(`anfitrion`)
-  }
-
   /**
    * @description Ir para a tela: Início.
    */
-  public irParaTela(tela: string): void {
+  public irParaTela(tela: string | string[]): void {
     setTimeout(() => {
-      this.navCtrl.navigateForward(`${tela}`);
+      this.navCtrl.navigateRoot(`${tela}`);
     }, 4000);
   }
 
-  /**
-    @description Identificar se é o primeiro acesso do usuário e direcionar para a tela correta.
-  */
-  public identificarPrimeiroAcesso(jaAcessou: boolean): void {
-    if (jaAcessou) {
-      this.irParaTela('/qual-a-boa');
+  public direcionarUsuario(): void {
+    if (this.informacoes.jaAcessouAnfitrion) {
+      this.irParaTela(['qual-a-boa'])
     } else {
-      this.irParaTela('/primeiro-acesso');
+      this.irParaTela(['primeiro-acesso'])
     }
   }
 
@@ -58,12 +48,14 @@ export class SplashScreenPage implements OnInit {
    */
   public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes)
-
-    this.informacoes$
-    .pipe(skip(1))
+    this.inscricaoInformacoes = this.informacoes$
     .subscribe((res: IAppState) => {
       this.informacoes = res;
-      this.identificarPrimeiroAcesso(this.informacoes.jaAcessouAnfitrion);
+      this.direcionarUsuario();
     })
+  }
+
+  ngOnDestroy(): void {
+    this.inscricaoInformacoes.unsubscribe();
   }
 }

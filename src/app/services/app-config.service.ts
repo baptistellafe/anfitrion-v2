@@ -482,13 +482,9 @@ export class AppConfigService {
   }
 
   public obterCategorias(cidade: string): Categoria[] {
-    console.log(cidade);
-
     let categorias = this.categorias.filter((categoria: Categoria) => {
       return categoria.cities.includes(cidade) && categoria.ativo
     })
-
-    console.log(categorias);
 
     return categorias
   }
@@ -498,10 +494,7 @@ export class AppConfigService {
       return cidade.value === nomeDaCidadeEmFormatoDeValor
     })
 
-    console.log(cidade);
-
     return cidade
-
   }
 
   public obterOpcoesDoMenu(): Idioma[] {

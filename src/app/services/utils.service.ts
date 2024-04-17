@@ -7,7 +7,10 @@ import * as AppStore from './../../app/store/app/app.state';
 import 'moment/locale/es';
 import 'moment/locale/en-au';
 import 'moment/locale/pt-br';
-import { IonContent } from '@ionic/angular';
+import { IonContent, NavController } from '@ionic/angular';
+import { StorageService } from './storage.service';
+import { CIDADE_ESCOLHIDA_KEY, IDIOMA_KEY, JA_ACESSOU_ANFITRION_KEY, PRIMEIRO_NOME_KEY } from '../consts/keys';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +18,10 @@ import { IonContent } from '@ionic/angular';
 export class UtilsService {
 
   constructor(
-    public store : Store
+    public store : Store,
+    private storageService : StorageService,
+    private navCtrl : NavController,
+    private router : Router
   ) {
     this.definirLocaleDoMomentJS('pt');
   }
@@ -97,11 +103,31 @@ export class UtilsService {
   }
 
   public definirRotaAnterior(rota: string | string[]): void {
-    let props = { rotaAnterior: rota }
-    this.store.dispatch(AppStore.definirRotaAnterior(props))
+    this.store.dispatch(AppStore.definirRotaAnterior({ rotaAnterior: rota }))
   }
 
   public scrollarConteudoParaTopo(conteudo: IonContent, velocidade: number): void {
     conteudo.scrollToTop(velocidade);
+  }
+
+  /**
+   * @description Verifica se é o primeiro acesso do usuário.
+   */
+  public async identificarPrimeiroAcesso(): Promise<void> {
+    let primeiroNome = await this.storageService.obterChave(PRIMEIRO_NOME_KEY);
+    let jaAcessouAnfitrion = await this.storageService.obterChave(JA_ACESSOU_ANFITRION_KEY);
+    let idioma = await this.storageService.obterChave(IDIOMA_KEY);
+    let cidadeEscolhida = await this.storageService.obterChave(CIDADE_ESCOLHIDA_KEY);
+
+    if (primeiroNome && jaAcessouAnfitrion && idioma && cidadeEscolhida) {
+
+      this.store.dispatch(AppStore.definirPrimeiroNome({ primeiroNome: primeiroNome }));
+      this.store.dispatch(AppStore.definirPrimeiroAcesso({ jaAcessouAnfitrion: jaAcessouAnfitrion }));
+      this.store.dispatch(AppStore.definirIdioma({ idioma: idioma }));
+      this.store.dispatch(AppStore.definirCidade({ cidadeEscolhida: cidadeEscolhida }));
+
+    } else {
+      this.navCtrl.navigateRoot(['splash-screen']);
+    }
   }
 }
