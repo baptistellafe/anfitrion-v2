@@ -28,7 +28,8 @@
     "CONHECA" : "cunieça lo mehor"
   },
   "TELA_QUAL_A_BOA" : {
-    "QUAL_A_BOA": "o que tienes para hoy",
+    "TITULO_TELA": "Lo que tienes para hoy",
+    "QUAL_A_BOA": "Lo que tienes para hoy",
     "PARA_QUEM_PROCURA" : "para quem procuera"
   },
   "TELA_PREFERENCIAS" : {
@@ -145,7 +146,11 @@
     "DEFINIR_COMO" : "debinir cuomo",
     "PARA" : "pla",
     "NENHUM_REGISTRO" : "nadita encontradito",
-    "EU_VIM_DO_ANFITRION" : "Yo vim del anfitrion e gostaria..."
+    "EU_VIM_DO_ANFITRION" : "Yo vim del anfitrion e gostaria...",
+    "PRECISO_DE_AJUDA" : [
+      "perguntas",
+      "mais feitas"
+    ]
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
@@ -169,6 +174,9 @@
       "SUBHEADER" : "Atencione",
       "MENSAGEM" : "Lo nombre que tu usarás etc etc.",
       "BOTAO_ENTENDI" : "Yo entendi"
+    },
+    "AJUDA" : {
+      "DESCRICAO" : "Sepalamos las perguntitas em mas feitas em nostro site hehehe."
     }
   }
 }

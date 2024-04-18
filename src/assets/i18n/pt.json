@@ -28,6 +28,7 @@
     "CONHECA" : "Conheça o melhor"
   },
   "TELA_QUAL_A_BOA" : {
+    "TITULO_TELA": "Qual a boa",
     "QUAL_A_BOA": "qual a boa pra hoje",
     "PARA_QUEM_PROCURA" : "para quem procura"
   },
@@ -145,7 +146,11 @@
     "DEFINIR_COMO" : "definir como",
     "PARA" : "para",
     "NENHUM_REGISTRO" : "nenhum registro encontrado",
-    "EU_VIM_DO_ANFITRION" : "Eu vim do anfitrion e gostaria..."
+    "EU_VIM_DO_ANFITRION" : "Eu vim do anfitrion e gostaria...",
+    "PRECISO_DE_AJUDA" : [
+      "preciso",
+      "de ajuda"
+    ]
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {
@@ -169,6 +174,9 @@
       "SUBHEADER" : "Atenção",
       "MENSAGEM" : "O nome que você definir é como nós te chamaremos dentro do app. Essa informação não é gravada em nenhum servidor, apenas na memória do navegador.",
       "BOTAO_ENTENDI" : "Entendi"
+    },
+    "AJUDA" : {
+      "DESCRICAO" : "Nós separamos algumas das perguntas mais frequentes feitas pelos usuários e colocamos aqui com o objetivo de ajudá-lo."
     }
   }
 }

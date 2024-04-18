@@ -54,7 +54,6 @@ export class ContatoPage implements OnInit, OnDestroy {
 
   /**
    * @description Obtém a tradução da tela para ser usado no TS.
-   * Neste caso não precisa se desinscrever por causa do Take(1).
    */
   public obterTraducaoDaTela(): void {
     this.traducaoDaTela$ = this.translate.get('TELA_CONTATO');
@@ -112,7 +111,8 @@ export class ContatoPage implements OnInit, OnDestroy {
    * @description Abrir WhatsApp com mensagem.
    */
   public abrirWhatsApp(): void {
-    let mensagemCodificada = encodeURIComponent(this.translate.instant('GERAL.EU_VIM_NO_ANFITRION'));
+    let mensagem: string = this.translate.instant('GERAL.EU_VIM_DO_ANFITRION');
+    let mensagemCodificada = encodeURIComponent(mensagem);
     window.open(`https://wa.me/${this.informacoes.anfitrion.whatsApp}?text=${mensagemCodificada}`, '_blank');
   }
 

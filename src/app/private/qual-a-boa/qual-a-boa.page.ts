@@ -11,6 +11,7 @@ import * as AppStore from './../../store/app/app.state';
 import { Router } from '@angular/router';
 import { Categoria } from 'src/app/interfaces/Categoria';
 import { AppConfigService } from 'src/app/services/app-config.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'anf-qual-a-boa',
@@ -20,15 +21,13 @@ import { AppConfigService } from 'src/app/services/app-config.service';
 export class QualABoaPage implements OnInit, OnDestroy {
   @ViewChild('conteudoQualAboa') conteudoQualAboa: IonContent;
 
-
-  public categoriaSelecionada: any;
-
   @ViewChild('qualaboaSwiper') qualaboaSwiper?: ElementRef<{ swiper: Swiper }>
   public indexAtual: any = 0;
 
   @ViewChild('qualaboaDescricaoSwiper') qualaboaDescricaoSwiper?: ElementRef<{ swiper: Swiper }>
 
   public categorias: Categoria[] = [];
+  public categoriaSelecionada: any;
 
   public informacoes: IAppState = AppStore.appInitialState;
   public informacoes$: Observable<IAppState>;
@@ -41,7 +40,12 @@ export class QualABoaPage implements OnInit, OnDestroy {
   public mostrarAvisoSemCategorias: boolean = false;
   public carregandoCategorias: boolean = false;
 
+  public traducaoDaTela: any;
+  private traducaoDaTela$: Observable<any>;
+  private inscricaoTraducaoDaTela: Subscription;
+
   constructor(
+    private translate : TranslateService,
     private navCtrl : NavController,
     private title : Title,
     private utilsService : UtilsService,
@@ -54,12 +58,13 @@ export class QualABoaPage implements OnInit, OnDestroy {
     this.obterTodasAsInformacoes();
   }
 
-  ionViewWillLeave(): void {
-    this.indexAtual = 0;
+  ionViewWillEnter(): void {
+    this.obterTraducaoDaTela();
   }
 
-  ionViewDidEnter(): void {
-    this.title.setTitle(`Qual a boa pra hoje ${this.informacoes.cidadeEscolhida.location[this.informacoes.idioma.value]}`);
+  ionViewWillLeave(): void {
+    //this.indexAtual = 0;
+    this.inscricaoTraducaoDaTela.unsubscribe();
   }
 
   public trocarCidade(): void {
@@ -157,6 +162,8 @@ export class QualABoaPage implements OnInit, OnDestroy {
       if (this.informacoes.cidadeEscolhida.value) {
         this.obterCategorias(this.informacoes.cidadeEscolhida.value);
       }
+
+      this.obterTraducaoDaTela();
     })
   }
 
@@ -172,6 +179,18 @@ export class QualABoaPage implements OnInit, OnDestroy {
   public definirSlideInicial(): void {
     this.categoriaSelecionada = this.categorias[this.indexAtual];
     this.pularSlidePara(this.indexAtual)
+  }
+
+  /**
+   * @description Obtém a tradução da tela para ser usado no TS.
+   */
+  public obterTraducaoDaTela(): void {
+    this.traducaoDaTela$ = this.translate.get('TELA_QUAL_A_BOA');
+    this.inscricaoTraducaoDaTela = this.traducaoDaTela$
+    .subscribe((res: any) => {
+      this.traducaoDaTela = res;
+      this.title.setTitle(`${this.traducaoDaTela?.TITULO_TELA} ${this.informacoes.cidadeEscolhida.location[this.informacoes.idioma.value]}`);
+    })
   }
 
   ngOnDestroy(): void {

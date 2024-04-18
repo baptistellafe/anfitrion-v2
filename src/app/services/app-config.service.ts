@@ -131,6 +131,23 @@ export class AppConfigService {
       ativo: true
     },
     {
+      icone: 'cafe',
+      texto: {
+        pt: 'Cafeterias',
+        en: 'Coffes',
+        es: 'Cafezito'
+      },
+      value: 'cafeterias',
+      descricao: {
+        pt: 'café expresso, capuccino, etc...',
+        en: 'cafs, cafezesd, csdos...',
+        es: 'cafezito, cafzfeto, seditcasda, etc...'
+      },
+      especial: false,
+      cities: ['santos'],
+      ativo: true
+    },
+    {
       icone: 'qr-code',
       texto: {
         pt: 'Sugestões',

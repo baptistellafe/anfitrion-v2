@@ -9,7 +9,7 @@
       --min-height: 0;
 
       header.duvidas-frequentes-header {
-        @include flexbox(center, flex-end, row);
+        @include flexbox(center, space-between, row);
         padding: 16px;
 
         h2 { margin: 0; }
@@ -28,5 +28,41 @@
     overflow: hidden;
     border-radius: 16px 16px 0 0;
     --background: linear-gradient(to bottom, var(--gray-ed), var(--white));
+
+    .descricao-wrapper {
+      padding: 32px;
+    }
+  }
+}
+
+.accordion-wrapper {
+  margin: 0 32px;
+  border-radius: 8px;
+  overflow: hidden;
+  height: auto;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  ion-accordion {
+    &:hover {
+      background: var(--gray-ed);
+    }
+
+    &.accordion-expanded {
+      background: var(--gray-fa);
+    }
+
+    .conteudo-do-accordion {
+      padding: 0 32px 20px 32px;
+    }
+
+    ion-item.titulo-do-accordion {
+      --padding-start: 32px;
+      --padding-end: 32px;
+      --inner-padding-end: 0;
+      --background: transparent;
+      --background-hover: transparent;
+      --padding-top: 6px;
+      --padding-bottom: 6px;
+    }
   }
 }

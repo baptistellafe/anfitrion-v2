@@ -165,9 +165,11 @@ export class PreferenciasPage implements OnInit, OnDestroy {
       this.mudancasPendenteDeConfirmacao = false;
       this.houveMudancaEmAlgumSeletor = false;
 
-      this.mostrarNotificacao();
-
       this.obterTraducaoDaTela();
+
+      setTimeout(() => {
+        this.mostrarNotificacao();
+      }, 500);
     }
   }
 
@@ -205,8 +207,8 @@ export class PreferenciasPage implements OnInit, OnDestroy {
       translucent: false,
       position: 'top',
       cssClass: 'default',
-      header: this.traducaoDaTela?.NOTIFICACAO_PREFERENCIAS_ATUALIZADAS.HEADER,
-      message: this.traducaoDaTela?.NOTIFICACAO_PREFERENCIAS_ATUALIZADAS.MENSAGEM,
+      header: this.traducaoDaTela.NOTIFICACAO_PREFERENCIAS_ATUALIZADAS.HEADER,
+      message: this.traducaoDaTela.NOTIFICACAO_PREFERENCIAS_ATUALIZADAS.MENSAGEM,
       duration: 3000
     })
 
@@ -242,16 +244,16 @@ export class PreferenciasPage implements OnInit, OnDestroy {
     this.inscricaoTraducaoDaTela = this.traducaoDaTela$
     .subscribe((res: any) => {
       this.traducaoDaTela = res;
-      this.configurarAlertaDeTrocaDeCidade();
+      this.configurarAlertaDeTrocaDeCidade(this.traducaoDaTela);
       this.title.setTitle(`${this.traducaoDaTela?.TITULO_TELA}`)
     })
   }
 
-  public configurarAlertaDeTrocaDeCidade(): void {
+  public configurarAlertaDeTrocaDeCidade(traducao: any): void {
     this.configuracaoDoAlertaDeCidade = {
-      ...this.configuracaoDoAlertaDeCidade,
-      subHeader: this.traducaoDaTela?.SELETOR_DE_CIDADES.TITULO,
-      message: this.traducaoDaTela?.SELETOR_DE_CIDADES.DESCRICAO
+      backdropDismiss: false,
+      subHeader: traducao.SELETOR_DE_CIDADES.TITULO,
+      message: traducao.SELETOR_DE_CIDADES.DESCRICAO
     }
   }
 

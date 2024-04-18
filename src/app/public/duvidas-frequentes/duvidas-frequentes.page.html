@@ -5,6 +5,10 @@
     <ion-toolbar
     class="ion-bg-gray no-ion-padding">
       <header class="duvidas-frequentes-header full-width">
+        <ion-text mode="ios">
+          <p class="color-white font-baloo fs-18">{{ 'GERAL.PRECISO_DE_AJUDA.0' | translate }} <b>{{ 'GERAL.PRECISO_DE_AJUDA.1' | translate }}</b></p>
+        </ion-text>
+
         <ion-button
         (click)="fecharModal()"
         class="white-clear no-ion-padding"
@@ -18,10 +22,43 @@
   </ion-header>
 
   <ion-content
+  mode="ios"
+  [forceOverscroll]="false"
   class="ion-bg-gray">
     <section class="duvidas-frequentes-content">
+      <div class="descricao-wrapper">
+        <ion-text
+        mode="ios"
+        class="color-gray-text line-height-20">
+          <h2 class="font-baloo mg-bottom-16 color-linear"><b>{{ informacoes.primeiroNome ? informacoes.primeiroNome : ('GERAL.VISITANTE' | translate) }}</b>,</h2>
+          <p class="fs-16">{{ 'COMPONENTS.AJUDA.DESCRICAO' | translate }}</p>
+        </ion-text>
+      </div>
 
+      <div class="accordion-wrapper">
+        <ion-accordion-group
+        mode="ios"
+        class="bg-transparent">
+          <ion-accordion
+          *ngFor="let item of [1,2,3,4,5]; let i = index"
+          [value]="i"
+          class="bg-transparent">
+            <ion-item
+            slot="header"
+            class="titulo-do-accordion">
+              <ion-text class="color-gray-text">
+                <p class="fs-18 font-baloo"><b>Pergunta {{ i }}</b></p>
+              </ion-text>
+            </ion-item>
+
+            <div
+            class="conteudo-do-accordion fs-14"
+            slot="content">
+              Primeiro conteúdo eticetera
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
     </section>
   </ion-content>
-
 </div>
