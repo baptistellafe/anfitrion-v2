@@ -7,11 +7,11 @@
   [ngClass]="{'overflow-hidden': !heroEncolhido}">
     <div
     class="sugestoes-header full-width bg-gray"
-    [ngClass]="heroEncolhido ? 'hero-encolhido' : 'hero-expandido'">
+    [ngClass]="heroEncolhido &&  sugestoes.length? 'hero-encolhido' : heroEncolhido && !sugestoes.length ? 'hero-curto' : 'hero-expandido'">
       <anf-header [darkMode]="true" [origem]="'tela-sugestoes'"></anf-header>
 
       <!-- SWIPER (Aparece somente com hero encolhido ) -->
-      <div class="hero-swiper-wrapper" *ngIf="heroEncolhido">
+      <div class="hero-swiper-wrapper" *ngIf="heroEncolhido && sugestoes.length">
         <swiper-container
         (swiperslidechange)="slideMudou()"
         #sugestoesSwiper
@@ -49,12 +49,19 @@
           </swiper-slide>
         </swiper-container>
       </div>
+
+      <!-- BANNER PROMOCIONAL OU APRESENTAÇÃO -->
+      <div class="hero-ads-wrapper mg-top-32" *ngIf="heroEncolhido && !sugestoes.length">
+        <div class="hero-ads-container">
+          oakdoakiodjaiojda
+        </div>
+      </div>
     </div>
 
     <!-- CONTADOR DE SUGESTÕES (Aparece somente com hero encolhido)-->
     <div
     class="swiper-info"
-    *ngIf="heroEncolhido">
+    *ngIf="heroEncolhido && totalDeSugestoes">
       <ion-text
       class="line-height-22"
       mode="ios"
@@ -64,6 +71,31 @@
       </ion-text>
 
       <anf-scroll-down *ngIf="mostrarComponenteScrollDown" [color]="'gray'"/>
+    </div>
+
+     <!-- SE NÃO ENCONTRAR SUGESTÕES -->
+    <div
+    class="sem-sugestoes-info"
+    *ngIf="heroEncolhido && !totalDeSugestoes">
+      <ion-text
+      class="line-height-22"
+      mode="ios"
+      class="color-gray-mid fs-14 text-center">
+        <p>{{ 'TELA_SUGESTOES.AINDA_NAO_TEMOS_SUGESTOES' | translate }}</p>
+        <p>{{ 'GERAL.PARA' | translate }} <b>{{ informacoes.cidadeEscolhida.text }}</b></p>
+      </ion-text>
+
+      <ion-button
+      (click)="sugerirConteudo()"
+      mode="md"
+      fill="solid"
+      shape="round"
+      [title]="'TELA_SUGESTOES.SUGERIR_CONTEUDO' | translate"
+      class="main fs-13 icone-a-direita">
+        {{ 'TELA_SUGESTOES.SUGERIR_CONTEUDO' | translate }} <ion-icon name="logo-whatsapp"></ion-icon>
+      </ion-button>
+
+      <anf-scroll-down [color]="'gray'"/>
     </div>
   </section>
 

@@ -32,11 +32,13 @@ export class PreferenciasPage implements OnInit, OnDestroy {
   public informacoes$: Observable<IAppState>;
   public inscricaoInformacoes: Subscription;
 
+  public traducaoDaTela: any;
+  private traducaoDaTela$: Observable<any>;
+  private inscricaoTraducaoDaTela: Subscription;
+
   public cidades: Cidade[];
 
-  public cityButtonAlertOptions: AlertOptions = {
-    subHeader: this.translate.instant('COMPONENTS.SELETOR_DE_CIDADES.TITULO'),
-    message: this.translate.instant('COMPONENTS.SELETOR_DE_CIDADES.DESCRICAO'),
+  public configuracaoDoAlertaDeCidade: AlertOptions = {
     backdropDismiss: false
   }
 
@@ -54,16 +56,21 @@ export class PreferenciasPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.obterTodasAsInformacoes();
-    this.cidades = this.appConfig.obterCidades();
+    this.obterCidades();
+    this.obterIdiomas();
+  }
+
+  public obterIdiomas(): void {
     this.idiomas = this.appConfig.obterIdiomas();
   }
 
-  ionViewDidEnter(): void {
-    this.title.setTitle('Preferências');
+  public obterCidades(): void {
+    this.cidades = this.appConfig.obterCidades();
   }
 
   /**
    * @description Obtém as informações guardadas no NGRX.
+   * Neste caso precisamos já ir definindo algumas coisas como: Cidade inicial, Idioma inicial e tradução da tela.
    */
   public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
@@ -72,6 +79,7 @@ export class PreferenciasPage implements OnInit, OnDestroy {
       this.informacoes = res;
       this.identificarCidadeInicial(this.informacoes.cidadeEscolhida);
       this.identificarIdiomaInicial(this.informacoes.idioma);
+      this.obterTraducaoDaTela();
     })
   }
 
@@ -158,6 +166,8 @@ export class PreferenciasPage implements OnInit, OnDestroy {
       this.houveMudancaEmAlgumSeletor = false;
 
       this.mostrarNotificacao();
+
+      this.obterTraducaoDaTela();
     }
   }
 
@@ -166,16 +176,16 @@ export class PreferenciasPage implements OnInit, OnDestroy {
 
     const alert = await this.alertCtrl.create({
       mode: 'ios',
-      subHeader: 'Mudanças',
-      message: `Trocaremos a cidade para ${this.cidadeEscolhida.text} e o idioma para ${this.idiomaSelecionado.text[this.informacoes.idioma.value]}`,
+      subHeader: `${this.traducaoDaTela?.ALERTA_MUDANCAS.HEADER}`,
+      message: `${this.traducaoDaTela?.ALERTA_MUDANCAS.MENSAGEM}`,
       buttons: [{
-        text: 'Cancelar',
+        text: `${this.traducaoDaTela?.ALERTA_MUDANCAS.BOTAO_CANCELAR}`,
         role: 'cancel',
         handler: () => {
           this.cancelouAlteracoes();
         }
       },{
-        text: 'Confirmar',
+        text: `${this.traducaoDaTela?.ALERTA_MUDANCAS.BOTAO_CONFIRMAR}`,
         role: 'confirm',
         handler: () => {
           this.confirmarAlteracoes();
@@ -195,20 +205,25 @@ export class PreferenciasPage implements OnInit, OnDestroy {
       translucent: false,
       position: 'top',
       cssClass: 'default',
-      header: 'Alteração',
-      message: 'Suas preferências foram atualizadas.',
+      header: this.traducaoDaTela?.NOTIFICACAO_PREFERENCIAS_ATUALIZADAS.HEADER,
+      message: this.traducaoDaTela?.NOTIFICACAO_PREFERENCIAS_ATUALIZADAS.MENSAGEM,
       duration: 3000
     })
 
     await toast.present();
-
     return toast;
   }
 
+  /**
+   * @description Define o novo idioma em todo o app.
+   */
   public confirmarNovoIdioma(idioma: string): void {
     this.translateApp.definirIdioma(idioma);
   }
 
+  /**
+   * @description Retorna para a tela de origem ou tela principal do app.
+   */
   public retornarPara(): void {
     if (this.informacoes.rotaAnterior) {
       this.navCtrl.navigateBack(this.informacoes.rotaAnterior);
@@ -217,7 +232,31 @@ export class PreferenciasPage implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * @description Obtém a tradução da tela para ser usado no TS.
+   * Neste caso precisamos ja ir configurando algumas coisas pos essa tela troca o idioma, como:
+   * Alerta de Troca de Cidade, título da tela.
+   */
+  public obterTraducaoDaTela(): void {
+    this.traducaoDaTela$ = this.translate.get('TELA_PREFERENCIAS');
+    this.inscricaoTraducaoDaTela = this.traducaoDaTela$
+    .subscribe((res: any) => {
+      this.traducaoDaTela = res;
+      this.configurarAlertaDeTrocaDeCidade();
+      this.title.setTitle(`${this.traducaoDaTela?.TITULO_TELA}`)
+    })
+  }
+
+  public configurarAlertaDeTrocaDeCidade(): void {
+    this.configuracaoDoAlertaDeCidade = {
+      ...this.configuracaoDoAlertaDeCidade,
+      subHeader: this.traducaoDaTela?.SELETOR_DE_CIDADES.TITULO,
+      message: this.traducaoDaTela?.SELETOR_DE_CIDADES.DESCRICAO
+    }
+  }
+
   ngOnDestroy(): void {
     this.inscricaoInformacoes.unsubscribe();
+    this.inscricaoTraducaoDaTela.unsubscribe();
   }
 }

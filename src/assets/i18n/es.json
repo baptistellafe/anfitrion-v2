@@ -32,6 +32,7 @@
     "PARA_QUEM_PROCURA" : "para quem procuera"
   },
   "TELA_PREFERENCIAS" : {
+    "TITULO_TELA" : "Preferencitas",
     "TITULO" : "Prefiro",
     "DESCRICAO" : "confiracion del app.",
     "NOVA_CIDADE" : "nueva ciudad",
@@ -47,10 +48,24 @@
     "BOTAO_SIM_CONFIRMAR" : [
       "si",
       "confirme"
-    ]
+    ],
+    "SELETOR_DE_CIDADES" : {
+      "TITULO" : "Truecar la ciudad",
+      "DESCRICAO" : "escolla una dela lista"
+    },
+    "NOTIFICACAO_PREFERENCIAS_ATUALIZADAS" : {
+      "HEADER" : "Alteraciones",
+      "MENSAGEM" : "Tua preferencias foi mudada."
+    },
+    "ALERTA_MUDANCAS" : {
+      "HEADER" : "Alteraciones",
+      "MENSAGEM" : "Pudemos aplicar la altericion?",
+      "BOTAO_CANCELAR" : "Cancelarte",
+      "BOTAO_CONFIRMAR" : "Confirmarte"
+    }
   },
   "TELA_CONTATO" : {
-    "TITULO" : "Contatito me",
+    "TITULO_TELA" : "Contatito me",
     "EAI" : "Hola que ta",
     "DESCRICAO" : "cueomo posso ahudar?",
     "COMERCIAL" : "comerciale",
@@ -96,7 +111,9 @@
         "saiba mutcho",
         "sobre nósito"
       ]
-    }
+    },
+    "SUGERIR_CONTEUDO" : "sugerir lo conteudo",
+    "AINDA_NAO_TEMOS_SUGESTOES" : "ainda no tiemos sugestione"
   },
   "TELA_EDITAR_DADOS" : {
     "TITULO_TELA" : "Altere suas informações",
@@ -127,7 +144,8 @@
     "DE" : "de",
     "DEFINIR_COMO" : "debinir cuomo",
     "PARA" : "pla",
-    "NENHUM_REGISTRO" : "nadita encontradito"
+    "NENHUM_REGISTRO" : "nadita encontradito",
+    "EU_VIM_DO_ANFITRION" : "Yo vim del anfitrion e gostaria..."
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {

@@ -16,8 +16,8 @@ export class ContatoPage implements OnInit, OnDestroy {
 
   public tipoDeContato: 'comercial' | 'outros';
 
-  public informacoes$: Observable<IAppState>;
   public informacoes: IAppState = AppStore.appInitialState;
+  public informacoes$: Observable<IAppState>;
   public inscricaoInformacoes: Subscription;
 
   public traducaoDaTela: any;
@@ -31,18 +31,14 @@ export class ContatoPage implements OnInit, OnDestroy {
     private translate : TranslateService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.obterTodasAsInformacoes();
     this.definirTipoDeContatoInicial('comercial');
   }
 
   ionViewWillEnter(): void {
     this.obterTraducaoDaTela();
-  }
-
-  ionViewDidEnter(): void {
-
-    this.title.setTitle(this.traducaoDaTela?.TITULO)
+    this.title.setTitle(`${this.traducaoDaTela?.TITULO_TELA}`);
   }
 
   /**
@@ -65,14 +61,19 @@ export class ContatoPage implements OnInit, OnDestroy {
     this.inscricaoTraducaoDaTela = this.traducaoDaTela$
     .subscribe((res: any) => {
       this.traducaoDaTela = res;
-      this.title.setTitle(`${this.traducaoDaTela?.TITULO}`);
     })
   }
 
+  /**
+   * @description Definir tipo de contato.
+   */
   public definirTipoDeContatoInicial(tipo: 'comercial' | 'outros'): void {
     this.tipoDeContato = tipo;
   }
 
+  /**
+   * @description Mostrar alerta ao clicar no botão de WhatsApp ou e-mail.
+   */
   public async mostrarAlerta(tipo: 'whatsapp' | 'email'): Promise<HTMLIonAlertElement> {
     const alert = await this.alertCtrl.create({
       mode: 'ios',
@@ -104,14 +105,20 @@ export class ContatoPage implements OnInit, OnDestroy {
     })
 
     await alert.present()
-
     return alert
   }
 
+  /**
+   * @description Abrir WhatsApp com mensagem.
+   */
   public abrirWhatsApp(): void {
-    window.open(`https://wa.me/${this.informacoes.anfitrion.whatsApp}`, '_blank');
+    let mensagemCodificada = encodeURIComponent(this.translate.instant('GERAL.EU_VIM_NO_ANFITRION'));
+    window.open(`https://wa.me/${this.informacoes.anfitrion.whatsApp}?text=${mensagemCodificada}`, '_blank');
   }
 
+  /**
+   * @description Abrir o app padrão de e-mail do usuário.
+   */
   public abrirAppDeEmail(): void {
     window.location.href = "mailto:anfitrionappoficial@gmail.com";
   }
@@ -120,5 +127,4 @@ export class ContatoPage implements OnInit, OnDestroy {
     this.inscricaoInformacoes.unsubscribe();
     this.inscricaoTraducaoDaTela.unsubscribe();
   }
-
 }

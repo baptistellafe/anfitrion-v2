@@ -32,6 +32,7 @@
     "PARA_QUEM_PROCURA" : "para quem procura"
   },
   "TELA_PREFERENCIAS" : {
+    "TITULO_TELA" : "Preferências",
     "TITULO" : "Preferências",
     "DESCRICAO" : "configurações do app.",
     "NOVA_CIDADE" : "nova cidade",
@@ -47,10 +48,24 @@
     "BOTAO_SIM_CONFIRMAR" : [
       "sim",
       "confirmar"
-    ]
+    ],
+    "SELETOR_DE_CIDADES" : {
+      "TITULO" : "Trocar cidade",
+      "DESCRICAO" : "escolha uma da lista"
+    },
+    "NOTIFICACAO_PREFERENCIAS_ATUALIZADAS" : {
+      "HEADER" : "Alteração",
+      "MENSAGEM" : "Suas preferências foram atualizadas."
+    },
+    "ALERTA_MUDANCAS" : {
+      "HEADER" : "Mudanças",
+      "MENSAGEM" : "Vamos atualizar suas preferências, tudo bem?",
+      "BOTAO_CANCELAR" : "Cancelar",
+      "BOTAO_CONFIRMAR" : "Confirmar"
+    }
   },
   "TELA_CONTATO" : {
-    "TITULO" : "Fale comigo",
+    "TITULO_TELA" : "Fale comigo",
     "EAI" : "E aí",
     "DESCRICAO" : "como eu posso te ajudar?",
     "COMERCIAL" : "comercial",
@@ -96,7 +111,9 @@
         "saiba mais",
         "sobre nós"
       ]
-    }
+    },
+    "SUGERIR_CONTEUDO" : "sugerir conteúdo",
+    "AINDA_NAO_TEMOS_SUGESTOES" : "ainda não temos sugestões"
   },
   "TELA_EDITAR_DADOS" : {
     "TITULO_TELA" : "Altere suas informações",
@@ -127,7 +144,8 @@
     "DE" : "de",
     "DEFINIR_COMO" : "definir como",
     "PARA" : "para",
-    "NENHUM_REGISTRO" : "nenhum registro encontrado"
+    "NENHUM_REGISTRO" : "nenhum registro encontrado",
+    "EU_VIM_DO_ANFITRION" : "Eu vim do anfitrion e gostaria..."
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {

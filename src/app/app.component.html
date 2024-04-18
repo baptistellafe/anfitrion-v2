@@ -65,8 +65,8 @@
               <ion-icon [name]="item.icone + '-outline'"></ion-icon>
 
               <ion-text mode="ios">
-                <p class="fs-20 titulo font-baloo">{{ item.titulo[informacoes.idioma.value] }}</p>
-                <p class="fs-14 descricao">{{ item.descricao[informacoes.idioma.value] }}</p>
+                <p class="fs-20 titulo font-baloo">{{ item.titulo?.[informacoes.idioma.value] }}</p>
+                <p class="fs-14 descricao">{{ item.descricao?.[informacoes.idioma.value] }}</p>
               </ion-text>
             </ion-item>
           </ion-menu-toggle>

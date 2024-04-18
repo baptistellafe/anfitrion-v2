@@ -43,7 +43,7 @@ export class AppConfigService {
       },
       especial: false,
       cities: ['santos'],
-      ativo: false
+      ativo: true
     },
     {
       icone: 'fast-food',
@@ -60,7 +60,7 @@ export class AppConfigService {
       },
       especial: false,
       cities: ['santos'],
-      ativo: false
+      ativo: true
     },
     {
       icone: 'pizza',
@@ -77,7 +77,7 @@ export class AppConfigService {
       },
       especial: false,
       cities: ['santos'],
-      ativo: false
+      ativo: true
     },
     {
       icone: 'musical-notes',
@@ -94,7 +94,7 @@ export class AppConfigService {
       },
       especial: false,
       cities: ['santos'],
-      ativo: false
+      ativo: true
     },
     {
       icone: 'wine',
@@ -128,7 +128,7 @@ export class AppConfigService {
       },
       especial: false,
       cities: ['santos'],
-      ativo: false
+      ativo: true
     },
     {
       icone: 'qr-code',
@@ -231,7 +231,7 @@ export class AppConfigService {
         es: 'turestismts'
       },
       value: 'pontos-turisticos',
-      cities: ['santos'],
+      cities: ['santos','saovicente'],
       ativo: true
     }
   ]

@@ -10,12 +10,30 @@ ion-content {
         height: 100%;
         transition: max-height 500ms ease;
         will-change: max-height;
-        min-height: 388.5px;
 
-        &.hero-expandido { max-height: 100%; }
-        &.hero-encolhido { max-height: 70%; }
+        &.hero-expandido { max-height: 100%; min-height: 0; }
+        &.hero-encolhido { max-height: 70%; min-height: 388.5px; }
+        &.hero-curto { max-height: 50%; min-height: 0; }
 
+        .hero-ads-wrapper {
+          padding: 0 16px;
+          position: absolute;
+          left: 16px;
+          bottom: -80px;
+          right: 16px;
 
+          .hero-ads-container {
+            width: 100%;
+            max-width: 996px;
+            height: 180px;
+            margin: 0 auto;
+            box-shadow: rgba(0, 0, 0, .7) 0px 2px 5px;
+            background: var(--gray-2);
+            border: 1px solid #333;
+            overflow: hidden;
+            border-radius: 8px;
+          }
+        }
 
         .hero-swiper-wrapper {
           position: absolute;
@@ -33,21 +51,39 @@ ion-content {
         }
       }
 
+      .sem-sugestoes-info {
+        height: 50%;
+        width: 100%;
+        @include flexbox(center, flex-end, column);
+        padding: 32px;
+        min-height: 316px;
+
+        ion-button {
+          margin: 32px 0 16px 0;
+        }
+
+        anf-scroll-down {
+          @media only screen and (max-height: 560px) {
+            display: none;
+          }
+        }
+      }
+
       .swiper-info {
         min-height: 172.5px;
         padding: 16px 16px 32px 16px;
         height: 30%;
         @include flexbox(center, flex-end, column);
+      }
 
-        anf-scroll-down::ng-deep {
-          display: block;
-          position: relative;
-          height: 40px;
-          width: 100%;
-          pointer-events: none;
-          margin-top: 8px;
-          opacity: .4;
-        }
+      anf-scroll-down::ng-deep {
+        display: block;
+        position: relative;
+        height: 40px;
+        width: 100%;
+        pointer-events: none;
+        margin-top: 8px;
+        opacity: .4;
       }
     }
 

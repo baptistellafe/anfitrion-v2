@@ -128,6 +128,13 @@ export class SugestoesPage implements OnInit, OnDestroy {
   }
 
   /**
+    @description Direcionar usuário para tela de contato, onde irá sugerir conteúdo.
+  */
+    public sugerirConteudo(): void {
+      this.navCtrl.navigateForward(['contato'])
+    }
+
+  /**
    * @description Obtém as informações guardadas no NGRX e já define as sugestões da cidade.
    */
   public obterTodasAsInformacoes(): void {

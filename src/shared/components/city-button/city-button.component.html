@@ -16,7 +16,7 @@
     <ion-select
     (ionChange)="definirCidade($event)"
     [(ngModel)]="cidadeEscolhida"
-    [interfaceOptions]="cityButtonAlertOptions"
+    [interfaceOptions]="configuracaoDoAlertaDeCidade"
     [compareWith]="compararCidades"
     [interface]="'alert'"
     [okText]="'GERAL.DEFINIR' | translate"

@@ -6,9 +6,9 @@ import { CIDADE_ESCOLHIDA_KEY, IDIOMA_KEY } from 'src/app/consts/keys';
 import { Cidade } from 'src/app/interfaces/Cidade';
 import { AppConfigService } from 'src/app/services/app-config.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { IAppState, definirCidade, definirIdioma } from 'src/app/store/app/app.state';
+import { IAppState, definirCidade } from 'src/app/store/app/app.state';
 import * as AppStore from './../../../app/store/app/app.state';
-import { LangChangeEvent, TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
+import {  LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class CityButtonComponent  implements OnInit, OnDestroy {
   public cidadeEscolhida: Cidade;
   public selectedCityValue: string;
 
-  public cityButtonAlertOptions: AlertOptions = {
+  public configuracaoDoAlertaDeCidade: AlertOptions = {
     backdropDismiss: false
   }
 
@@ -45,11 +45,11 @@ export class CityButtonComponent  implements OnInit, OnDestroy {
   ) { }
 
   async ngOnInit() {
+    this.identificarMudancaNoIdioma();
     this.cities = this.appConfig.obterCidades();
     this.obterTodasAsInformacoes();
-    this.obterTraducaoDaTela();
+    this.obterTraducaoDoComponente();
     this.definirCidadeInicial();
-    this.identificarMudancaNoIdioma();
   }
 
   /**
@@ -102,11 +102,12 @@ export class CityButtonComponent  implements OnInit, OnDestroy {
    * @description Obtém a tradução da tela para ser usado no TS.
    * Neste caso não precisa se desinscrever por causa do Take(1).
    */
-  public obterTraducaoDaTela(): void {
+  public obterTraducaoDoComponente(): void {
     this.traducaoDoComponent$ = this.translate.get('COMPONENTS.SELETOR_DE_CIDADES');
     this.inscricaoTraducaoDoComponente = this.traducaoDoComponent$
     .subscribe((res: any) => {
       this.traducaoDoComponent = res;
+      this.definirConfiguracaoDoAlertaDeCidade();
     })
   }
 
@@ -118,20 +119,19 @@ export class CityButtonComponent  implements OnInit, OnDestroy {
     this.mudancasNoIdioma$ = this.translate.onLangChange;
     this.inscricaoMudancaNoIdioma = this.mudancasNoIdioma$
     .subscribe((event: LangChangeEvent) => {
-      this.obterTraducaoDaTela();
-
-      this.definirCfgDoAlert({
-        subHeader: this.traducaoDoComponent.TITULO,
-        message: this.traducaoDoComponent.DESCRICAO
-      })
+      this.obterTraducaoDoComponente();
     });
   }
 
   /**
    * @description Define a configuração de algumas informações do Alert.
    */
-  public definirCfgDoAlert(configuracao: AlertOptions): void {
-    this.cityButtonAlertOptions = configuracao;
+  public definirConfiguracaoDoAlertaDeCidade(): void {
+    this.configuracaoDoAlertaDeCidade = {
+      ...this.configuracaoDoAlertaDeCidade,
+      subHeader: this.traducaoDoComponent?.TITULO,
+      message: this.traducaoDoComponent?.DESCRICAO
+    }
   }
 
   /**

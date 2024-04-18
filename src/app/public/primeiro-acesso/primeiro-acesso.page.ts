@@ -43,14 +43,7 @@ export class PrimeiroAcessoPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.obterTodasAsInformacoes();
-  }
-
-  ionViewWillEnter(): void {
     this.obterTraducaoDaTela();
-  }
-
-  ionViewDidEnter(): void {
-    this.title.setTitle(`${this.traducaoDaTela?.TITULO}`);
   }
 
   /**

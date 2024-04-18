@@ -32,6 +32,7 @@
     "PARA_QUEM_PROCURA" : "who looking for"
   },
   "TELA_PREFERENCIAS" : {
+    "TITULO_TELA" : "Preferences",
     "TITULO" : "Preferences",
     "DESCRICAO" : "app configuration.",
     "NOVA_CIDADE" : "new city",
@@ -47,10 +48,24 @@
     "BOTAO_SIM_CONFIRMAR" : [
       "yes",
       "confirm"
-    ]
+    ],
+    "SELETOR_DE_CIDADES" : {
+      "TITULO" : "Change city",
+      "DESCRICAO" : "choose one below"
+    },
+    "NOTIFICACAO_PREFERENCIAS_ATUALIZADAS" : {
+      "HEADER" : "Changes",
+      "MENSAGEM" : "Your preferences has changed."
+    },
+    "ALERTA_MUDANCAS" : {
+      "HEADER" : "Changes",
+      "MENSAGEM" : "Can we efetive our changes?",
+      "BOTAO_CANCELAR" : "Cancel",
+      "BOTAO_CONFIRMAR" : "Confirm"
+    }
   },
   "TELA_CONTATO" : {
-    "TITULO" : "Contact me",
+    "TITULO_TELA" : "Contact me",
     "EAI" : "Hi there",
     "DESCRICAO" : "how can I help you?",
     "COMERCIAL" : "comercial",
@@ -96,7 +111,9 @@
         "see more",
         "about us"
       ]
-    }
+    },
+    "SUGERIR_CONTEUDO" : "suggest a content",
+    "AINDA_NAO_TEMOS_SUGESTOES" : "we doesn't have suggestion yet"
   },
   "TELA_EDITAR_DADOS" : {
     "TITULO_TELA" : "Change your informations",
@@ -127,7 +144,8 @@
     "DE" : "of",
     "DEFINIR_COMO" : "define as",
     "PARA" : "to",
-    "NENHUM_REGISTRO" : "no entries found"
+    "NENHUM_REGISTRO" : "no entries found",
+    "EU_VIM_DO_ANFITRION" : "I came from anfitrion and I would like to..."
   },
   "COMPONENTS" : {
     "SELETOR_DE_CIDADES" : {

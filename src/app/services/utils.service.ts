@@ -113,7 +113,7 @@ export class UtilsService {
   /**
    * @description Verifica se é o primeiro acesso do usuário.
    */
-  public async identificarPrimeiroAcesso(): Promise<void> {
+  public async identificarPrimeiroAcesso() {
     let primeiroNome = await this.storageService.obterChave(PRIMEIRO_NOME_KEY);
     let jaAcessouAnfitrion = await this.storageService.obterChave(JA_ACESSOU_ANFITRION_KEY);
     let idioma = await this.storageService.obterChave(IDIOMA_KEY);

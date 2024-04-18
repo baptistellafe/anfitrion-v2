@@ -87,7 +87,6 @@ export class AppComponent implements OnInit {
   public obterTodasAsInformacoes(): void {
     this.informacoes$ = this.store.select(AppStore.obterTodasInformacoes);
     this.informacoes$
-    .pipe(take(5))
     .subscribe((res: IAppState) => {
       this.informacoes = res;
     })
