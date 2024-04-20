@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { IAppState } from 'src/app/store/app/app.state';
@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
   templateUrl: './duvidas-frequentes.page.html',
   styleUrls: ['./duvidas-frequentes.page.scss'],
 })
-export class DuvidasFrequentesPage implements OnInit {
+export class DuvidasFrequentesPage implements OnInit, OnDestroy {
 
   public informacoes: IAppState = AppStore.appInitialState;
   public informacoes$: Observable<IAppState>;
@@ -40,6 +40,10 @@ export class DuvidasFrequentesPage implements OnInit {
     .subscribe((res: IAppState) => {
       this.informacoes = res;
     })
+  }
+
+  ngOnDestroy(): void {
+    this.inscricaoInformacoes.unsubscribe();
   }
 
 }

@@ -20,10 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./public/boas-vindas/boas-vindas.module').then( m => m.BoasVindasPageModule)
   },
   {
-    path: 'trocar-cidade',
-    loadChildren: () => import('./public/trocar-cidade/trocar-cidade.module').then( m => m.TrocarCidadePageModule)
-  },
-  {
     path: 'duvidas-frequentes',
     loadChildren: () => import('./public/duvidas-frequentes/duvidas-frequentes.module').then( m => m.DuvidasFrequentesPageModule)
   },
@@ -63,10 +59,6 @@ const routes: Routes = [
   {
     path: 'preferencias',
     loadChildren: () => import('./private/preferencias/preferencias.module').then( m => m.PreferenciasPageModule)
-  },
-  {
-    path: 'trocar-idioma',
-    loadChildren: () => import('./public/trocar-idioma/trocar-idioma.module').then( m => m.TrocarIdiomaPageModule)
   },
   {
     path: 'contato',
