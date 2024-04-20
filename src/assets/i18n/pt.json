@@ -79,6 +79,7 @@
     "ALERTA_EMAIL" : "Nós abriremos o seu app padrão de e-mail, tudo bem?"
   },
   "TELA_SOBRE" : {
+    "TITULO_TELA" : "Sobre o anfitrion",
     "TITULO" : "Sobre o anfitrion",
     "TITULO_CONTEUDO" : "Bem vindo(a)",
     "DESCRICAO" : {
@@ -95,6 +96,7 @@
     }
   },
   "TELA_SUGESTOES" : {
+    "TITULO_TELA" : "Sugestões do anfitrião",
     "SOBRE" : {
       "TITULO" : "Sobre",
       "BOTAO_CONHECER_PONTOS_TURISTICOS" : [

@@ -56,15 +56,7 @@ export class QualABoaPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.obterTodasAsInformacoes();
-  }
-
-  ionViewWillEnter(): void {
     this.obterTraducaoDaTela();
-  }
-
-  ionViewWillLeave(): void {
-    //this.indexAtual = 0;
-    this.inscricaoTraducaoDaTela.unsubscribe();
   }
 
   public trocarCidade(): void {
@@ -195,5 +187,6 @@ export class QualABoaPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.inscricaoInformacoes.unsubscribe();
+    this.inscricaoTraducaoDaTela.unsubscribe();
   }
 }

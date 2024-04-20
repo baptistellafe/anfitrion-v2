@@ -9,6 +9,7 @@ import Swiper from 'swiper';
 import * as AppStore from './../../store/app/app.state';
 import { AppConfigService } from 'src/app/services/app-config.service';
 import { Sugestao } from 'src/app/interfaces/Sugestao';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -33,7 +34,12 @@ export class SugestoesPage implements OnInit, OnDestroy {
   public informacoes$: Observable<IAppState>;
   public inscricaoInformacoes: Subscription;
 
+  public traducaoDaTela: any;
+  private traducaoDaTela$: Observable<any>;
+  private inscricaoTraducaoDaTela: Subscription;
+
   constructor(
+    private translate : TranslateService,
     private title : Title,
     private utilsService : UtilsService,
     private navCtrl : NavController,
@@ -43,14 +49,10 @@ export class SugestoesPage implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.obterTodasAsInformacoes();
-
+    this.obterTraducaoDaTela();
     await this.toggleHero().then((res) => {
       this.heroEncolhido = res;
     })
-  }
-
-  ionViewDidEnter(): void {
-    this.title.setTitle(`Permita-me te sugerir algumas coisas ${this.informacoes.cidadeEscolhida.location[this.informacoes.idioma.value]}`);
   }
 
   public obterSugestoes(cidade: string): Sugestao[] {
@@ -146,8 +148,21 @@ export class SugestoesPage implements OnInit, OnDestroy {
     })
   }
 
+  /**
+   * @description Obtém a tradução da tela para ser usado no TS.
+   */
+  public obterTraducaoDaTela(): void {
+    this.traducaoDaTela$ = this.translate.get('TELA_SUGESTOES');
+    this.inscricaoTraducaoDaTela = this.traducaoDaTela$
+    .subscribe((res: any) => {
+      this.traducaoDaTela = res;
+      this.title.setTitle(`${this.traducaoDaTela?.TITULO_TELA} ${this.informacoes.cidadeEscolhida.location[this.informacoes.idioma.value]}`);
+    })
+  }
+
   ngOnDestroy(): void {
     this.inscricaoInformacoes.unsubscribe();
+    this.inscricaoTraducaoDaTela.unsubscribe();
   }
 
 }

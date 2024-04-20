@@ -79,6 +79,7 @@
     "ALERTA_EMAIL" : "Bamos abrir babaa email"
   },
   "TELA_SOBRE" : {
+    "TITULO_TELA" : "Suebre lo anfitrion",
     "TITULO" : "Suebre lo anfitrion",
     "TITULO_CONTEUDO" : "Bien-venido(a)",
     "DESCRICAO" : {
@@ -95,6 +96,7 @@
     }
   },
   "TELA_SUGESTOES" : {
+    "TITULO_TELA" : "Sugestiones del anfitrion",
     "SOBRE" : {
       "TITULO" : "Suebre",
       "BOTAO_CONHECER_PONTOS_TURISTICOS" : [

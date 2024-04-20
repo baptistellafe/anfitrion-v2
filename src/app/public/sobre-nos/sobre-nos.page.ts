@@ -26,6 +26,10 @@ export class SobreNosPage implements OnInit, OnDestroy {
   public informacoes$: Observable<IAppState>;
   public inscricaoInformacoes: Subscription;
 
+  public traducaoDaTela: any;
+  private traducaoDaTela$: Observable<any>;
+  private inscricaoTraducaoDaTela: Subscription;
+
   constructor(
     private title : Title,
     private store : Store,
@@ -39,7 +43,6 @@ export class SobreNosPage implements OnInit, OnDestroy {
   }
 
   ionViewDidEnter(): void {
-    this.title.setTitle(`Sobre o anfitrion`);
     this.scrollarConteudoParaTopo(this.sobreNosConteudo, 500);
   }
 
@@ -51,6 +54,8 @@ export class SobreNosPage implements OnInit, OnDestroy {
     this.inscricaoInformacoes = this.informacoes$
     .subscribe((res: IAppState) => {
       this.informacoes = res;
+
+      this.obterTraducaoDaTela();
     })
   }
 
@@ -110,8 +115,21 @@ export class SobreNosPage implements OnInit, OnDestroy {
     this.utilsService.scrollarConteudoParaTopo(conteudo, velocidade);
   }
 
+  /**
+   * @description Obtém a tradução da tela para ser usado no TS.
+   */
+  public obterTraducaoDaTela(): void {
+    this.traducaoDaTela$ = this.translate.get('TELA_SOBRE');
+    this.inscricaoTraducaoDaTela = this.traducaoDaTela$
+    .subscribe((res: any) => {
+      this.traducaoDaTela = res;
+      this.title.setTitle(`${this.traducaoDaTela?.TITULO_TELA} ${this.informacoes.cidadeEscolhida.location[this.informacoes.idioma.value]}`);
+    })
+  }
+
   ngOnDestroy(): void {
     this.inscricaoInformacoes.unsubscribe();
+    this.inscricaoTraducaoDaTela.unsubscribe();
   }
 
 }
